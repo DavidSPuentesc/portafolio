@@ -1,0 +1,27 @@
+---
+const redirectScript = `
+  const saved = localStorage.getItem('portfolio-locale');
+  const browser = navigator.language?.toLowerCase().startsWith('en') ? 'en' : 'es';
+  const locale = saved === 'en' || saved === 'es' ? saved : browser;
+  window.location.replace('/' + locale + '/');
+`;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex" />
+    <title>David Puentes</title>
+  </head>
+  <body>
+    <p>Selecciona tu idioma / Choose your language:</p>
+    <nav aria-label="Language selection">
+      <a href="/es/">Español</a>
+      <a href="/en/">English</a>
+    </nav>
+    <script is:inline set:html={redirectScript}></script>
+    <noscript><p>JavaScript no es necesario: usa uno de los enlaces anteriores.</p></noscript>
+  </body>
+</html>
