@@ -1,0 +1,2 @@
+import {test,expect} from '@playwright/test';
+test('Spanish business visitor reaches evidence and contact',async({page})=>{await page.goto('/es/');await page.getByRole('link',{name:/construir una solución/i}).click();await expect(page).toHaveURL(/\/es\/solutions\//);await expect(page.getByRole('heading',{name:/monitoreo iot industrial/i})).toBeVisible();await expect(page.getByRole('button',{name:/enviar mensaje/i})).toBeVisible();});

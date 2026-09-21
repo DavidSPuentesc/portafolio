@@ -1,0 +1,2 @@
+import {test,expect} from '@playwright/test';
+test('English hiring visitor reaches the matching CV',async({page})=>{await page.goto('/en/');await page.getByRole('link',{name:/hire david/i}).click();await expect(page).toHaveURL(/\/en\/profile\//);await expect(page.getByRole('link',{name:/download cv/i})).toHaveAttribute('href','/cv/david-puentes-cv-en.pdf');await expect(page.getByText(/human validation/i).first()).toBeVisible();});
