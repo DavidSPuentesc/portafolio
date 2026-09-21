@@ -1,0 +1,4 @@
+---
+import type {Locale} from '../../i18n/locales'; const {project,lang}=Astro.props as {project:any;lang:Locale};
+---
+<article class="project-card"><p class="eyebrow">{project.visibility==='development'?(lang==='es'?'EN DESARROLLO':'IN DEVELOPMENT'):'CASE STUDY'}</p><h3>{project.title}</h3><p>{project.summary}</p><ul>{project.technologies.slice(0,5).map((x:string)=><li>{x}</li>)}</ul><a href={`/${lang}/projects/${project.slug}/`}>{lang==='es'?'Ver caso':'View case'} ↗</a></article>

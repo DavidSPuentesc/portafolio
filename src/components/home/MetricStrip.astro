@@ -1,0 +1,4 @@
+---
+import type {Locale} from '../../i18n/locales'; const {lang}=Astro.props as {lang:Locale}; const m=lang==='es'?[['7','clientes B2B'],['1,5M+','registros procesados'],['51K+','muestras IoT'],['688 m','alcance LoRa probado']]:[['7','B2B customers'],['1.5M+','records processed'],['51K+','IoT samples'],['688 m','tested LoRa range']];
+---
+<section class="metric-strip" aria-label={lang==='es'?'Resultados destacados':'Highlighted results'}>{m.map(([v,l])=><div><strong>{v}</strong><span>{l}</span></div>)}</section>

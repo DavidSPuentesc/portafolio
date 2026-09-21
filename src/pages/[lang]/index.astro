@@ -1,5 +1,6 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro'; import { locales, isLocale } from '../../i18n/locales';
+import BaseLayout from '../../layouts/BaseLayout.astro'; import SpaceHero from '../../components/home/SpaceHero.astro'; import MetricStrip from '../../components/home/MetricStrip.astro'; import AudienceGateway from '../../components/home/AudienceGateway.astro'; import ProjectCard from '../../components/projects/ProjectCard.astro'; import {getProjects} from '../../lib/content'; import { locales, isLocale } from '../../i18n/locales';
 export function getStaticPaths(){ return locales.map(lang=>({params:{lang}})); } const lang = Astro.params.lang; if(!isLocale(lang)) return Astro.redirect('/es/');
+const projects=(await getProjects(lang)).filter(p=>p.featured);
 ---
-<BaseLayout {lang} title={lang==='es'?'Inicio':'Home'} description={lang==='es'?'Portafolio de ingeniería, IA e IoT de David Puentes.':'David Puentes engineering, AI, and IoT portfolio.'} canonicalPath={`/${lang}/`}><h1>{lang==='es'?'Ingeniería para sistemas inteligentes y reales.':'Engineering for intelligent, real-world systems.'}</h1></BaseLayout>
+<BaseLayout {lang} title={lang==='es'?'Inicio':'Home'} description={lang==='es'?'Portafolio de ingeniería, IA e IoT de David Puentes.':'David Puentes engineering, AI, and IoT portfolio.'} canonicalPath={`/${lang}/`}><SpaceHero {lang}/><MetricStrip {lang}/><AudienceGateway {lang}/><section class="section"><p class="eyebrow">{lang==='es'?'EVIDENCIA':'EVIDENCE'}</p><h2>{lang==='es'?'Sistemas construidos y medidos':'Systems built and measured'}</h2><div class="project-grid">{projects.map(project=><ProjectCard {project} {lang}/>)}</div></section></BaseLayout>
