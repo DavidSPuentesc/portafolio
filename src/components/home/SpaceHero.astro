@@ -1,0 +1,4 @@
+---
+import SpaceCanvas from './SpaceCanvas'; import { ui } from '../../i18n/ui'; import { localizedPath, type Locale } from '../../i18n/locales'; const {lang}=Astro.props as {lang:Locale}; const t=ui[lang].hero;
+---
+<section class="space-hero"><SpaceCanvas client:idle/><div class="hero-content"><p class="eyebrow">{t.eyebrow}</p><h1>{t.title}</h1><p class="lede">{t.description}</p><div class="hero-actions"><a class="button primary" href={localizedPath(lang,'/profile/')}>{t.work}</a><a class="button secondary" href={localizedPath(lang,'/solutions/')}>{t.business}</a></div></div></section>
