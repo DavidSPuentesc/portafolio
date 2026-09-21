@@ -1,0 +1,8 @@
+---
+import type {Locale} from '../../i18n/locales';
+const {lang}=Astro.props as {lang:Locale};
+const stages=lang==='es'
+  ? [['01','Contexto','Objetivos, restricciones y fuentes verificables.'],['02','Orquestación','Agentes, subagentes y skills especializados por tarea.'],['03','Control','Presupuesto de tokens, trazabilidad y validación humana.'],['04','Entrega','Resultado probado, documentado y listo para iterar.']]
+  : [['01','Context','Goals, constraints, and verifiable sources.'],['02','Orchestration','Agents, subagents, and task-specific skills.'],['03','Control','Token budgets, traceability, and human validation.'],['04','Delivery','Tested, documented outcomes ready to iterate.']];
+---
+<div class="agent-workflow">{stages.map(([number,title,body])=><article><span>{number}</span><h3>{title}</h3><p>{body}</p></article>)}</div>

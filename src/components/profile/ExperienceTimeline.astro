@@ -1,0 +1,5 @@
+---
+import type {Locale} from '../../i18n/locales';
+const {entries,lang}=Astro.props as {entries:any[];lang:Locale};
+---
+<div class="timeline">{entries.map(({data})=><article><p class="eyebrow">{data.period[lang]}</p><h3>{data.role[lang]}</h3><strong>{data.company}</strong><p>{data.summary[lang]}</p><ul>{data.highlights[lang].map((item:string)=><li>{item}</li>)}</ul></article>)}</div>
