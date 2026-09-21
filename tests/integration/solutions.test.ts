@@ -1,0 +1,2 @@
+import {readFileSync} from 'node:fs';import {expect,it} from 'vitest';
+it('publishes only evidence-backed initial offers',()=>{const page=readFileSync('src/pages/[lang]/solutions.astro','utf8');const data=readFileSync('src/content/solutions/solutions.json','utf8');expect(page).toContain('SolutionCard');expect(data).toContain('Monitoreo IoT industrial');expect(data).toContain('trazabilidad de activos');expect(data).toContain('Automatizaci');expect(data).not.toMatch(/producto antifraude listo|predicción logística disponible/i);});

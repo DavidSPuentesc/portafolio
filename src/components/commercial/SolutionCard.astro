@@ -1,0 +1,4 @@
+---
+import type {Locale} from '../../i18n/locales';const {solution,lang}=Astro.props as {solution:any;lang:Locale};
+---
+<article class="solution-card"><p class="eyebrow">{solution.id.replaceAll('-',' ')}</p><h3>{solution.title[lang]}</h3><p><strong>{lang==='es'?'El reto':'The challenge'}:</strong> {solution.pain[lang]}</p><p><strong>{lang==='es'?'Piloto entregable':'Pilot deliverable'}:</strong> {solution.deliverable[lang]}</p><ul>{solution.pilotMetrics[lang].map((metric:string)=><li>{metric}</li>)}</ul><a href={`/${lang}/projects/${solution.evidenceSlug}/`}>{lang==='es'?'Ver evidencia técnica':'View technical evidence'} →</a></article>
