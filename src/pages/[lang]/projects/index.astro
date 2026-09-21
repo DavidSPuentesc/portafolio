@@ -1,4 +1,4 @@
 ---
-import BaseLayout from '../../../layouts/BaseLayout.astro'; import { locales, isLocale } from '../../../i18n/locales'; export function getStaticPaths(){return locales.map(lang=>({params:{lang}}));} const lang=Astro.params.lang;if(!isLocale(lang))return Astro.redirect('/es/');
+import BaseLayout from '../../../layouts/BaseLayout.astro'; import ProjectCard from '../../../components/projects/ProjectCard.astro'; import {getProjects} from '../../../lib/content'; import { locales, isLocale } from '../../../i18n/locales'; export function getStaticPaths(){return locales.map(lang=>({params:{lang}}));} const lang=Astro.params.lang;if(!isLocale(lang))return Astro.redirect('/es/'); const projects=await getProjects(lang);
 ---
-<BaseLayout {lang} title={lang==='es'?'Proyectos':'Projects'} description="Engineering case studies" canonicalPath={`/${lang}/projects/`}><h1>{lang==='es'?'Proyectos y casos de estudio':'Projects and case studies'}</h1></BaseLayout>
+<BaseLayout {lang} title={lang==='es'?'Proyectos':'Projects'} description="Engineering case studies" canonicalPath={`/${lang}/projects/`}><section class="section"><p class="eyebrow">{lang==='es'?'PORTAFOLIO':'PORTFOLIO'}</p><h1>{lang==='es'?'Proyectos y casos de estudio':'Projects and case studies'}</h1><div class="project-grid">{projects.map(project=><ProjectCard {project} {lang}/>)}</div></section></BaseLayout>

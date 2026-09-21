@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ArchitectureDiagram from '../../../components/projects/ArchitectureDiagram.astro';
+import { getProjectStaticPaths } from '../../../lib/project-routes';
+import type { Locale } from '../../../i18n/locales';
+export const getStaticPaths = () => getProjectStaticPaths();
+const { project, lang } = Astro.props as { project: any; lang: Locale };
+const local = (value: Record<Locale, string>) => value[lang];
+---
+<BaseLayout lang={lang} title={`${local(project.title)} — David Puentes`} description={local(project.summary)} canonicalPath={`/${lang}/projects/${project.slug}/`}>
+  <article class="case-study section">
+    <a class="back-link" href={`/${lang}/projects/`}>← {lang === 'es' ? 'Proyectos' : 'Projects'}</a>
+    <p class="eyebrow">CASE STUDY</p><h1>{local(project.title)}</h1><p class="case-lede">{local(project.summary)}</p>
+    <ul class="tech-list">{project.technologies.map((item: string) => <li>{item}</li>)}</ul>
+    <section><h2>{lang === 'es' ? 'El problema' : 'The problem'}</h2><p>{local(project.problem)}</p></section>
+    <section><h2>{lang === 'es' ? 'Mi responsabilidad' : 'My responsibility'}</h2><p>{local(project.role)}</p></section>
+    <section><h2>{lang === 'es' ? 'Arquitectura' : 'Architecture'}</h2><ArchitectureDiagram description={local(project.architecture)} /></section>
+    <section><h2>{lang === 'es' ? 'Resultados' : 'Outcomes'}</h2><ul>{project.results[lang].map((item: string)=><li>{item}</li>)}</ul></section>
+    <section class="limitations"><h2>{lang === 'es' ? 'Límites y transparencia' : 'Limits and transparency'}</h2><ul>{project.limitations[lang].map((item: string)=><li>{item}</li>)}</ul></section>
+    {project.repositoryUrl && <a class="button primary" href={project.repositoryUrl} rel="noreferrer" target="_blank">{lang === 'es' ? 'Ver repositorio' : 'View repository'} ↗</a>}
+  </article>
+</BaseLayout>

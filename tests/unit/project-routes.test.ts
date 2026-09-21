@@ -1,0 +1,2 @@
+import {expect,it} from 'vitest';import {getProjectStaticPaths} from '../../src/lib/project-routes';
+it('generates both locales for each project',async()=>{const projects=['smartsense','securapp','project-h','gas-dyson','sensor-dashboard','wifi-sensing'].map(slug=>({data:{slug}})) as any;const p=await getProjectStaticPaths(projects);expect(p).toContainEqual(expect.objectContaining({params:{lang:'es',slug:'smartsense'}}));expect(p).toContainEqual(expect.objectContaining({params:{lang:'en',slug:'smartsense'}}));expect(p).toHaveLength(12);});

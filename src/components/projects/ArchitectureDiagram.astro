@@ -1,0 +1,7 @@
+---
+const { description } = Astro.props;
+const stages = description.split('→').map((stage: string) => stage.trim());
+---
+<ol class="architecture" aria-label="Architecture flow">
+  {stages.map((stage: string, index: number) => <li><span>{String(index + 1).padStart(2, '0')}</span>{stage}</li>)}
+</ol>
