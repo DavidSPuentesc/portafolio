@@ -1,0 +1,4 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'; import { locales, isLocale } from '../../i18n/locales'; export function getStaticPaths(){return locales.map(lang=>({params:{lang}}));} const lang=Astro.params.lang;if(!isLocale(lang))return Astro.redirect('/es/');
+---
+<BaseLayout {lang} title={lang==='es'?'Soluciones':'Solutions'} description="B2B technology solutions" canonicalPath={`/${lang}/solutions/`}><h1>{lang==='es'?'Soluciones para empresas':'Solutions for businesses'}</h1></BaseLayout>

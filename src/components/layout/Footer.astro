@@ -1,0 +1,4 @@
+---
+import type { Locale } from '../../i18n/locales'; const { lang } = Astro.props as { lang: Locale };
+---
+<footer><p>© {new Date().getFullYear()} David Santiago Puentes Cárdenas</p><div><a href="https://github.com/DavidSPuentesc">GitHub</a><a href="https://www.linkedin.com/in/david-santiago-puentes-c%C3%A1rdenas-914815186/">LinkedIn</a><a href="mailto:davidsantiago.puentesc@gmail.com">{lang === 'es' ? 'Correo' : 'Email'}</a></div></footer>

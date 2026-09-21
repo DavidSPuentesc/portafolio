@@ -1,0 +1,13 @@
+---
+import Navigation from '../components/layout/Navigation.astro';
+import Footer from '../components/layout/Footer.astro';
+import '../styles/global.css';
+import type { Locale } from '../i18n/locales';
+interface Props { lang: Locale; title: string; description: string; canonicalPath: string }
+const { lang, title, description, canonicalPath } = Astro.props;
+const site = Astro.site ?? new URL('http://localhost:4321');
+const canonical = new URL(canonicalPath, site);
+const opposite = lang === 'es' ? 'en' : 'es';
+const oppositePath = canonicalPath.replace(/^\/(es|en)\//, `/${opposite}/`);
+---
+<!doctype html><html lang={lang}><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width"/><meta name="description" content={description}/><title>{title} · David Puentes</title><link rel="canonical" href={canonical}/><link rel="alternate" hreflang={lang} href={canonical}/><link rel="alternate" hreflang={opposite} href={new URL(oppositePath, site)}/><link rel="alternate" hreflang="x-default" href={new URL('/es/', site)}/></head><body><a class="skip-link" href="#main-content">{lang === 'es' ? 'Saltar al contenido' : 'Skip to content'}</a><Navigation {lang} currentPath={canonicalPath}/><main id="main-content"><slot/></main><Footer {lang}/></body></html>
