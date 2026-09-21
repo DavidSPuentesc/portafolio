@@ -1,0 +1,2 @@
+type RedisLike={incr(key:string):Promise<number>;expire(key:string,seconds:number):Promise<unknown>};
+export function createRateLimiter(redis:RedisLike,options={limit:5,windowSeconds:600}){return{async check(ip:string){const bucket=Math.floor(Date.now()/(options.windowSeconds*1000));const key=`portfolio:contact:${ip}:${bucket}`;const count=await redis.incr(key);if(count===1)await redis.expire(key,options.windowSeconds);return count<=options.limit;}};}
