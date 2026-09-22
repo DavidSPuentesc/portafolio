@@ -1,6 +1,9 @@
 ---
+import type { z } from 'astro/zod';
 import type { Locale } from '../../i18n/locales';
-const { solution, lang } = Astro.props as { solution: any; lang: Locale };
+import type { solutionsSchema } from '../../content.config';
+type Solution = z.infer<typeof solutionsSchema>['items'][number];
+const { solution, lang } = Astro.props as { solution: Solution; lang: Locale };
 const es = lang === 'es';
 ---
 <article class="solution-card">
@@ -9,8 +12,8 @@ const es = lang === 'es';
   <p><strong>{es ? 'El problema' : 'The problem'}:</strong> {solution.pain[lang]}</p>
   <p><strong>{es ? 'Qué entrego en un piloto' : 'What a pilot delivers'}:</strong> {solution.deliverable[lang]}</p>
   <h4>{es ? 'Ya construido' : 'Already built'}</h4>
-  <ul class="proof-list">{solution.proof[lang].map((item: string) => <li>{item}</li>)}</ul>
+  <ul class="proof-list">{solution.proof[lang].map((item) => <li>{item}</li>)}</ul>
   <h4>{es ? 'Cómo se mide' : 'How it is measured'}</h4>
-  <ul>{solution.pilotMetrics[lang].map((metric: string) => <li>{metric}</li>)}</ul>
+  <ul>{solution.pilotMetrics[lang].map((metric) => <li>{metric}</li>)}</ul>
   <a href={`/${lang}/projects/${solution.evidenceSlug}/`}>{es ? 'Ver el caso de referencia' : 'See the reference case'} →</a>
 </article>
