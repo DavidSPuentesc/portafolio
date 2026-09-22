@@ -57,8 +57,8 @@
 
   /* Scroll reveal: hidden state exists only when the script is running (html.js-motion) and only below the first viewport. */
   html.js-motion .reveal { opacity: 0; translate: 0 20px; }
+  html.js-motion .architecture li.reveal:not(.is-visible) { translate: -16px 0; } /* :not() keeps the li type selector from outranking .is-visible */
   html.js-motion .reveal.is-visible { opacity: 1; translate: none; transition: opacity .75s var(--ease), translate .75s var(--ease); transition-delay: calc(var(--i, 0) * 70ms); }
-  html.js-motion .architecture li.reveal { translate: -16px 0; }
 
   /* Timeline: the vertical line draws itself instead of fading. */
   .timeline { position: relative; }
