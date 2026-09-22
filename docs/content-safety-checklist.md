@@ -37,5 +37,12 @@ Use this checklist before publishing a case study, metric, image, or employer re
 
 ## CV
 
-- `public/cv/david-puentes-cv-es.pdf` is David's own document and is never regenerated here.
-- The English CV is generated from `scripts/generate-cv-en.mjs` with `node scripts/generate-cv-en.mjs`; keep it free of customer names.
+- `public/cv/david-puentes-cv-es.pdf` is David's own document, supplied as-is. By David's decision it does name SecurApp customers (see the context document, §2: brand recognition for Colombian recruiters). It is never regenerated or edited here; only David replaces it.
+- The confidentiality test in `tests/unit/content.test.ts` covers JSON content, pages, `ui.ts`, and `scripts/generate-cv-en.mjs`. It does not inspect PDFs, so the Spanish CV is outside its scope by design.
+- The English CV is generated from `scripts/generate-cv-en.mjs` with `node scripts/generate-cv-en.mjs`; keep it free of customer names and state SmartSense roles per the article's CRediT statement.
+
+## SmartSense attribution
+
+- Roles follow the CRediT statement in the HardwareX manuscript: David = conceptualization, hardware, software, validation, data curation, writing (review and editing); co-author = conceptualization, methodology, software, investigation, writing (original draft). Repository history supports David as primary author of `hardware/`, `docker/`, and `analisis/`.
+- Status: thesis delivered; HardwareX article in preparation, not submitted, no DOI.
+- Link availability (97.8–98.4 %) is conditioned on inferred gateway-active periods; PDR is 95.3–96.6 % during active periods. Quote the ranges exactly or as "≈96 %".
