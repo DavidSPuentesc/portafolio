@@ -78,7 +78,7 @@ a { color: inherit; }
 .delivery-list li::before{counter-increment:step;content:counter(step,decimal-leading-zero);position:absolute;left:1.25rem;top:1.4rem;color:var(--cyan);font:700 .8rem ui-monospace,monospace}
 .delivery-list li.pending{border-style:dashed;color:#c6b8ff}
 .delivery-list li.pending::before{color:var(--violet)}
-.timeline-meta{margin:.25rem 0 .75rem!important;font-size:.9rem}
+.timeline-meta{margin:.25rem 0 .75rem;font-size:.9rem}
 .timeline-metrics{display:flex;flex-wrap:wrap;gap:1.5rem;margin:1rem 0 1.25rem}
 .timeline-metrics>span{display:grid}
 .timeline-metrics strong{font-size:1.7rem;letter-spacing:-.04em;line-height:1.1;color:var(--ink)}

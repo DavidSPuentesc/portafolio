@@ -1,7 +1,7 @@
 import { chromium } from 'playwright';
 import { resolve } from 'node:path';
 
-// English CV. Source of truth: the Spanish CV supplied by David plus the evidence ledger in tareas2.md.
+// English CV. Source of truth: the Spanish CV supplied by David plus his documented professional context.
 // Rules: no customer names, 987 commits are an 8-week figure, "multi-instance" (not multi-tenant),
 // "LLM integration" (not AI development), cloud is not inflated.
 const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><style>

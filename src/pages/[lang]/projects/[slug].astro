@@ -39,7 +39,7 @@ const contactHref = visibility === 'private-summary' ? `/${lang}/solutions/#cont
     <p class="case-lede">{local(project.summary)}</p>
     {(project.sector || project.period) && (
       <p class="case-meta">
-        {project.sector && <span><strong>{es ? 'Sector' : 'Sector'}:</strong> {local(project.sector)}</span>}
+        {project.sector && <span><strong>Sector:</strong> {local(project.sector)}</span>}
         {project.period && <span><strong>{es ? 'Periodo' : 'Period'}:</strong> {local(project.period)}</span>}
       </p>
     )}
