@@ -1,12 +1,1 @@
-{
-  "items": [
-    { "name": { "es": "Desarrollo de Aplicaciones con IA", "en": "AI Application Development" }, "issuer": "Platzi", "issued": "2026-06", "category": "AI", "url": null },
-    { "name": { "es": "React.js con TypeScript", "en": "React.js with TypeScript" }, "issuer": "Platzi", "issued": "2026-08", "category": "Frontend", "url": null },
-    { "name": { "es": "TypeScript", "en": "TypeScript" }, "issuer": "Platzi", "issued": "2026-08", "category": "Frontend", "url": null },
-    { "name": { "es": "Terraform", "en": "Terraform" }, "issuer": "Platzi", "issued": "2026-06", "category": "Infrastructure", "url": null },
-    { "name": { "es": "Ciberseguridad y Privacidad para Empresas", "en": "Cybersecurity and Privacy for Businesses" }, "issuer": "Platzi", "issued": "2026-06", "category": "Security", "url": null },
-    { "name": { "es": "Scientific Computing with Python", "en": "Scientific Computing with Python" }, "issuer": "freeCodeCamp", "issued": "2025-04", "category": "Scientific computing", "url": null },
-    { "name": { "es": "Responsive Web Design", "en": "Responsive Web Design" }, "issuer": "freeCodeCamp", "issued": "2025-04", "category": "Web", "url": null },
-    { "name": { "es": "Inglés B2", "en": "English B2" }, "issuer": "Centro de Lenguas, Universidad ECCI", "issued": "2025", "category": "Language", "url": null }
-  ]
-}
+{"items":[{"name":{"es":"Desarrollo de Aplicaciones con IA","en":"AI Application Development"},"issuer":"Platzi","issued":"2026-06","category":"AI","url":null},{"name":{"es":"React.js con TypeScript","en":"React.js with TypeScript"},"issuer":"Platzi","issued":"2026-08","category":"Frontend","url":null},{"name":{"es":"TypeScript","en":"TypeScript"},"issuer":"Platzi","issued":"2026-08","category":"Frontend","url":null},{"name":{"es":"Terraform","en":"Terraform"},"issuer":"Platzi","issued":"2026-06","category":"Infrastructure","url":null},{"name":{"es":"Ciberseguridad y Privacidad para Empresas","en":"Cybersecurity and Privacy for Businesses"},"issuer":"Platzi","issued":"2026-06","category":"Security","url":null},{"name":{"es":"Scientific Computing with Python","en":"Scientific Computing with Python"},"issuer":"freeCodeCamp","issued":"2025-04","category":"Scientific computing","url":null},{"name":{"es":"Responsive Web Design","en":"Responsive Web Design"},"issuer":"freeCodeCamp","issued":"2025-04","category":"Web","url":null},{"name":{"es":"Inglés B2","en":"English B2"},"issuer":"Centro de Lenguas, Universidad ECCI","issued":"2025","category":"Language","url":null}]}
