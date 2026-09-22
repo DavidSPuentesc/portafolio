@@ -40,7 +40,7 @@ ul{margin:3px 0 6px;padding-left:16px}li{margin-bottom:2px}.tags{color:#263a67}.
 
 <h2>Selected Projects</h2>
 <h3>SmartSense Monitoring — industrial thermal monitoring (thesis, two-author team)</h3>
-<p>Three-wire PT100 + MAX31865 nodes on XIAO ESP32-C6 with LoRa 433 MHz, a gateway with touch display and local dashboard, and a neutral Docker/Flask/SQLite replica. 3 nodes, 51,338 samples, up to 32 days of records, estimated PDR 95.3–96.6% in active periods, and a link demonstrated at 688 m through obstacles (lower bound). Open hardware (CERN-OHL-S v2 / MIT / CC-BY 4.0); HardwareX article in preparation. Personal contribution: firmware, analysis scripts, replica, documentation, and validation.</p>
+<p>Three-wire PT100 + MAX31865 nodes on XIAO ESP32-C6 with LoRa 433 MHz, a gateway with touch display and local dashboard, and a neutral Docker/Flask/SQLite replica. 3 nodes, 51,338 samples, up to 32 days of records, estimated PDR 95.3–96.6% in active periods, and a link demonstrated at 688 m through obstacles (lower bound). Open hardware (CERN-OHL-S v2 / MIT / CC-BY 4.0). Thesis delivered; HardwareX article in preparation, not yet submitted. CRediT roles: conceptualization, hardware, software, validation, data curation, and review and editing; primary author of the hardware design, the Docker replica, and the analysis scripts by repository history.</p>
 <h3>Sensor Dashboard — public IoT system (MIT)</h3>
 <p>MicroPython nodes with LoRa (sx127x) → gateway → Flask API → PostgreSQL (Neon) → Next.js + TypeScript + Tailwind dashboard on Vercel, built alone. Public evidence of React, Next.js, TypeScript, and PostgreSQL work.</p>
 <h3>Project H — room and asset security</h3>
@@ -53,7 +53,7 @@ ul{margin:3px 0 6px;padding-left:16px}li{margin-bottom:2px}.tags{color:#263a67}.
 <strong>Electronics & IoT:</strong> ESP32 (C6, S3), C/C++ (Arduino, ESP-IDF), MicroPython, LoRa, BLE, PT100/MAX31865, deep sleep and battery life, KiCad<br>
 <strong>Integrations:</strong> Gemini API, Firebase (Auth, Firestore, Messaging), ZeptoMail/SendGrid/PHPMailer, OSRM, Traccar/Teltonika, SUIN API, QR generation, Dompdf, PhpSpreadsheet<br>
 <strong>Delivery & operations:</strong> Git/GitHub (staging → main, batch PRs, revert as rollback), webhook-driven continuous deployment, Docker, Linux, Composer, Laragon; Terraform certification (strengthening)<br>
-<strong>AI-first workflow:</strong> Claude Code, opencode; specs before code, plans, subagents, skills, MCP, token budgets, adversarial diff review, and human validation before production<br>
+<strong>AI-first workflow:</strong> Claude Code, opencode; specs before code, plans, subagents, skills, MCP, token budgets, the assistant as a reviewing pair on diffs, and human validation before production<br>
 <strong>Quality & security:</strong> root-cause debugging, exploratory testing in staging, prepared statements, CSRF, rate limiting, bcrypt, session control, credential handling</p>
 
 <h2>Education & Certifications</h2>
