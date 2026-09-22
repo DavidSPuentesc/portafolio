@@ -1,15 +1,19 @@
 ---
+import type { z } from 'astro/zod';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import ArchitectureDiagram from '../../../components/projects/ArchitectureDiagram.astro';
 import { getProjectStaticPaths } from '../../../lib/project-routes';
+import type { projectSchema } from '../../../content.config';
 import type { Locale } from '../../../i18n/locales';
 export const getStaticPaths = () => getProjectStaticPaths();
-const { project, lang } = Astro.props as { project: any; lang: Locale };
+
+type Project = z.infer<typeof projectSchema>;
+type Visibility = Project['visibility'];
+const { project, lang } = Astro.props as { project: Project; lang: Locale };
 const es = lang === 'es';
 const local = (value: Record<Locale, string> | null | undefined) => (value ? value[lang] : null);
 
-type Visibility = 'public' | 'private-summary' | 'development';
-const visibility = project.visibility as Visibility;
+const visibility: Visibility = project.visibility;
 const eyebrow: Record<Visibility, string> = {
   public: 'CASE STUDY',
   'private-summary': es ? 'CASO PRIVADO · RESUMEN SIN DATOS PRIVADOS' : 'PRIVATE CASE · SUMMARY WITHOUT PRIVATE DATA',
@@ -40,11 +44,11 @@ const contactHref = visibility === 'private-summary' ? `/${lang}/solutions/#cont
       </p>
     )}
     {notice[visibility] && <p class="case-notice">{notice[visibility]}</p>}
-    <ul class="tech-list" aria-label={es ? 'Tecnologías' : 'Technologies'}>{project.technologies.map((item: string) => <li>{item}</li>)}</ul>
+    <ul class="tech-list" aria-label={es ? 'Tecnologías' : 'Technologies'}>{project.technologies.map((item) => <li>{item}</li>)}</ul>
 
     {project.metrics.length > 0 && (
       <ul class="case-metrics" aria-label={es ? 'Métricas con contexto' : 'Metrics with context'}>
-        {project.metrics.map((metric: any) => (
+        {project.metrics.map((metric) => (
           <li><strong>{metric.value}</strong><span>{local(metric.label)}</span><small>{local(metric.context)}</small></li>
         ))}
       </ul>
@@ -52,16 +56,16 @@ const contactHref = visibility === 'private-summary' ? `/${lang}/solutions/#cont
 
     <section><h2>{es ? 'El problema' : 'The problem'}</h2><p>{local(project.problem)}</p></section>
     <section><h2>{es ? 'Mi responsabilidad' : 'My responsibility'}</h2><p>{local(project.role)}</p></section>
-    <section><h2>{es ? 'Arquitectura' : 'Architecture'}</h2><ArchitectureDiagram description={local(project.architecture)} /></section>
-    <section><h2>{es ? 'Decisiones' : 'Decisions'}</h2><ul>{project.decisions[lang].map((item: string) => <li>{item}</li>)}</ul></section>
+    <section><h2>{es ? 'Arquitectura' : 'Architecture'}</h2><ArchitectureDiagram description={local(project.architecture) ?? ''} /></section>
+    <section><h2>{es ? 'Decisiones' : 'Decisions'}</h2><ul>{project.decisions[lang].map((item) => <li>{item}</li>)}</ul></section>
 
     {project.images.length > 0 && (
       <section>
         <h2>{es ? 'Evidencia visual' : 'Visual evidence'}</h2>
         <div class="case-gallery">
-          {project.images.map((image: any) => (
+          {project.images.map((image) => (
             <figure>
-              <img src={image.src} alt={local(image.alt)} width={image.width} height={image.height} loading="lazy" decoding="async" />
+              <img src={image.src} alt={local(image.alt) ?? ''} width={image.width} height={image.height} loading="lazy" decoding="async" />
               {image.caption && <figcaption>{local(image.caption)}</figcaption>}
             </figure>
           ))}
@@ -69,8 +73,8 @@ const contactHref = visibility === 'private-summary' ? `/${lang}/solutions/#cont
       </section>
     )}
 
-    <section><h2>{es ? 'Resultados' : 'Outcomes'}</h2><ul>{project.results[lang].map((item: string) => <li>{item}</li>)}</ul></section>
-    <section class="limitations"><h2>{es ? 'Límites y transparencia' : 'Limits and transparency'}</h2><ul>{project.limitations[lang].map((item: string) => <li>{item}</li>)}</ul></section>
+    <section><h2>{es ? 'Resultados' : 'Outcomes'}</h2><ul>{project.results[lang].map((item) => <li>{item}</li>)}</ul></section>
+    <section class="limitations"><h2>{es ? 'Límites y transparencia' : 'Limits and transparency'}</h2><ul>{project.limitations[lang].map((item) => <li>{item}</li>)}</ul></section>
 
     <div class="case-links">
       {project.repositoryUrl && <a class="button primary" href={project.repositoryUrl} rel="noreferrer" target="_blank">{repositoryLabel} ↗</a>}
