@@ -64,7 +64,7 @@
   html.js-motion .architecture li { --reveal-from: -16px 0; }
   html.js-motion .reveal.is-visible { opacity: 1; translate: none; animation: reveal-in .75s var(--ease) both calc(var(--i, 0) * 70ms); }
   @keyframes reveal-in { from { opacity: 0; translate: var(--reveal-from, 0 20px); } }
-  html.js-motion .reveal:focus-within { opacity: 1; translate: none; animation: none; } /* keyboard focus must never land on hidden content */
+  html.js-motion .reveal:has(:focus-visible) { opacity: 1; translate: none; animation: none; } /* keyboard focus must never land on hidden content */
 
   /* Timeline: the vertical line draws itself instead of fading. */
   .timeline { position: relative; }
