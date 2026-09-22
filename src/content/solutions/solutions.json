@@ -1,1 +1,95 @@
-{"items":[{"id":"industrial-iot","title":{"es":"Monitoreo IoT industrial","en":"Industrial IoT monitoring"},"pain":{"es":"Equipos críticos sin historial ni alertas tempranas.","en":"Critical equipment without history or early alerts."},"deliverable":{"es":"Sensores, gateway, dashboard y piloto medible.","en":"Sensors, gateway, dashboard, and a measurable pilot."},"evidenceSlug":"smartsense","pilotMetrics":{"es":["Disponibilidad","Cobertura","Calidad de lectura"],"en":["Availability","Coverage","Reading quality"]}},{"id":"asset-traceability","title":{"es":"Seguridad y trazabilidad de activos","en":"Asset security and traceability"},"pain":{"es":"Pérdidas, movimientos no autorizados y reacción tardía.","en":"Losses, unauthorized movement, and delayed response."},"deliverable":{"es":"Nodos, gateway, alarmas e historial de eventos.","en":"Nodes, gateway, alarms, and event history."},"evidenceSlug":"project-h","pilotMetrics":{"es":["Tiempo de alerta","Cobertura de activos","Eventos trazables"],"en":["Alert time","Asset coverage","Traceable events"]}},{"id":"automation-ai","title":{"es":"Automatización empresarial e IA aplicada","en":"Business automation and applied AI"},"pain":{"es":"Tareas repetitivas, reprocesos y decisiones sin contexto.","en":"Repetitive work, rework, and context-poor decisions."},"deliverable":{"es":"Integraciones, agentes con control humano y métricas de ahorro.","en":"Integrations, human-controlled agents, and savings metrics."},"evidenceSlug":"securapp","pilotMetrics":{"es":["Horas ahorradas","Errores reducidos","Tiempo de respuesta"],"en":["Hours saved","Errors reduced","Response time"]}}]}
+{
+  "sectors": {
+    "es": ["Manufactura de alimentos", "Energía", "Hidrocarburos", "Ingeniería y servicios industriales"],
+    "en": ["Food manufacturing", "Energy", "Oil and gas", "Engineering and industrial services"]
+  },
+  "items": [
+    {
+      "id": "industrial-iot",
+      "title": { "es": "Monitoreo IoT industrial", "en": "Industrial IoT monitoring" },
+      "pain": {
+        "es": "Equipos críticos sin historial ni alertas tempranas; mediciones a mano que no dejan registro y fallas que se descubren cuando ya pararon la línea.",
+        "en": "Critical equipment with no history or early alerts; manual readings that leave no record, and failures discovered only after the line has stopped."
+      },
+      "deliverable": {
+        "es": "Nodos con sensores industriales, gateway local sin dependencia de nube, dashboard con histórico y alarmas, y un piloto en tu planta con una métrica acordada de antemano.",
+        "en": "Nodes with industrial sensors, a local gateway with no cloud dependency, a dashboard with history and alarms, and a pilot in your plant against a metric agreed up front."
+      },
+      "evidenceSlug": "smartsense",
+      "proof": {
+        "es": [
+          "SmartSense: 3 nodos PT100 + LoRa en una planta real, 51.338 muestras y enlace demostrado a 688 m con obstáculos.",
+          "Telemetría GPS en 4 clientes: servidor propio que decodifica rastreadores Teltonika e ingesta posiciones desde celulares.",
+          "Sensor Dashboard: cadena completa MicroPython → LoRa → API → PostgreSQL → Next.js, pública y desplegada."
+        ],
+        "en": [
+          "SmartSense: 3 PT100 + LoRa nodes in a real plant, 51,338 samples, and a link demonstrated at 688 m through obstacles.",
+          "GPS telemetry for 4 customers: a custom server that decodes Teltonika trackers and ingests positions from phones.",
+          "Sensor Dashboard: a complete MicroPython → LoRa → API → PostgreSQL → Next.js chain, public and deployed."
+        ]
+      },
+      "pilotMetrics": {
+        "es": ["Disponibilidad del enlace y tasa de entrega (PDR)", "Cobertura: nodos, distancia y obstáculos", "Calidad de lectura frente a una referencia"],
+        "en": ["Link availability and packet delivery rate (PDR)", "Coverage: nodes, distance, and obstacles", "Reading quality against a reference"]
+      }
+    },
+    {
+      "id": "asset-traceability",
+      "title": { "es": "Seguridad y trazabilidad de activos", "en": "Asset security and traceability" },
+      "pain": {
+        "es": "Pérdidas, movimientos no autorizados y reacción tardía en activos, habitaciones, vehículos o personal en campo.",
+        "en": "Losses, unauthorized movement, and slow reaction across assets, rooms, vehicles, or field staff."
+      },
+      "deliverable": {
+        "es": "Nodos BLE o rastreadores GPS, gateway con alarma local, geocercas, historial de eventos y notificaciones al personal, con consentimiento registrado cuando hay personas.",
+        "en": "BLE nodes or GPS trackers, a gateway with a local alarm, geofences, an event history, and staff notifications, with recorded consent whenever people are tracked."
+      },
+      "evidenceSlug": "gps-telemetry",
+      "proof": {
+        "es": [
+          "Telemetría GPS en 4 clientes: geocercas dibujadas por el propio cliente, alertas, rutas sobre vías reales y reportes Excel/PDF.",
+          "Proyecto H: nodos BLE con protocolo propio, maestro ESP32 con alarma física y notificaciones push por Firebase.",
+          "Visitas con QR: carnet digital, vigencia por fecha y sede y verificación en portería, construido desde cero para una planta."
+        ],
+        "en": [
+          "GPS telemetry for 4 customers: geofences drawn by the customer, alerts, routes on real roads, and Excel/PDF reports.",
+          "Project H: BLE nodes with a custom protocol, an ESP32 master with a physical alarm, and Firebase push notifications.",
+          "QR visitor flow: digital badge, validity by date and site, and gate verification, built from scratch for a plant."
+        ]
+      },
+      "pilotMetrics": {
+        "es": ["Tiempo entre evento y alerta", "Activos o zonas cubiertas", "Eventos trazables con evidencia"],
+        "en": ["Time from event to alert", "Assets or zones covered", "Traceable events with evidence"]
+      }
+    },
+    {
+      "id": "automation-ai",
+      "title": { "es": "Automatización empresarial e IA aplicada", "en": "Business automation and applied AI" },
+      "pain": {
+        "es": "Aprobaciones en papel, reportes armados a mano, cargues repetitivos y preguntas sobre los datos que nadie alcanza a responder.",
+        "en": "Paper approvals, hand-built reports, repetitive uploads, and questions about the data that nobody has time to answer."
+      },
+      "deliverable": {
+        "es": "Flujos digitales con aprobaciones, firmas y OTP; reportes Excel/PDF y correos automáticos; y un asistente LLM sobre tus datos con control de consumo y validación humana.",
+        "en": "Digital flows with approvals, signatures, and OTP; automatic Excel/PDF reports and email; and an LLM assistant over your data with usage controls and human validation."
+      },
+      "evidenceSlug": "ptw-digital-signatures",
+      "proof": {
+        "es": [
+          "Permisos de trabajo con firma digital sobre PDF y OTP por correo, en operación real en dos plantas industriales.",
+          "magIA: asistente LLM (Gemini API) con contexto por módulo, límite de tokens por empresa y defensas contra inyección.",
+          "Cargue masivo desde Excel con validación y upsert idempotente; reportes Excel/PDF y correos automáticos en cada transición de estado."
+        ],
+        "en": [
+          "Work permits with on-PDF digital signatures and email OTP, in live operation at two industrial plants.",
+          "magIA: an LLM assistant (Gemini API) with per-module context, a per-company token cap, and injection defenses.",
+          "Bulk import from Excel with validation and idempotent upsert; automatic Excel/PDF reports and email on every state transition."
+        ]
+      },
+      "pilotMetrics": {
+        "es": ["Horas ahorradas por proceso", "Errores y reprocesos reducidos", "Tiempo de aprobación o de respuesta"],
+        "en": ["Hours saved per process", "Errors and rework reduced", "Approval or response time"]
+      }
+    }
+  ]
+}
