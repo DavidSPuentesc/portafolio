@@ -1,1 +1,42 @@
-{"order":1,"company":"PRLCOL","period":{"es":"Agosto 2025 — actualidad","en":"August 2025 — present"},"role":{"es":"Full-Stack Software Developer & Data Analyst","en":"Full-Stack Software Developer & Data Analyst"},"summary":{"es":"Desarrollo y soporte de una plataforma SaaS B2B multiinstancia.","en":"Development and production support for a multi-instance B2B SaaS platform."},"highlights":{"es":["Módulos completos, migraciones SQL, automatización, telemetría e IA aplicada"],"en":["Full modules, SQL migrations, automation, telemetry, and applied AI"]}}
+{
+  "order": 1,
+  "company": "PRLCOL",
+  "location": "Tocancipá, Cundinamarca, Colombia",
+  "period": { "es": "Agosto 2025 — actualidad", "en": "August 2025 — present" },
+  "role": { "es": "Full-Stack Software Developer & Data Analyst", "en": "Full-Stack Software Developer & Data Analyst" },
+  "summary": {
+    "es": "Desarrollador responsable del ciclo completo —requerimiento, desarrollo, migración de base de datos, despliegue y soporte— de 7 clientes empresariales de una plataforma SaaS B2B multi-instancia de gestión operativa y SST, en manufactura de alimentos, energía, hidrocarburos e ingeniería. Cada push a main despliega a producción por webhook.",
+    "en": "Developer owning the full delivery cycle — requirements, development, database migrations, deployment, and support — for 7 enterprise customers of a multi-instance B2B SaaS platform for operations and workplace-safety management, across food manufacturing, energy, oil and gas, and engineering. Every push to main deploys to production through a webhook."
+  },
+  "highlights": {
+    "es": [
+      "Diseñar e implementar de punta a punta un sistema de permisos de trabajo de alto riesgo con flujo Planeación → Aprobación → Ejecución → Cierre, firma digital sobre PDF (pdf.js + canvas) y firma remota con enlaces tokenizados de un solo uso y OTP por correo; en operación real en dos plantas industriales (~340 commits).",
+      "Integrar un asistente de IA (Gemini API) sobre los datos operativos de la plataforma: chat contextual, informes predictivos, límite mensual de tokens por empresa, log de intentos y defensas contra inyección de instrucciones.",
+      "Construir un sistema de telemetría GPS de extremo a extremo: servidor TCP propio que decodifica el protocolo binario Teltonika Codec 8/8E, ingesta HTTP desde app Android, map-matching con OSRM y geocercas sobre Leaflet, desplegado en 4 clientes (~55.000 líneas).",
+      "Construir desde cero un módulo de visitas con auto-registro público por QR (sin login): carnet digital, control de vigencia por fecha y sede y verificación en portería, con arquitectura por capas propia (controllers, services, repositories, middleware).",
+      "Implementar cargue masivo de usuarios desde Excel (pegar, arrastrar, previsualizar, validar, upsert idempotente) con roles y permisos dinámicos por módulo y acción.",
+      "Unificar el hash de contraseñas a bcrypt en 5 instancias en producción, corregir una colisión de sesión y aplicar prepared statements, CSRF y rate limiting de forma transversal.",
+      "Liderar el rediseño de dashboards y el sistema de diseño de la plataforma, replicado en 4 clientes con branding independiente (KPIs, Chart.js, flipbook interactivo).",
+      "Automatizar la generación documental a escala: Excel corporativos (PhpSpreadsheet), PDF (Dompdf) y correos transaccionales HTML (PHPMailer/ZeptoMail) en cada transición de estado.",
+      "Portar módulos completos entre instancias de distintos clientes adaptando esquema, permisos y branding sin interrumpir producción.",
+      "Entregar 987 commits a producción en 8 repositorios durante 8 semanas (junio–julio de 2026) y 47 migraciones SQL versionadas sin downtime, con rama staging por cliente y PR por lote aprobado por el cliente."
+    ],
+    "en": [
+      "Design and ship end to end a high-risk work-permit system with a Planning → Approval → Execution → Closure flow, digital signatures drawn on the actual PDF (pdf.js + canvas), and remote signing through single-use tokenized links with email OTP; in live operation at two industrial plants (~340 commits).",
+      "Integrate an AI assistant (Gemini API) over the platform's operational data: contextual chat, predictive reports, a monthly token cap per company, an attempt log, and prompt-injection defenses.",
+      "Build an end-to-end GPS telemetry system: a custom TCP server that decodes the Teltonika Codec 8/8E binary protocol, HTTP ingestion from an Android app, OSRM map-matching, and Leaflet geofences, deployed to 4 customers (~55,000 lines).",
+      "Build from scratch a visitor module with public QR self-registration (no login): digital badge, validity by date and site, and gate verification, on a layered architecture of my own (controllers, services, repositories, middleware).",
+      "Implement bulk user import from Excel (paste, drag and drop, preview, validation, idempotent upsert) with dynamic roles and per-module, per-action permissions.",
+      "Unify password hashing on bcrypt across 5 production instances, fix a session collision, and apply prepared statements, CSRF protection, and rate limiting platform-wide.",
+      "Lead the dashboard redesign and the platform design system, replicated across 4 customers with independent branding (KPIs, Chart.js, interactive flipbook).",
+      "Automate document generation at scale: branded Excel workbooks (PhpSpreadsheet), PDFs (Dompdf), and HTML transactional email (PHPMailer/ZeptoMail) on every state transition.",
+      "Port complete modules between customer instances, adapting schema, permissions, and branding without interrupting production.",
+      "Deliver 987 production commits across 8 repositories in 8 weeks (June–July 2026) and 47 versioned SQL migrations with zero downtime, using a staging branch per customer and customer-approved batch PRs."
+    ]
+  },
+  "metrics": [
+    { "value": "7", "label": { "es": "clientes B2B en producción", "en": "B2B customers in production" } },
+    { "value": "987", "label": { "es": "commits en 8 semanas", "en": "commits in 8 weeks" } },
+    { "value": "47", "label": { "es": "migraciones SQL sin downtime", "en": "zero-downtime SQL migrations" } }
+  ]
+}

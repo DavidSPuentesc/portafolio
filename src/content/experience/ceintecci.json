@@ -1,1 +1,31 @@
-{"order":2,"company":"Universidad ECCI / CEINTECCI","period":{"es":"Junio 2024 — junio 2025","en":"June 2024 — June 2025"},"role":{"es":"Research & Development Developer","en":"Research & Development Developer"},"summary":{"es":"Computación científica y divulgación para análisis estilométrico.","en":"Scientific computing and outreach for stylometric analysis."},"highlights":{"es":["Pipelines reproducibles sobre aproximadamente dos millones de sílabas"],"en":["Reproducible pipelines over approximately two million syllables"]}}
+{
+  "order": 2,
+  "company": "Universidad ECCI / CEINTECCI",
+  "location": "Bogotá, Colombia",
+  "period": { "es": "Junio 2024 — junio 2025", "en": "June 2024 — June 2025" },
+  "role": { "es": "Research & Development Developer", "en": "Research & Development Developer" },
+  "summary": {
+    "es": "Computación científica y divulgación en un centro de investigación universitario: librería de estilometría con algoritmos genéticos (GenACT), pipelines reproducibles sobre datasets de investigación y sitio de divulgación construido con Astro y TypeScript.",
+    "en": "Scientific computing and outreach at a university research center: a genetic-algorithm stylometry library (GenACT), reproducible pipelines over research datasets, and an outreach site built with Astro and TypeScript."
+  },
+  "highlights": {
+    "es": [
+      "Co-desarrollar GenACT, librería ejecutable en Python de análisis estilométrico de textos líricos griegos mediante algoritmos genéticos.",
+      "Patente concedida: algoritmos genéticos aplicados a análisis estilométrico (GenACT).",
+      "Construir pipelines reproducibles de extracción, limpieza, normalización y análisis sobre aproximadamente 2 millones de sílabas.",
+      "Desarrollar y mantener el sitio de divulgación científica del centro con Astro, TypeScript, React y Tailwind CSS, en uso por usuarios finales.",
+      "Apoyar metodología, análisis de resultados, documentación académica y productos derivados de investigación."
+    ],
+    "en": [
+      "Co-develop GenACT, an executable Python library for stylometric analysis of Greek lyric texts using genetic algorithms.",
+      "Patent granted: genetic algorithms applied to stylometric analysis (GenACT).",
+      "Build reproducible extraction, cleaning, normalization, and analysis pipelines over roughly 2 million syllables.",
+      "Develop and maintain the center's science-outreach site with Astro, TypeScript, React, and Tailwind CSS, used by real readers.",
+      "Support methodology, results analysis, academic documentation, and research-derived products."
+    ]
+  },
+  "metrics": [
+    { "value": "~2M", "label": { "es": "sílabas procesadas", "en": "syllables processed" } },
+    { "value": "1", "label": { "es": "patente concedida", "en": "patent granted" } }
+  ]
+}
