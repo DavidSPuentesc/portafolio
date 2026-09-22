@@ -27,17 +27,15 @@
   "decisions": {
     "es": [
       "Integrar un LLM existente (Gemini API) en lugar de entrenar modelos: el valor está en el contexto operativo y en los controles, no en el modelo.",
-      "Contexto por módulo y por mes: el asistente recibe solo los datos del módulo activo y del periodo consultado, nunca el esquema completo.",
+      "Contexto por módulo y por mes: el asistente recibe los datos del módulo activo y del periodo consultado.",
       "Límite mensual de tokens por empresa con log de cada intento y panel de soporte, para que el costo sea previsible y auditable.",
-      "Defensas contra prompt injection y contra consultas a tablas ajenas: las instrucciones del usuario no pueden cambiar el alcance de los datos ni el rol del asistente.",
-      "Validación humana: el asistente informa y sugiere; no ejecuta acciones sobre los registros."
+      "Endurecimiento frente a prompt injection y consultas a tablas ajenas."
     ],
     "en": [
       "Integrate an existing LLM (Gemini API) rather than training models: the value lies in the operational context and the controls, not in the model.",
-      "Context per module and per month: the assistant receives only the active module's data for the requested period, never the full schema.",
+      "Context per module and per month: the assistant receives the active module's data for the requested period.",
       "A monthly token cap per company with a log of every attempt and a support panel, so cost is predictable and auditable.",
-      "Defenses against prompt injection and against queries into other tables: user instructions cannot change the data scope or the assistant's role.",
-      "Human validation: the assistant informs and suggests; it does not act on records."
+      "Hardening against prompt injection and queries into other tables."
     ]
   },
   "results": {
@@ -45,13 +43,13 @@
       "Chat contextual e informes predictivos por periodo disponibles dentro de la plataforma, sin salir del módulo.",
       "Histogramas y resúmenes mensuales generados a partir de los datos reales del cliente.",
       "Costo acotado y trazable: límite por empresa, registro de intentos y visibilidad para soporte.",
-      "Endurecimiento de seguridad aplicado tras pruebas adversarias internas."
+      "Endurecido frente a prompt injection y consultas a tablas ajenas."
     ],
     "en": [
       "Contextual chat and predictive reports by period available inside the platform, without leaving the module.",
       "Monthly histograms and summaries generated from the customer's real data.",
       "Bounded, traceable cost: a per-company cap, an attempt log, and visibility for support.",
-      "Security hardening applied after internal adversarial testing."
+      "Hardened against prompt injection and queries into other tables."
     ]
   },
   "limitations": {
@@ -59,13 +57,13 @@
       "Es una integración de LLM (Gemini API), no desarrollo de modelos de inteligencia artificial.",
       "Caso privado: no se publican código, prompts, capturas ni nombres de clientes.",
       "La calidad de las respuestas depende de la calidad de los datos del cliente; no se afirman métricas de precisión.",
-      "Las defensas contra inyección se validaron con pruebas internas, no con una auditoría externa."
+      "Las defensas contra inyección no han pasado por una auditoría externa."
     ],
     "en": [
       "This is an LLM integration (Gemini API), not the development of AI models.",
       "Private case: no code, prompts, screenshots, or customer names are published.",
       "Answer quality depends on the quality of the customer's data; no accuracy metrics are claimed.",
-      "Injection defenses were validated with internal testing, not an external audit."
+      "Injection defenses have not been through an external audit."
     ]
   },
   "technologies": ["Gemini API", "PHP 8", "MySQL/MariaDB", "JavaScript ES6", "Chart.js"],

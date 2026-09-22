@@ -14,7 +14,7 @@
     "es": "Diseño y construcción completa: servidor TCP, decodificador de protocolo, ingesta HTTP, mapa, geocercas, alertas, consentimiento y reportes. Construido en 2025, antes de trabajar con asistentes de IA.",
     "en": "Full design and build: TCP server, protocol decoder, HTTP ingestion, map, geofences, alerts, consent, and reports. Built in 2025, before working with AI assistants."
   },
-  "sector": { "es": "Manufactura de alimentos, energía y servicios industriales", "en": "Food manufacturing, energy, and industrial services" },
+  "sector": { "es": "Operaciones industriales y de campo", "en": "Industrial and field operations" },
   "period": { "es": "2025", "en": "2025" },
   "problem": {
     "es": "Las empresas necesitaban ubicar vehículos y personal en campo con rastreadores físicos y con celulares, sin depender de un servicio externo de rastreo, con rutas legibles sobre vías reales, geocercas y reportes para auditoría, y con el consentimiento de cada persona rastreada.",
@@ -31,7 +31,7 @@
       "Ingesta HTTP compatible con Traccar para aceptar cualquier cliente móvil, incluido el GPS del celular mediante una app Android distribuida con manual de instalación paso a paso.",
       "Proxy server-side hacia OSRM (cURL) para resolver CORS y contenido mixto, con fallback a routing cuando el map-matching falla.",
       "Registro del consentimiento de cada usuario antes de activar el rastreo (habeas data).",
-      "Geocercas dibujadas por el propio cliente sobre el mapa, sin intervención del desarrollador."
+      "Geocercas dibujadas sobre el mapa desde la propia interfaz."
     ],
     "en": [
       "A custom TCP server in PHP (long-lived process, sockets, binary parsing) instead of an external tracking service, so positions live in the customer's own database.",
@@ -39,7 +39,7 @@
       "Traccar-compatible HTTP ingestion to accept any mobile client, including the phone's GPS through an Android app shipped with a step-by-step installation guide.",
       "A server-side proxy to OSRM (cURL) to resolve CORS and mixed-content issues, with a routing fallback when map-matching fails.",
       "Each user's consent recorded before tracking is enabled (habeas data).",
-      "Geofences drawn by the customer directly on the map, with no developer intervention."
+      "Geofences drawn on the map from the interface itself."
     ]
   },
   "results": {

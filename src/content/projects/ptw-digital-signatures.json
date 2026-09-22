@@ -14,7 +14,7 @@
     "es": "Diseño e implementación de punta a punta: formato oficial, flujo de estados, borradores, tres flujos de firma, correos, panel de firmantes y despliegue en dos instancias de clientes distintos.",
     "en": "End-to-end design and implementation: official form, state flow, drafts, three signing flows, email, signer administration, and deployment to two separate customer instances."
   },
-  "sector": { "es": "Plantas industriales · energía e hidrocarburos", "en": "Industrial plants · energy and oil and gas" },
+  "sector": { "es": "Plantas industriales", "en": "Industrial plants" },
   "period": { "es": "2026", "en": "2026" },
   "problem": {
     "es": "Los permisos de trabajo de alto riesgo se diligenciaban y firmaban en papel: sin trazabilidad de quién aprobó qué y cuándo, con aprobadores que no siempre están en planta y con un formato oficial de seis secciones (peligros, preparación, EPP, controles, pruebas de gas) que no admite errores ni omisiones.",
@@ -44,14 +44,14 @@
   },
   "results": {
     "es": [
-      "En operación real en dos plantas industriales de los sectores de energía e hidrocarburos.",
+      "En operación real en dos plantas industriales.",
       "Alrededor de 340 commits entre las dos instancias y más de 10 tipos de permiso soportados.",
       "Tres flujos de firma: en sitio sobre canvas, remota con OTP y participantes de ATS por enlace público de un solo uso.",
       "Trazabilidad completa: quién abrió el enlace, desde qué IP y cuándo firmó cada persona.",
       "Los formularios a medio diligenciar sobreviven a cierres del navegador y cambios de equipo gracias al doble borrador."
     ],
     "en": [
-      "In live operation at two industrial plants in the energy and oil and gas sectors.",
+      "In live operation at two industrial plants.",
       "Around 340 commits across the two instances and more than 10 permit types supported.",
       "Three signing flows: on site on canvas, remote with OTP, and job-safety-analysis participants through a single-use public link.",
       "Full traceability: who opened the link, from which IP, and when each person signed.",

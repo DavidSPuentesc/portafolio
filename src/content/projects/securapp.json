@@ -71,13 +71,13 @@
       "Arquitectura multi-instancia, no multi-tenant estricto: los fixes transversales se replican entre repositorios.",
       "El código, los datos, las interfaces y los nombres de los clientes son confidenciales; este caso describe solo arquitectura, decisiones y resultados permitidos.",
       "Los 987 commits corresponden a las 8 semanas con evidencia git (junio–julio de 2026), no a todo el periodo de trabajo.",
-      "La calidad se apoya hoy en revisión del diff, pruebas exploratorias en staging y rollback por revert; las suites automatizadas de regresión son un plan en curso, no una realidad."
+      "La calidad se apoya hoy en validación de sintaxis, pruebas exploratorias en staging y rollback por revert; las suites automatizadas de regresión son un plan en curso, no una realidad."
     ],
     "en": [
       "Multi-instance architecture, not strict multi-tenancy: cross-cutting fixes are replicated across repositories.",
       "Code, data, interfaces, and customer names are confidential; this case describes only the architecture, decisions, and outcomes that can be shared.",
       "The 987 commits cover the 8 weeks with git evidence (June–July 2026), not the whole engagement.",
-      "Quality today relies on diff review, exploratory testing in staging, and revert-based rollback; automated regression suites are a plan in progress, not a reality."
+      "Quality today relies on syntax validation, exploratory testing in staging, and revert-based rollback; automated regression suites are a plan in progress, not a reality."
     ]
   },
   "technologies": ["PHP 8", "MySQL/MariaDB", "JavaScript ES6", "jQuery", "Chart.js", "DataTables", "Leaflet", "Service Workers", "Web Push (VAPID)", "Gemini API", "PHPMailer/ZeptoMail", "Dompdf", "PhpSpreadsheet", "Docker", "Git/GitHub"],
