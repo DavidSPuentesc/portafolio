@@ -1,0 +1,84 @@
+{
+  "slug": "gps-telemetry",
+  "order": 5,
+  "featured": true,
+  "visibility": "private-summary",
+  "title": { "es": "Telemetría GPS multi-dispositivo", "en": "Multi-device GPS telemetry" },
+  "summary": {
+    "es": "Sistema de telemetría GPS de extremo a extremo: servidor TCP propio que decodifica el protocolo binario de rastreadores Teltonika, ingesta HTTP desde app Android, map-matching con OSRM, geocercas y reportes, desplegado en 4 clientes.",
+    "en": "End-to-end GPS telemetry: a custom TCP server that decodes the Teltonika tracker binary protocol, HTTP ingestion from an Android app, OSRM map-matching, geofences, and reports, deployed to 4 customers."
+  },
+  "seoTitle": { "es": "Telemetría GPS con protocolo Teltonika y OSRM", "en": "GPS telemetry with the Teltonika protocol and OSRM" },
+  "seoDescription": { "es": "Servidor TCP en PHP para Codec 8/8E, ingesta tipo Traccar, map-matching, geocercas Leaflet y reportes, en 4 clientes.", "en": "PHP TCP server for Codec 8/8E, Traccar-style ingestion, map-matching, Leaflet geofences, and reports, across 4 customers." },
+  "role": {
+    "es": "Diseño y construcción completa: servidor TCP, decodificador de protocolo, ingesta HTTP, mapa, geocercas, alertas, consentimiento y reportes. Construido en 2025, antes de trabajar con asistentes de IA.",
+    "en": "Full design and build: TCP server, protocol decoder, HTTP ingestion, map, geofences, alerts, consent, and reports. Built in 2025, before working with AI assistants."
+  },
+  "sector": { "es": "Manufactura de alimentos, energía y servicios industriales", "en": "Food manufacturing, energy, and industrial services" },
+  "period": { "es": "2025", "en": "2025" },
+  "problem": {
+    "es": "Las empresas necesitaban ubicar vehículos y personal en campo con rastreadores físicos y con celulares, sin depender de un servicio externo de rastreo, con rutas legibles sobre vías reales, geocercas y reportes para auditoría, y con el consentimiento de cada persona rastreada.",
+    "en": "Companies needed to locate vehicles and field staff using physical trackers and phones, without depending on an external tracking service, with readable routes on real roads, geofences, audit-ready reports, and the consent of every tracked person."
+  },
+  "architecture": {
+    "es": "Rastreador Teltonika FMC130 (Codec 8/8E) o app Android (JSON tipo Traccar) → Servidor TCP en PHP puro (daemon CLI con sockets) y endpoint HTTP de ingesta → Base de datos de posiciones en MySQL propio, por IMEI → Map-matching con OSRM a través de un proxy server-side → Mapa Leaflet con geocercas (Leaflet.draw), geocodificación inversa y alertas → Reportes Excel y PDF de recorridos y estadísticas de posiciones",
+    "en": "Teltonika FMC130 tracker (Codec 8/8E) or Android app (Traccar-style JSON) → TCP server in plain PHP (CLI daemon with sockets) plus an HTTP ingestion endpoint → Position database in the customer's own MySQL, keyed by IMEI → OSRM map-matching through a server-side proxy → Leaflet map with geofences (Leaflet.draw), reverse geocoding, and alerts → Excel and PDF route reports and position statistics"
+  },
+  "decisions": {
+    "es": [
+      "Servidor TCP propio en PHP (proceso de larga vida, sockets, parsing binario) en lugar de un servicio de rastreo externo, para que las posiciones vivan en la base de datos del cliente.",
+      "Decodificación del protocolo binario Teltonika Codec 8/8E con acuse de recibo al dispositivo, para que el rastreador no reenvíe paquetes indefinidamente.",
+      "Ingesta HTTP compatible con Traccar para aceptar cualquier cliente móvil, incluido el GPS del celular mediante una app Android distribuida con manual de instalación paso a paso.",
+      "Proxy server-side hacia OSRM (cURL) para resolver CORS y contenido mixto, con fallback a routing cuando el map-matching falla.",
+      "Registro del consentimiento de cada usuario antes de activar el rastreo (habeas data).",
+      "Geocercas dibujadas por el propio cliente sobre el mapa, sin intervención del desarrollador."
+    ],
+    "en": [
+      "A custom TCP server in PHP (long-lived process, sockets, binary parsing) instead of an external tracking service, so positions live in the customer's own database.",
+      "Decoding of the Teltonika Codec 8/8E binary protocol with acknowledgements back to the device, so the tracker does not resend packets indefinitely.",
+      "Traccar-compatible HTTP ingestion to accept any mobile client, including the phone's GPS through an Android app shipped with a step-by-step installation guide.",
+      "A server-side proxy to OSRM (cURL) to resolve CORS and mixed-content issues, with a routing fallback when map-matching fails.",
+      "Each user's consent recorded before tracking is enabled (habeas data).",
+      "Geofences drawn by the customer directly on the map, with no developer intervention."
+    ]
+  },
+  "results": {
+    "es": [
+      "Desplegado en 4 instancias de clientes distintos.",
+      "Alrededor de 55.000 líneas de código en la instancia original, replicadas y adaptadas a las demás.",
+      "Ingesta simultánea desde hardware Teltonika y celulares Android.",
+      "Rutas ajustadas a vías reales, geocercas con alertas, geocodificación inversa y notificaciones, incluida una prueba por WhatsApp.",
+      "Reportes de recorridos en Excel y PDF y estadísticas de posiciones para auditoría."
+    ],
+    "en": [
+      "Deployed to 4 separate customer instances.",
+      "Around 55,000 lines of code in the original instance, replicated and adapted to the others.",
+      "Simultaneous ingestion from Teltonika hardware and Android phones.",
+      "Routes snapped to real roads, geofences with alerts, reverse geocoding, and notifications, including a WhatsApp trial.",
+      "Excel and PDF route reports and position statistics for audits."
+    ]
+  },
+  "limitations": {
+    "es": [
+      "Primera versión funcional construida en 2025 con los conocimientos del momento; hoy la mejoraría con colas de ingesta, particionado de la tabla de posiciones y TLS en el socket TCP.",
+      "Caso privado: sin código, capturas ni nombres de clientes.",
+      "Sin pruebas automatizadas del decodificador; la validación fue con dispositivos reales en campo."
+    ],
+    "en": [
+      "A first working version built in 2025 with the knowledge I had then; today I would add ingestion queues, partitioning of the positions table, and TLS on the TCP socket.",
+      "Private case: no code, screenshots, or customer names.",
+      "No automated tests for the decoder; validation was done with real devices in the field."
+    ]
+  },
+  "technologies": ["PHP", "Sockets TCP", "Teltonika Codec 8/8E", "MySQL", "Traccar (protocolo)", "OSRM", "Leaflet", "Leaflet.draw", "Android", "PhpSpreadsheet", "Dompdf"],
+  "metrics": [
+    { "value": "4", "label": { "es": "clientes desplegados", "en": "customers deployed" }, "context": { "es": "Instancias replicadas y adaptadas", "en": "Replicated and adapted instances" } },
+    { "value": "~55K", "label": { "es": "líneas de código", "en": "lines of code" }, "context": { "es": "En la instancia original del módulo", "en": "In the module's original instance" } },
+    { "value": "2", "label": { "es": "fuentes de ingesta", "en": "ingestion sources" }, "context": { "es": "Rastreadores Teltonika por TCP y celulares por HTTP", "en": "Teltonika trackers over TCP and phones over HTTP" } }
+  ],
+  "images": [],
+  "evidenceUrl": null,
+  "repositoryUrl": null,
+  "repositoryLabel": null,
+  "demoUrl": null
+}

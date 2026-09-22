@@ -1,0 +1,78 @@
+{
+  "slug": "magia-ai-assistant",
+  "order": 4,
+  "featured": true,
+  "visibility": "private-summary",
+  "title": { "es": "magIA: asistente de IA sobre datos operativos", "en": "magIA: AI assistant over operational data" },
+  "summary": {
+    "es": "Integración de un LLM (Gemini API) sobre los datos operativos de la plataforma: chat contextual, informes predictivos por periodo, límite mensual de tokens por empresa y defensas contra inyección de instrucciones.",
+    "en": "LLM integration (Gemini API) over the platform's operational data: contextual chat, predictive reports by period, a monthly token cap per company, and prompt-injection defenses."
+  },
+  "seoTitle": { "es": "magIA: integración de LLM en un SaaS B2B", "en": "magIA: LLM integration in a B2B SaaS" },
+  "seoDescription": { "es": "Asistente con Gemini API sobre datos operativos, con contexto por módulo, control de consumo y defensas contra prompt injection.", "en": "Gemini API assistant over operational data with per-module context, usage controls, and prompt-injection defenses." },
+  "role": {
+    "es": "Integración completa: diseño del contexto operativo, backend de consultas, control de costos, log de intentos, panel de soporte y endurecimiento de seguridad.",
+    "en": "Full integration: operational-context design, query backend, cost controls, attempt log, support panel, and security hardening."
+  },
+  "sector": { "es": "Gestión operativa y SST", "en": "Operations and workplace-safety management" },
+  "period": { "es": "2026", "en": "2026" },
+  "problem": {
+    "es": "Los usuarios ya tenían los datos, pero cada pregunta —cómo cerró el mes en inspecciones, qué tendencia traen los hallazgos— exigía armar un reporte a mano. Hacía falta preguntar en lenguaje natural sin exponer datos de otras empresas ni disparar el costo del servicio.",
+    "en": "Users already had the data, but every question — how inspections closed the month, what trend the findings show — meant building a report by hand. They needed to ask in natural language without exposing other companies' data or letting the service cost run away."
+  },
+  "architecture": {
+    "es": "Pregunta del usuario dentro del módulo activo → Contexto operativo del módulo y del periodo mediante consultas SQL acotadas → Gemini API con instrucciones de sistema y límites de alcance → Respuesta, informe o histograma por periodo → Log de intentos, consumo de tokens por empresa y panel de soporte",
+    "en": "User question inside the active module → Operational context for that module and period through scoped SQL queries → Gemini API with system instructions and scope limits → Answer, report, or histogram by period → Attempt log, per-company token usage, and support panel"
+  },
+  "decisions": {
+    "es": [
+      "Integrar un LLM existente (Gemini API) en lugar de entrenar modelos: el valor está en el contexto operativo y en los controles, no en el modelo.",
+      "Contexto por módulo y por mes: el asistente recibe solo los datos del módulo activo y del periodo consultado, nunca el esquema completo.",
+      "Límite mensual de tokens por empresa con log de cada intento y panel de soporte, para que el costo sea previsible y auditable.",
+      "Defensas contra prompt injection y contra consultas a tablas ajenas: las instrucciones del usuario no pueden cambiar el alcance de los datos ni el rol del asistente.",
+      "Validación humana: el asistente informa y sugiere; no ejecuta acciones sobre los registros."
+    ],
+    "en": [
+      "Integrate an existing LLM (Gemini API) rather than training models: the value lies in the operational context and the controls, not in the model.",
+      "Context per module and per month: the assistant receives only the active module's data for the requested period, never the full schema.",
+      "A monthly token cap per company with a log of every attempt and a support panel, so cost is predictable and auditable.",
+      "Defenses against prompt injection and against queries into other tables: user instructions cannot change the data scope or the assistant's role.",
+      "Human validation: the assistant informs and suggests; it does not act on records."
+    ]
+  },
+  "results": {
+    "es": [
+      "Chat contextual e informes predictivos por periodo disponibles dentro de la plataforma, sin salir del módulo.",
+      "Histogramas y resúmenes mensuales generados a partir de los datos reales del cliente.",
+      "Costo acotado y trazable: límite por empresa, registro de intentos y visibilidad para soporte.",
+      "Endurecimiento de seguridad aplicado tras pruebas adversarias internas."
+    ],
+    "en": [
+      "Contextual chat and predictive reports by period available inside the platform, without leaving the module.",
+      "Monthly histograms and summaries generated from the customer's real data.",
+      "Bounded, traceable cost: a per-company cap, an attempt log, and visibility for support.",
+      "Security hardening applied after internal adversarial testing."
+    ]
+  },
+  "limitations": {
+    "es": [
+      "Es una integración de LLM (Gemini API), no desarrollo de modelos de inteligencia artificial.",
+      "Caso privado: no se publican código, prompts, capturas ni nombres de clientes.",
+      "La calidad de las respuestas depende de la calidad de los datos del cliente; no se afirman métricas de precisión.",
+      "Las defensas contra inyección se validaron con pruebas internas, no con una auditoría externa."
+    ],
+    "en": [
+      "This is an LLM integration (Gemini API), not the development of AI models.",
+      "Private case: no code, prompts, screenshots, or customer names are published.",
+      "Answer quality depends on the quality of the customer's data; no accuracy metrics are claimed.",
+      "Injection defenses were validated with internal testing, not an external audit."
+    ]
+  },
+  "technologies": ["Gemini API", "PHP 8", "MySQL/MariaDB", "JavaScript ES6", "Chart.js"],
+  "metrics": [],
+  "images": [],
+  "evidenceUrl": null,
+  "repositoryUrl": null,
+  "repositoryLabel": null,
+  "demoUrl": null
+}

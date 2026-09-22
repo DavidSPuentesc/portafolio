@@ -1,1 +1,95 @@
-{"slug":"securapp","order":2,"featured":true,"visibility":"private-summary","title":{"es":"SecurApp y magIA","en":"SecurApp and magIA"},"summary":{"es":"Evolución full-stack de un SaaS B2B multiinstancia con IA aplicada.","en":"Full-stack evolution of a multi-instance B2B SaaS with applied AI."},"seoTitle":{"es":"SaaS B2B e IA aplicada","en":"B2B SaaS and applied AI"},"seoDescription":{"es":"Experiencia empresarial presentada sin datos privados.","en":"Enterprise experience presented without private data."},"role":{"es":"Desarrollador Full-Stack responsable del ciclo completo","en":"Full-Stack Developer responsible for the complete delivery cycle"},"problem":{"es":"Digitalizar flujos operativos, permisos, reportes y análisis empresarial.","en":"Digitize operational workflows, permissions, reporting, and business analysis."},"architecture":{"es":"SaaS multiinstancia, PHP, SQL, JavaScript, integraciones y servicios de IA.","en":"Multi-instance SaaS, PHP, SQL, JavaScript, integrations, and AI services."},"decisions":{"es":["Migraciones versionadas, permisos granulares y validación humana de IA"],"en":["Versioned migrations, granular permissions, and human AI validation"]},"results":{"es":["Siete clientes empresariales y más de 1,5 millones de registros procesados"],"en":["Seven enterprise customers and more than 1.5 million processed records"]},"limitations":{"es":["Código, datos e interfaces permanecen confidenciales"],"en":["Code, data, and interfaces remain confidential"]},"technologies":["PHP","MySQL","JavaScript","Gemini API","Docker"],"metrics":[{"value":"7","label":{"es":"clientes empresariales","en":"enterprise customers"},"context":{"es":"Plataforma multiinstancia","en":"Multi-instance platform"}},{"value":"1.5M+","label":{"es":"registros procesados","en":"processed records"},"context":{"es":"Automatizaciones y validación de datos","en":"Automation and data validation"}}],"evidenceUrl":null,"repositoryUrl":null,"demoUrl":null}
+{
+  "slug": "securapp",
+  "order": 2,
+  "featured": true,
+  "visibility": "private-summary",
+  "title": { "es": "SecurApp: plataforma SaaS B2B en producción", "en": "SecurApp: B2B SaaS platform in production" },
+  "summary": {
+    "es": "Evolución full-stack de una plataforma SaaS B2B multi-instancia de gestión operativa y SST: 7 clientes en producción, despliegue continuo por webhook y 47 migraciones sin downtime.",
+    "en": "Full-stack evolution of a multi-instance B2B SaaS platform for operations and workplace safety: 7 customers in production, webhook-driven continuous deployment, and 47 zero-downtime migrations."
+  },
+  "seoTitle": { "es": "SecurApp: SaaS B2B multi-instancia en producción", "en": "SecurApp: multi-instance B2B SaaS in production" },
+  "seoDescription": { "es": "Caso de plataforma empresarial: 7 clientes, 987 commits en 8 semanas, 47 migraciones sin downtime. Sin datos privados.", "en": "Enterprise platform case: 7 customers, 987 commits in 8 weeks, 47 zero-downtime migrations. No private data." },
+  "role": {
+    "es": "Desarrollador responsable del ciclo completo de 7 clientes empresariales: levantar el requerimiento con el cliente, diseñar, implementar, migrar la base de datos, desplegar a producción y dar soporte.",
+    "en": "Developer owning the full cycle for 7 enterprise customers: gathering requirements with the customer, designing, implementing, migrating the database, deploying to production, and providing support."
+  },
+  "sector": { "es": "Manufactura de alimentos, energía, hidrocarburos e ingeniería", "en": "Food manufacturing, energy, oil and gas, and engineering" },
+  "period": { "es": "Agosto 2025 — actualidad", "en": "August 2025 — present" },
+  "problem": {
+    "es": "Empresas industriales que gestionan permisos de trabajo, contratistas, visitas, inspecciones, indicadores y documentos entre hojas de cálculo y correos necesitan un sistema único con trazabilidad, permisos por rol y reportes automáticos, y necesitan que cada cambio llegue a producción sin detener la operación.",
+    "en": "Industrial companies that manage work permits, contractors, visitors, inspections, indicators, and documents across spreadsheets and email need a single system with traceability, role-based permissions, and automatic reports, and they need every change to reach production without stopping operations."
+  },
+  "architecture": {
+    "es": "Instancia dedicada por cliente (subdominio y base de datos propia) → Backend PHP 8 con MySQL/MariaDB y migraciones versionadas e idempotentes → Frontend JavaScript ES6 con Chart.js, DataTables, Leaflet y Service Workers → Integraciones: Gemini API, correo transaccional, Web Push (VAPID), generación Excel/PDF → Despliegue continuo por webhook desde main, con revert como rollback",
+    "en": "Dedicated instance per customer (own subdomain and database) → PHP 8 backend on MySQL/MariaDB with versioned, idempotent migrations → JavaScript ES6 frontend with Chart.js, DataTables, Leaflet, and Service Workers → Integrations: Gemini API, transactional email, Web Push (VAPID), Excel/PDF generation → Webhook-driven continuous deployment from main, with revert as rollback"
+  },
+  "decisions": {
+    "es": [
+      "Arquitectura multi-instancia (un repositorio y una base de datos por cliente) en lugar de multi-tenant estricto: aísla los datos de cada empresa y deja que cada cliente evolucione a su ritmo, a cambio de replicar los fixes transversales.",
+      "Migraciones SQL versionadas e idempotentes que se aplican automáticamente en cada despliegue, para cambiar el esquema sin ventanas de mantenimiento.",
+      "Commits granulares —una tarea funcional por commit, ligada a su tarjeta kanban— para que git revert sea el rollback de producción.",
+      "Rama staging por cliente y cierre de lote con un único PR staging → main que el cliente revisa y aprueba antes de llegar a producción.",
+      "Módulos nuevos con arquitectura por capas propia (controllers delgados, services, repositories con prepared statements, middleware de autenticación, CSRF y rate limiting) sin depender de un framework.",
+      "Sistema de diseño compartido con branding por cliente, para no reescribir componentes en cada instancia.",
+      "Notificaciones push de navegador (Web Push/VAPID) y modo offline con Service Workers donde la operación lo exige, como las inspecciones en campo."
+    ],
+    "en": [
+      "Multi-instance architecture (one repository and one database per customer) instead of strict multi-tenancy: it isolates each company's data and lets every customer evolve at its own pace, at the cost of replicating cross-cutting fixes.",
+      "Versioned, idempotent SQL migrations applied automatically on every deployment, so the schema changes without maintenance windows.",
+      "Granular commits — one functional task per commit, tied to its kanban card — so that git revert is the production rollback.",
+      "A staging branch per customer and batch closure through a single staging → main PR that the customer reviews and approves before it reaches production.",
+      "New modules on a layered architecture of my own (thin controllers, services, repositories with prepared statements, authentication, CSRF, and rate-limiting middleware) without depending on a framework.",
+      "A shared design system with per-customer branding, so components are not rewritten for every instance.",
+      "Browser push notifications (Web Push/VAPID) and offline mode with Service Workers where operations demand it, such as field inspections."
+    ]
+  },
+  "results": {
+    "es": [
+      "7 clientes empresariales atendidos en paralelo en producción, con responsabilidad directa sobre los principales.",
+      "987 commits a producción en 8 repositorios durante 8 semanas (junio–julio de 2026), cada uno una tarea funcional autocontenida.",
+      "47 migraciones de base de datos versionadas aplicadas en producción sin downtime.",
+      "Más de 1,5 millones de registros procesados en automatizaciones, cargues masivos y validación de datos.",
+      "Sistema de permisos de trabajo con firma digital y OTP en operación real en dos plantas industriales (caso aparte).",
+      "Asistente de IA sobre datos operativos (Gemini API) con control de consumo por empresa (caso aparte).",
+      "Telemetría GPS desplegada en 4 clientes con ingesta desde rastreadores Teltonika y celulares (caso aparte).",
+      "Autenticación unificada a bcrypt en 5 instancias y rediseño de dashboards replicado en 4 clientes."
+    ],
+    "en": [
+      "7 enterprise customers served in parallel in production, with direct ownership of the main accounts.",
+      "987 production commits across 8 repositories in 8 weeks (June–July 2026), each one a self-contained functional task.",
+      "47 versioned database migrations applied in production with zero downtime.",
+      "More than 1.5 million records processed through automations, bulk imports, and data validation.",
+      "A work-permit system with digital signatures and OTP in live operation at two industrial plants (separate case).",
+      "An AI assistant over operational data (Gemini API) with per-company usage controls (separate case).",
+      "GPS telemetry deployed to 4 customers, ingesting from Teltonika trackers and phones (separate case).",
+      "Authentication unified on bcrypt across 5 instances and a dashboard redesign replicated across 4 customers."
+    ]
+  },
+  "limitations": {
+    "es": [
+      "Arquitectura multi-instancia, no multi-tenant estricto: los fixes transversales se replican entre repositorios.",
+      "El código, los datos, las interfaces y los nombres de los clientes son confidenciales; este caso describe solo arquitectura, decisiones y resultados permitidos.",
+      "Los 987 commits corresponden a las 8 semanas con evidencia git (junio–julio de 2026), no a todo el periodo de trabajo.",
+      "La calidad se apoya hoy en revisión del diff, pruebas exploratorias en staging y rollback por revert; las suites automatizadas de regresión son un plan en curso, no una realidad."
+    ],
+    "en": [
+      "Multi-instance architecture, not strict multi-tenancy: cross-cutting fixes are replicated across repositories.",
+      "Code, data, interfaces, and customer names are confidential; this case describes only the architecture, decisions, and outcomes that can be shared.",
+      "The 987 commits cover the 8 weeks with git evidence (June–July 2026), not the whole engagement.",
+      "Quality today relies on diff review, exploratory testing in staging, and revert-based rollback; automated regression suites are a plan in progress, not a reality."
+    ]
+  },
+  "technologies": ["PHP 8", "MySQL/MariaDB", "JavaScript ES6", "jQuery", "Chart.js", "DataTables", "Leaflet", "Service Workers", "Web Push (VAPID)", "Gemini API", "PHPMailer/ZeptoMail", "Dompdf", "PhpSpreadsheet", "Docker", "Git/GitHub"],
+  "metrics": [
+    { "value": "7", "label": { "es": "clientes en producción", "en": "customers in production" }, "context": { "es": "Instancia dedicada por cliente, ciclo completo a mi cargo", "en": "Dedicated instance per customer, full cycle owned" } },
+    { "value": "987", "label": { "es": "commits a producción", "en": "production commits" }, "context": { "es": "8 repositorios en 8 semanas, junio–julio de 2026", "en": "8 repositories in 8 weeks, June–July 2026" } },
+    { "value": "47", "label": { "es": "migraciones SQL", "en": "SQL migrations" }, "context": { "es": "Versionadas e idempotentes, sin downtime", "en": "Versioned and idempotent, zero downtime" } },
+    { "value": "1,5M+", "label": { "es": "registros procesados", "en": "records processed" }, "context": { "es": "Automatizaciones, cargues masivos y validación de datos", "en": "Automations, bulk imports, and data validation" } }
+  ],
+  "images": [],
+  "evidenceUrl": null,
+  "repositoryUrl": null,
+  "repositoryLabel": null,
+  "demoUrl": null
+}
