@@ -3,6 +3,7 @@ import {test,expect} from '@playwright/test';
 test('reduced motion disables the animated canvas and keeps every section visible',async({page})=>{
   await page.emulateMedia({reducedMotion:'reduce'});
   await page.goto('/es/');
+  await expect(page.locator('astro-island').first()).not.toHaveAttribute('ssr',''); // Astro drops `ssr` once the island hydrates; "false" is also the SSR default
   await expect(page.locator('[data-space-animation]')).toHaveAttribute('data-running','false');
   for(const selector of ['h1','.metric-strip > div','.audience-grid > a','.project-card']){
     const element=page.locator(selector).first();
@@ -15,6 +16,7 @@ test('reduced motion disables the animated canvas and keeps every section visibl
 test('normal motion runs the canvas and reveals content on scroll',async({page})=>{
   await page.emulateMedia({reducedMotion:'no-preference'});
   await page.goto('/es/');
+  await expect(page.locator('astro-island').first()).not.toHaveAttribute('ssr','');
   await expect(page.locator('[data-space-animation]')).toHaveAttribute('data-running','true');
   const card=page.locator('.project-card').first();
   await card.scrollIntoViewIfNeeded();
