@@ -1,1 +1,108 @@
-{"slug":"smartsense","order":1,"featured":true,"visibility":"public","title":{"es":"SmartSense Monitoring","en":"SmartSense Monitoring"},"summary":{"es":"Monitoreo térmico industrial con PT100, ESP32-C6, LoRa y consulta histórica.","en":"Industrial thermal monitoring with PT100, ESP32-C6, LoRa, and historical insights."},"seoTitle":{"es":"SmartSense: monitoreo industrial IoT","en":"SmartSense: industrial IoT monitoring"},"seoDescription":{"es":"Caso de estudio IoT industrial con evidencia de campo.","en":"Industrial IoT case study backed by field evidence."},"role":{"es":"Firmware, análisis, documentación y validación","en":"Firmware, analysis, documentation, and validation"},"problem":{"es":"Obtener historial térmico de equipos sin instrumentación conectada.","en":"Capture thermal history from equipment without connected instrumentation."},"architecture":{"es":"PT100 y MAX31865 → ESP32-C6 → LoRa → gateway → almacenamiento y dashboard local.","en":"PT100 and MAX31865 → ESP32-C6 → LoRa → gateway → local storage and dashboard."},"decisions":{"es":["Enlace LoRa y operación local sin dependencia de nube"],"en":["LoRa link and local operation without cloud dependency"]},"results":{"es":["Más de 51.000 muestras y enlace demostrado a 688 m"],"en":["More than 51,000 samples and a demonstrated 688 m link"]},"limitations":{"es":["La autonomía extendida es una estimación y 688 m es una cota inferior"],"en":["Extended battery life is estimated and 688 m is a lower-bound test"]},"technologies":["ESP32-C6","C++","LoRa","PT100","Flask","SQLite","Docker"],"metrics":[{"value":"51K+","label":{"es":"muestras registradas","en":"recorded samples"},"context":{"es":"Tres nodos instrumentados","en":"Three instrumented nodes"}},{"value":"688 m","label":{"es":"enlace LoRa demostrado","en":"demonstrated LoRa link"},"context":{"es":"Recorrido con obstáculos","en":"Obstructed field route"}}],"evidenceUrl":null,"repositoryUrl":null,"demoUrl":null}
+{
+  "slug": "smartsense",
+  "order": 1,
+  "featured": true,
+  "visibility": "public",
+  "title": { "es": "SmartSense Monitoring", "en": "SmartSense Monitoring" },
+  "summary": {
+    "es": "Monitoreo de temperatura superficial de equipos industriales con PT100, ESP32-C6 y LoRa: 3 nodos en planta, 51.338 muestras, hasta 32 días de registro y enlace demostrado a 688 m con obstáculos.",
+    "en": "Surface-temperature monitoring of industrial equipment with PT100, ESP32-C6, and LoRa: 3 nodes in a plant, 51,338 samples, up to 32 days of records, and a link demonstrated at 688 m through obstacles."
+  },
+  "seoTitle": { "es": "SmartSense: monitoreo térmico industrial con LoRa", "en": "SmartSense: industrial thermal monitoring with LoRa" },
+  "seoDescription": { "es": "Caso IoT industrial con evidencia de campo: 3 nodos PT100, 51.338 muestras, PDR estimado 95,3–96,6 %, enlace a 688 m. Hardware abierto.", "en": "Industrial IoT case with field evidence: 3 PT100 nodes, 51,338 samples, estimated PDR 95.3–96.6%, 688 m link. Open hardware." },
+  "role": {
+    "es": "Proyecto de grado en Ingeniería Electrónica (Universidad ECCI) desarrollado en equipo de dos autores con dos supervisores. Contribución personal: firmware de nodos y gateway, réplica Docker, scripts de análisis de la evidencia, documentación técnica y validación. El diseño de hardware, la instalación y las pruebas de campo fueron trabajo compartido con el coautor.",
+    "en": "Electronic Engineering thesis project (Universidad ECCI) developed by a two-author team with two supervisors. Personal contribution: node and gateway firmware, the Docker replica, evidence-analysis scripts, technical documentation, and validation. Hardware design, installation, and field tests were shared work with the co-author."
+  },
+  "sector": { "es": "Manufactura industrial (piloto en planta)", "en": "Industrial manufacturing (plant pilot)" },
+  "period": { "es": "2025 — 2026", "en": "2025 — 2026" },
+  "problem": {
+    "es": "Motores y equipos rotativos de una planta no tenían historial térmico: la temperatura se medía a mano con pistola infrarroja, sin registro continuo ni alertas, y sin conectividad ni nube disponibles en el piso de planta.",
+    "en": "Motors and rotating equipment in a plant had no thermal history: temperature was measured by hand with an infrared gun, with no continuous log or alerts, and with no connectivity or cloud available on the plant floor."
+  },
+  "architecture": {
+    "es": "Sonda PT100 de 3 hilos + MAX31865 → Nodo XIAO ESP32-C6 con batería LiPo y deep sleep → LoRa 433 MHz (Ebyte E220) → Gateway ESP32-C6 con pantalla táctil, microSD y punto de acceso Wi-Fi local → Dashboard web local con histórico rodante de 30 días, umbrales y alarmas → Réplica neutra en Docker (Flask + SQLite) para análisis y figuras",
+    "en": "Three-wire PT100 probe + MAX31865 → XIAO ESP32-C6 node with LiPo battery and deep sleep → LoRa 433 MHz (Ebyte E220) → ESP32-C6 gateway with touch display, microSD, and a local Wi-Fi access point → Local web dashboard with a rolling 30-day history, thresholds, and alarms → Neutral Docker replica (Flask + SQLite) for analysis and figures"
+  },
+  "decisions": {
+    "es": [
+      "PT100 de 3 hilos con MAX31865 en lugar de sensores digitales: rango industrial, compensación del cable y concordancia de campo con la termografía de referencia.",
+      "LoRa a 433 MHz punto a punto y operación 100 % local (gateway con microSD y Wi-Fi propio): sin nube, sin suscripciones y sin depender de la red de la planta.",
+      "Alimentar el acondicionador desde un GPIO para apagarlo en deep sleep y estirar la autonomía del nodo.",
+      "Histórico rodante de 30 días por sensor en el gateway y exporte CSV para análisis externo.",
+      "Réplica neutra en Docker (Flask + SQLite) que carga los CSV de planta, para generar figuras y demos sin exponer nada de la empresa aliada.",
+      "Hardware abierto: esquemáticos KiCad, BOM y carcasa bajo CERN-OHL-S v2; firmware y software bajo MIT; documentación bajo CC-BY 4.0."
+    ],
+    "en": [
+      "Three-wire PT100 with MAX31865 instead of digital sensors: industrial range, lead compensation, and field agreement with the reference thermography.",
+      "Point-to-point LoRa at 433 MHz and fully local operation (gateway with microSD and its own Wi-Fi): no cloud, no subscriptions, no dependency on the plant network.",
+      "Power the signal conditioner from a GPIO so it can be switched off during deep sleep and stretch node battery life.",
+      "A rolling 30-day per-sensor history on the gateway plus CSV export for external analysis.",
+      "A neutral Docker replica (Flask + SQLite) that loads the plant CSV exports, to produce figures and demos without exposing anything about the partner company.",
+      "Open hardware: KiCad schematics, BOM, and enclosure under CERN-OHL-S v2; firmware and software under MIT; documentation under CC-BY 4.0."
+    ]
+  },
+  "results": {
+    "es": [
+      "51.338 muestras registradas por tres nodos instrumentados en planta.",
+      "Hasta 32 días de registro continuo para dos nodos (8 de mayo a 9 de junio de 2026); el tercero cubrió del 10 de mayo al 20 de julio.",
+      "PDR estimado entre 95,3 % y 96,6 % durante periodos activos; disponibilidad del enlace entre 97,8 % y 98,4 %.",
+      "Enlace LoRa demostrado a 688 m con obstáculos y RSSI de −98 dBm, con el enlace todavía operativo.",
+      "120 horas de alimentación observada en una descarga parcial; la autonomía extendida se extrapola por modelo.",
+      "Concordancia de campo con la referencia térmica: diferencia de hasta 0,1 °C en las cinco parejas de comparación disponibles.",
+      "Tesis de grado y artículo HardwareX en preparación; firmware, esquemáticos, BOM, carcasa y réplica publicados en el repositorio del equipo."
+    ],
+    "en": [
+      "51,338 samples recorded by three instrumented nodes in the plant.",
+      "Up to 32 days of continuous records for two nodes (8 May to 9 June 2026); the third covered 10 May to 20 July.",
+      "Estimated PDR between 95.3% and 96.6% during active periods; link availability between 97.8% and 98.4%.",
+      "LoRa link demonstrated at 688 m through obstacles at −98 dBm RSSI, with the link still operating.",
+      "120 hours of observed battery operation in a partial discharge; extended battery life is extrapolated from a model.",
+      "Field agreement with the thermal reference: differences of up to 0.1 °C across the five available comparison pairs.",
+      "Thesis and HardwareX article in preparation; firmware, schematics, BOM, enclosure, and replica published in the team repository."
+    ]
+  },
+  "limitations": {
+    "es": [
+      "La autonomía extendida es una estimación extrapolada de una descarga parcial de cinco días (120 h); no se midió un ciclo completo.",
+      "688 m es una cota inferior: el recorrido terminó con el enlace todavía operativo.",
+      "El PDR es una estimación por intervalos de llegada durante periodos activos; los 32 días no son comunes a los tres nodos.",
+      "Concordancia de campo con termografía de referencia, no calibración metrológica.",
+      "Monitoreo de condición: no implementa ni valida mantenimiento predictivo.",
+      "No se publican logos, fotografías de instalación ni datos identificables de la empresa aliada; el dashboard mostrado es la réplica neutra.",
+      "Faltan en el repositorio público los CSV primarios y la configuración final del piloto para replicar toda la evaluación."
+    ],
+    "en": [
+      "Extended battery life is an estimate extrapolated from a five-day (120 h) partial discharge; a full cycle was not measured.",
+      "688 m is a lower bound: the route ended with the link still operating.",
+      "PDR is an estimate from arrival intervals during active periods; the 32 days are not common to all three nodes.",
+      "Field agreement with reference thermography, not metrological calibration.",
+      "Condition monitoring: it does not implement or validate predictive maintenance.",
+      "No logos, installation photographs, or identifiable data from the partner company are published; the dashboard shown is the neutral replica.",
+      "The public repository still lacks the primary CSV files and the final pilot configuration needed to replicate the whole evaluation."
+    ]
+  },
+  "technologies": ["ESP32-C6", "C++ (Arduino)", "PT100", "MAX31865", "LoRa 433 MHz (E220)", "LittleFS", "microSD", "Flask", "SQLite", "Docker", "Python", "KiCad"],
+  "metrics": [
+    { "value": "51K+", "label": { "es": "muestras registradas", "en": "samples recorded" }, "context": { "es": "51.338 muestras de tres nodos instrumentados en planta", "en": "51,338 samples from three instrumented nodes in the plant" } },
+    { "value": "688 m", "label": { "es": "enlace LoRa demostrado", "en": "LoRa link demonstrated" }, "context": { "es": "Cota inferior, recorrido con obstáculos, enlace aún operativo", "en": "Lower bound, obstructed route, link still operating" } },
+    { "value": "95–97 %", "label": { "es": "PDR estimado", "en": "estimated PDR" }, "context": { "es": "95,3–96,6 % durante periodos activos", "en": "95.3–96.6% during active periods" } },
+    { "value": "32", "label": { "es": "días de registro", "en": "days of records" }, "context": { "es": "Para dos nodos; el tercero cubrió otro periodo", "en": "For two nodes; the third covered a different period" } }
+  ],
+  "images": [
+    {
+      "src": "/images/projects/smartsense-architecture.png",
+      "alt": { "es": "Diagrama de arquitectura: tres nodos de temperatura con XIAO ESP32-C6, PT100 de 3 hilos, MAX31865, batería LiPo y LoRa 433 MHz envían al gateway ESP32-C6 con pantalla, microSD y punto de acceso Wi-Fi, que alimenta un dashboard web local y el registro para análisis.", "en": "Architecture diagram: three temperature nodes with XIAO ESP32-C6, three-wire PT100, MAX31865, LiPo battery, and LoRa 433 MHz send to an ESP32-C6 gateway with display, microSD, and Wi-Fi access point, which feeds a local web dashboard and the analysis log." },
+      "caption": { "es": "Arquitectura delimitada para la validación en planta piloto.", "en": "Architecture scoped for the pilot-plant validation." }
+    },
+    {
+      "src": "/images/projects/smartsense-dashboard-replica.png",
+      "alt": { "es": "Réplica neutra del dashboard: histórico de temperatura de un motor con 17.537 lecturas entre el 8 de mayo y el 9 de junio de 2026, mínima 17,1 °C, máxima 70,0 °C y promedio 45,4 °C.", "en": "Neutral dashboard replica: temperature history for one motor with 17,537 readings between 8 May and 9 June 2026, minimum 17.1 °C, maximum 70.0 °C, and average 45.4 °C." },
+      "caption": { "es": "Réplica neutra en Docker (Flask + SQLite) con los datos exportados de un nodo. Sin marca ni datos de la empresa aliada.", "en": "Neutral Docker replica (Flask + SQLite) with one node's exported data. No partner branding or data." }
+    }
+  ],
+  "evidenceUrl": "https://github.com/jesusabojacal-commits/SmartSense-Monitoring",
+  "repositoryUrl": "https://github.com/jesusabojacal-commits/SmartSense-Monitoring",
+  "repositoryLabel": { "es": "Ver repositorio del equipo", "en": "View the team repository" },
+  "demoUrl": null
+}

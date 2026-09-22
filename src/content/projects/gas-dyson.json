@@ -1,1 +1,61 @@
-{"slug":"gas-dyson","order":6,"featured":false,"visibility":"development","title":{"es":"Gas Dyson 1D","en":"Dyson Gas 1D"},"summary":{"es":"Simulación Monte Carlo de partículas cargadas con restricciones geométricas.","en":"Monte Carlo simulation of charged particles with geometric constraints."},"seoTitle":{"es":"Gas Dyson y Monte Carlo","en":"Dyson Gas and Monte Carlo"},"seoDescription":{"es":"Computación científica aplicada a un sistema físico.","en":"Scientific computing applied to a physical system."},"role":{"es":"Modelado, simulación y visualización","en":"Modeling, simulation, and visualization"},"problem":{"es":"Estudiar la distribución de partículas cargadas en una geometría restringida.","en":"Study charged-particle distributions in a constrained geometry."},"architecture":{"es":"Python, NumPy, SciPy y Matplotlib.","en":"Python, NumPy, SciPy, and Matplotlib."},"decisions":{"es":["Metropolis-Hastings y detección de solapamientos"],"en":["Metropolis-Hastings and overlap detection"]},"results":{"es":["Simulación animada y distribución angular"],"en":["Animated simulation and angular distribution"]},"limitations":{"es":["Documentación y reproducibilidad requieren ampliación"],"en":["Documentation and reproducibility need expansion"]},"technologies":["Python","NumPy","SciPy","Matplotlib"],"metrics":[],"evidenceUrl":"https://github.com/DavidSPuentesc/Gas-Dyson-1D","repositoryUrl":"https://github.com/DavidSPuentesc/Gas-Dyson-1D","demoUrl":null}
+{
+  "slug": "gas-dyson",
+  "order": 9,
+  "featured": false,
+  "visibility": "development",
+  "title": { "es": "Gas de Dyson 1D", "en": "Dyson Gas 1D" },
+  "summary": {
+    "es": "Simulación Monte Carlo (Metropolis-Hastings) de un gas de Dyson unidimensional: partículas cargadas con restricciones geométricas, visualización animada y distribución angular.",
+    "en": "Monte Carlo (Metropolis-Hastings) simulation of a one-dimensional Dyson gas: charged particles under geometric constraints, animated visualization, and angular distribution."
+  },
+  "seoTitle": { "es": "Gas de Dyson 1D: Monte Carlo en Python", "en": "Dyson Gas 1D: Monte Carlo in Python" },
+  "seoDescription": { "es": "Computación científica aplicada a un modelo de física estadística.", "en": "Scientific computing applied to a statistical-physics model." },
+  "role": { "es": "Modelado, simulación y visualización", "en": "Modeling, simulation, and visualization" },
+  "sector": { "es": "Computación científica", "en": "Scientific computing" },
+  "period": { "es": "2024", "en": "2024" },
+  "problem": {
+    "es": "Estudiar la distribución de equilibrio de partículas cargadas confinadas en una geometría unidimensional, un modelo clásico de física estadística.",
+    "en": "Study the equilibrium distribution of charged particles confined to a one-dimensional geometry, a classic statistical-physics model."
+  },
+  "architecture": {
+    "es": "Modelo físico (energía de interacción y restricciones) → Muestreo Monte Carlo Metropolis-Hastings con detección de solapamientos en NumPy → Análisis con SciPy → Animación y distribución angular con Matplotlib",
+    "en": "Physical model (interaction energy and constraints) → Metropolis-Hastings Monte Carlo sampling with overlap detection in NumPy → SciPy analysis → Matplotlib animation and angular distribution"
+  },
+  "decisions": {
+    "es": [
+      "Metropolis-Hastings con detección de solapamientos para respetar las restricciones geométricas.",
+      "Separar simulación, análisis y visualización para reutilizar los datos generados."
+    ],
+    "en": [
+      "Metropolis-Hastings with overlap detection to respect the geometric constraints.",
+      "Separate simulation, analysis, and visualization so generated data can be reused."
+    ]
+  },
+  "results": {
+    "es": [
+      "Simulación animada y distribución angular de las partículas.",
+      "Respalda el perfil de computación científica (NumPy/SciPy) junto a GenACT."
+    ],
+    "en": [
+      "Animated simulation and angular distribution of the particles.",
+      "Backs the scientific-computing profile (NumPy/SciPy) alongside GenACT."
+    ]
+  },
+  "limitations": {
+    "es": [
+      "La documentación y la reproducibilidad (dependencias fijas, instrucciones y resultados de referencia) requieren ampliación.",
+      "Proyecto académico sin validación contra resultados publicados."
+    ],
+    "en": [
+      "Documentation and reproducibility (pinned dependencies, instructions, and reference results) need expansion.",
+      "Academic project without validation against published results."
+    ]
+  },
+  "technologies": ["Python", "NumPy", "SciPy", "Matplotlib"],
+  "metrics": [],
+  "images": [],
+  "evidenceUrl": "https://github.com/DavidSPuentesc/Gas-Dyson-1D",
+  "repositoryUrl": "https://github.com/DavidSPuentesc/Gas-Dyson-1D",
+  "repositoryLabel": null,
+  "demoUrl": null
+}

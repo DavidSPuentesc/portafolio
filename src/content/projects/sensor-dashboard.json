@@ -1,1 +1,74 @@
-{"slug":"sensor-dashboard","order":4,"featured":false,"visibility":"public","title":{"es":"Sensor Dashboard","en":"Sensor Dashboard"},"summary":{"es":"Sistema IoT end-to-end con LoRa, Flask, PostgreSQL y Next.js.","en":"End-to-end IoT system with LoRa, Flask, PostgreSQL, and Next.js."},"seoTitle":{"es":"Dashboard ambiental LoRa","en":"LoRa environmental dashboard"},"seoDescription":{"es":"Hardware, API, datos y frontend en un sistema completo.","en":"Hardware, API, data, and frontend in one complete system."},"role":{"es":"Desarrollo individual de extremo a extremo","en":"Individual end-to-end development"},"problem":{"es":"Centralizar y visualizar múltiples variables ambientales.","en":"Centralize and visualize multiple environmental variables."},"architecture":{"es":"Nodos MicroPython → LoRa → Flask → PostgreSQL → Next.js.","en":"MicroPython nodes → LoRa → Flask → PostgreSQL → Next.js."},"decisions":{"es":["Datos simulados identificados cuando no existe conexión real"],"en":["Clearly labeled simulated data when live connectivity is unavailable"]},"results":{"es":["Dashboard desplegado con múltiples tipos de sensor"],"en":["Deployed dashboard supporting multiple sensor types"]},"limitations":{"es":["Requiere reforzar autenticación, pruebas y documentación física"],"en":["Authentication, tests, and hardware documentation need strengthening"]},"technologies":["MicroPython","LoRa","Flask","PostgreSQL","Next.js","TypeScript"],"metrics":[],"evidenceUrl":"https://github.com/DavidSPuentesc/Sensor-Dashboard","repositoryUrl":"https://github.com/DavidSPuentesc/Sensor-Dashboard","demoUrl":"https://v0-temperature-sensor-page.vercel.app/"}
+{
+  "slug": "sensor-dashboard",
+  "order": 7,
+  "featured": false,
+  "visibility": "public",
+  "title": { "es": "Sensor Dashboard", "en": "Sensor Dashboard" },
+  "summary": {
+    "es": "Sistema IoT ambiental construido por una sola persona: nodos MicroPython con LoRa (sx127x), gateway, API Flask, PostgreSQL serverless y dashboard Next.js + TypeScript desplegado en Vercel.",
+    "en": "Environmental IoT system built by one person: MicroPython nodes with LoRa (sx127x), a gateway, a Flask API, serverless PostgreSQL, and a Next.js + TypeScript dashboard deployed on Vercel."
+  },
+  "seoTitle": { "es": "Sensor Dashboard: IoT con LoRa, Flask y Next.js", "en": "Sensor Dashboard: IoT with LoRa, Flask, and Next.js" },
+  "seoDescription": { "es": "Hardware, radio de largo alcance, API, PostgreSQL y frontend TypeScript en un sistema completo y público bajo MIT.", "en": "Hardware, long-range radio, API, PostgreSQL, and a TypeScript frontend in one complete, public MIT-licensed system." },
+  "role": {
+    "es": "Desarrollo individual de extremo a extremo: firmware de nodos, gateway, API, base de datos y frontend.",
+    "en": "Individual end-to-end development: node firmware, gateway, API, database, and frontend."
+  },
+  "sector": { "es": "Proyecto público de portafolio", "en": "Public portfolio project" },
+  "period": { "es": "2025 — v2 en curso", "en": "2025 — v2 in progress" },
+  "problem": {
+    "es": "Centralizar variables ambientales medidas por nodos de bajo costo —temperatura, humedad, CO2/TVOC, ruido, presión, distancia y movimiento— y visualizarlas en tiempo real desde cualquier lugar.",
+    "en": "Centralize environmental variables measured by low-cost nodes — temperature, humidity, CO2/TVOC, noise, pressure, distance, and motion — and visualize them in real time from anywhere."
+  },
+  "architecture": {
+    "es": "Nodos sensores en MicroPython (ESP32) → LoRa sx127x → Gateway → HTTP POST a la API Flask → PostgreSQL serverless (Neon, TLS) → Dashboard Next.js (App Router) + TypeScript + Tailwind en Vercel",
+    "en": "MicroPython sensor nodes (ESP32) → LoRa sx127x → Gateway → HTTP POST to the Flask API → Serverless PostgreSQL (Neon, TLS) → Next.js (App Router) + TypeScript + Tailwind dashboard on Vercel"
+  },
+  "decisions": {
+    "es": [
+      "Una página por variable con valor en vivo, histórico y estado, sobre un modelo de sensor tipado en TypeScript y un hook de datos reutilizable.",
+      "Degradación explícita: si no hay base de datos configurada o no hay nodos transmitiendo, la demo muestra datos simulados y lo indica.",
+      "Credenciales solo por variable de entorno (DATABASE_URL); nada en el código.",
+      "Firmware organizado por nodo, una carpeta por tipo, para flashear cada uno de forma independiente."
+    ],
+    "en": [
+      "One page per variable with live value, history, and status, on a typed TypeScript sensor model and a reusable data hook.",
+      "Explicit degradation: when no database is configured or no nodes are transmitting, the demo shows simulated data and says so.",
+      "Credentials only through an environment variable (DATABASE_URL); nothing in the code.",
+      "Firmware organized per node, one folder per type, so each one can be flashed independently."
+    ]
+  },
+  "results": {
+    "es": [
+      "Demo pública desplegada en Vercel con siete tipos de medición.",
+      "Cadena completa hardware → radio → API → base de datos → frontend construida por una sola persona y publicada bajo licencia MIT.",
+      "Evidencia pública de trabajo con React, Next.js, TypeScript y PostgreSQL."
+    ],
+    "en": [
+      "Public demo deployed on Vercel with seven measurement types.",
+      "Complete hardware → radio → API → database → frontend chain built by one person and published under the MIT license.",
+      "Public evidence of work with React, Next.js, TypeScript, and PostgreSQL."
+    ]
+  },
+  "limitations": {
+    "es": [
+      "La demo usa datos simulados cuando no hay nodos transmitiendo; no representa una instalación en operación.",
+      "Pendiente: autenticación de escritura en la API, manejo de errores sin exponer internos, dependencias con versión fija, pruebas y CI.",
+      "Esquemáticos y fotos del hardware se publicarán con la versión 2, en curso."
+    ],
+    "en": [
+      "The demo uses simulated data when no nodes are transmitting; it does not represent a live installation.",
+      "Pending: write authentication on the API, error handling that does not expose internals, pinned dependencies, tests, and CI.",
+      "Schematics and hardware photos will be published with version 2, currently in progress."
+    ]
+  },
+  "technologies": ["MicroPython", "ESP32", "LoRa (sx127x)", "Flask", "PostgreSQL (Neon)", "Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
+  "metrics": [
+    { "value": "7", "label": { "es": "tipos de medición", "en": "measurement types" }, "context": { "es": "Cada uno con su página, histórico y estado", "en": "Each with its own page, history, and status" } }
+  ],
+  "images": [],
+  "evidenceUrl": "https://github.com/DavidSPuentesc/Sensor-Dashboard",
+  "repositoryUrl": "https://github.com/DavidSPuentesc/Sensor-Dashboard",
+  "repositoryLabel": null,
+  "demoUrl": "https://v0-temperature-sensor-page.vercel.app/"
+}
