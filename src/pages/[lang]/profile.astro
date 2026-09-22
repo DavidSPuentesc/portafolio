@@ -40,7 +40,7 @@ const delivery = es
   ? [
       'Rama staging por cliente, con subdominio propio, donde se construye y prueba cada tarea antes de tocar producción.',
       'Un commit por tarea, ligado a su tarjeta kanban; los commits nunca se aplastan, para poder revertir tarea a tarea.',
-      'Revisión del diff con IA como par revisor y pruebas exploratorias en staging antes de cada PR.',
+      'Pruebas exploratorias en staging antes de cada PR; el asistente de IA participa habitualmente como par revisor del diff.',
       'Cierre de lote con un único PR staging → main que el cliente revisa y aprueba; nada llega a producción sin ese visto bueno.',
       'Push a main = despliegue automático por webhook a la instancia productiva del cliente.',
       'Migraciones SQL versionadas e idempotentes que se aplican solas en el despliegue, sin ventanas de mantenimiento.',
@@ -50,7 +50,7 @@ const delivery = es
   : [
       'A staging branch per customer, on its own subdomain, where every task is built and tested before production is touched.',
       'One commit per task, tied to its kanban card; commits are never squashed, so any task can be reverted on its own.',
-      'AI-assisted diff review as a reviewing pair and exploratory testing in staging before every PR.',
+      'Exploratory testing in staging before every PR; the AI assistant routinely takes part as a reviewing pair on the diff.',
       'Batch closure through a single staging → main PR that the customer reviews and approves; nothing reaches production without that sign-off.',
       'Push to main = automatic webhook deployment to the customer production instance.',
       'Versioned, idempotent SQL migrations that apply themselves on deployment, with no maintenance windows.',

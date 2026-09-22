@@ -28,13 +28,13 @@ const enterprise = es
 const steps = es
   ? [
       ['01', 'Entender', 'Levanto el requerimiento con quien va a usar el sistema y lo convierto en tarjetas con criterio de aceptación.'],
-      ['02', 'Construir', 'Un commit por tarea en la rama staging del cliente, con revisión del diff asistida por IA y pruebas exploratorias.'],
+      ['02', 'Construir', 'Un commit por tarea en la rama staging del cliente, con pruebas exploratorias; el asistente de IA suele revisar el diff como segundo par de ojos.'],
       ['03', 'Entregar', 'PR por lote que el cliente aprueba; el push a main despliega a producción con migraciones automáticas.'],
       ['04', 'Sostener', 'Soporte directo, revert en segundos si algo falla y evolución continua sobre la misma base.'],
     ]
   : [
       ['01', 'Understand', 'I gather the requirement with the people who will use the system and turn it into cards with acceptance criteria.'],
-      ['02', 'Build', 'One commit per task on the customer staging branch, with AI-assisted diff review and exploratory testing.'],
+      ['02', 'Build', 'One commit per task on the customer staging branch, with exploratory testing; the AI assistant usually reviews the diff as a second pair of eyes.'],
       ['03', 'Deliver', 'A batch PR the customer approves; the push to main deploys to production with automatic migrations.'],
       ['04', 'Sustain', 'Direct support, a revert within seconds if something breaks, and continuous evolution on the same base.'],
     ];
