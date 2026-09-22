@@ -3,19 +3,34 @@
   "order": 3,
   "featured": true,
   "visibility": "private-summary",
-  "title": { "es": "Permisos de trabajo con firma digital y OTP", "en": "Work permits with digital signatures and OTP" },
+  "title": {
+    "es": "Permisos de trabajo con firma digital y OTP",
+    "en": "Work permits with digital signatures and OTP"
+  },
   "summary": {
     "es": "Sistema de permisos de trabajo de alto riesgo con flujo multi-etapa, firma digital sobre el PDF real y firma remota con enlaces de un solo uso y OTP por correo, en operación real en dos plantas industriales.",
     "en": "High-risk work-permit system with a multi-stage flow, digital signatures drawn on the actual PDF, and remote signing through single-use links with email OTP, in live operation at two industrial plants."
   },
-  "seoTitle": { "es": "Permisos de trabajo con firma digital y OTP", "en": "Work permits with digital signatures and OTP" },
-  "seoDescription": { "es": "Flujo Planeación → Aprobación → Ejecución → Cierre con firma sobre PDF, enlaces tokenizados y OTP, usado por dos plantas industriales.", "en": "Planning → Approval → Execution → Closure flow with on-PDF signatures, tokenized links, and OTP, used by two industrial plants." },
-  "role": {
-    "es": "Diseño e implementación de punta a punta: formato oficial, flujo de estados, borradores, tres flujos de firma, correos, panel de firmantes y despliegue en dos instancias de clientes distintos.",
-    "en": "End-to-end design and implementation: official form, state flow, drafts, three signing flows, email, signer administration, and deployment to two separate customer instances."
+  "seoTitle": {
+    "es": "Permisos de trabajo con firma digital y OTP",
+    "en": "Work permits with digital signatures and OTP"
   },
-  "sector": { "es": "Plantas industriales", "en": "Industrial plants" },
-  "period": { "es": "2026", "en": "2026" },
+  "seoDescription": {
+    "es": "Flujo Planeación → Aprobación → Ejecución → Cierre con firma sobre PDF, enlaces tokenizados y OTP, usado por dos plantas industriales.",
+    "en": "Planning → Approval → Execution → Closure flow with on-PDF signatures, tokenized links, and OTP, used by two industrial plants."
+  },
+  "role": {
+    "es": "Módulo de SecurApp, la plataforma de PRLCOL (propiedad de la empresa). Diseño e implementación de punta a punta: formato oficial, flujo de estados, borradores, tres flujos de firma, correos, panel de firmantes y despliegue en dos instancias de clientes distintos.",
+    "en": "Module of SecurApp, PRLCOL’s platform (owned by the company). End-to-end design and implementation: official form, state flow, drafts, three signing flows, email, signer administration, and deployment to two separate customer instances."
+  },
+  "sector": {
+    "es": "Plantas industriales",
+    "en": "Industrial plants"
+  },
+  "period": {
+    "es": "2026",
+    "en": "2026"
+  },
   "problem": {
     "es": "Los permisos de trabajo de alto riesgo se diligenciaban y firmaban en papel: sin trazabilidad de quién aprobó qué y cuándo, con aprobadores que no siempre están en planta y con un formato oficial de seis secciones (peligros, preparación, EPP, controles, pruebas de gas) que no admite errores ni omisiones.",
     "en": "High-risk work permits were filled in and signed on paper: no trace of who approved what and when, approvers who are not always on site, and an official six-section form (hazards, preparation, PPE, controls, gas tests) that tolerates neither mistakes nor omissions."
@@ -70,12 +85,62 @@
       "State rules and OTP validation are tested exploratorily in staging today; formal unit tests over that logic are the next step."
     ]
   },
-  "technologies": ["PHP 8", "MySQL/MariaDB", "pdf.js", "jSignature", "Canvas", "JavaScript ES6", "PHPMailer/ZeptoMail", "Dompdf", "localStorage"],
+  "technologies": [
+    "PHP 8",
+    "MySQL/MariaDB",
+    "pdf.js",
+    "jSignature",
+    "Canvas",
+    "JavaScript ES6",
+    "PHPMailer/ZeptoMail",
+    "Dompdf",
+    "localStorage"
+  ],
   "metrics": [
-    { "value": "2", "label": { "es": "plantas en operación real", "en": "plants in live operation" }, "context": { "es": "Dos instancias de clientes distintos", "en": "Two separate customer instances" } },
-    { "value": "~340", "label": { "es": "commits", "en": "commits" }, "context": { "es": "Entre las dos instancias del módulo", "en": "Across both instances of the module" } },
-    { "value": "3", "label": { "es": "flujos de firma", "en": "signing flows" }, "context": { "es": "En sitio, remota con OTP y participantes de ATS", "en": "On site, remote with OTP, and job-safety-analysis participants" } },
-    { "value": "10+", "label": { "es": "tipos de permiso", "en": "permit types" }, "context": { "es": "Sobre el formato oficial de seis secciones", "en": "On the official six-section form" } }
+    {
+      "value": "2",
+      "label": {
+        "es": "plantas en operación real",
+        "en": "plants in live operation"
+      },
+      "context": {
+        "es": "Dos instancias de clientes distintos",
+        "en": "Two separate customer instances"
+      }
+    },
+    {
+      "value": "~340",
+      "label": {
+        "es": "commits",
+        "en": "commits"
+      },
+      "context": {
+        "es": "Entre las dos instancias del módulo",
+        "en": "Across both instances of the module"
+      }
+    },
+    {
+      "value": "3",
+      "label": {
+        "es": "flujos de firma",
+        "en": "signing flows"
+      },
+      "context": {
+        "es": "En sitio, remota con OTP y participantes de ATS",
+        "en": "On site, remote with OTP, and job-safety-analysis participants"
+      }
+    },
+    {
+      "value": "10+",
+      "label": {
+        "es": "tipos de permiso",
+        "en": "permit types"
+      },
+      "context": {
+        "es": "Sobre el formato oficial de seis secciones",
+        "en": "On the official six-section form"
+      }
+    }
   ],
   "images": [],
   "evidenceUrl": null,

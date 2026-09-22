@@ -3,19 +3,34 @@
   "order": 5,
   "featured": true,
   "visibility": "private-summary",
-  "title": { "es": "Telemetría GPS multi-dispositivo", "en": "Multi-device GPS telemetry" },
+  "title": {
+    "es": "Telemetría GPS multi-dispositivo",
+    "en": "Multi-device GPS telemetry"
+  },
   "summary": {
     "es": "Sistema de telemetría GPS de extremo a extremo: servidor TCP propio que decodifica el protocolo binario de rastreadores Teltonika, ingesta HTTP desde app Android, map-matching con OSRM, geocercas y reportes, desplegado en 4 clientes.",
     "en": "End-to-end GPS telemetry: a custom TCP server that decodes the Teltonika tracker binary protocol, HTTP ingestion from an Android app, OSRM map-matching, geofences, and reports, deployed to 4 customers."
   },
-  "seoTitle": { "es": "Telemetría GPS con protocolo Teltonika y OSRM", "en": "GPS telemetry with the Teltonika protocol and OSRM" },
-  "seoDescription": { "es": "Servidor TCP en PHP para Codec 8/8E, ingesta tipo Traccar, map-matching, geocercas Leaflet y reportes, en 4 clientes.", "en": "PHP TCP server for Codec 8/8E, Traccar-style ingestion, map-matching, Leaflet geofences, and reports, across 4 customers." },
-  "role": {
-    "es": "Diseño y construcción completa: servidor TCP, decodificador de protocolo, ingesta HTTP, mapa, geocercas, alertas, consentimiento y reportes. Construido en 2025, antes de trabajar con asistentes de IA.",
-    "en": "Full design and build: TCP server, protocol decoder, HTTP ingestion, map, geofences, alerts, consent, and reports. Built in 2025, before working with AI assistants."
+  "seoTitle": {
+    "es": "Telemetría GPS con protocolo Teltonika y OSRM",
+    "en": "GPS telemetry with the Teltonika protocol and OSRM"
   },
-  "sector": { "es": "Operaciones industriales y de campo", "en": "Industrial and field operations" },
-  "period": { "es": "2025", "en": "2025" },
+  "seoDescription": {
+    "es": "Servidor TCP en PHP para Codec 8/8E, ingesta tipo Traccar, map-matching, geocercas Leaflet y reportes, en 4 clientes.",
+    "en": "PHP TCP server for Codec 8/8E, Traccar-style ingestion, map-matching, Leaflet geofences, and reports, across 4 customers."
+  },
+  "role": {
+    "es": "Autoría individual del módulo completo —servidor TCP y decodificador, ingesta HTTP, map-matching, geocercas, alertas y reportes— como módulo de SecurApp, la plataforma de PRLCOL; el código es propiedad de la empresa. Construido en 2025, antes de trabajar con asistentes de IA.",
+    "en": "Sole author of the complete module — TCP server and decoder, HTTP ingestion, map-matching, geofences, alerts, and reports — as a module of SecurApp, PRLCOL’s platform; the code is owned by the company. Built in 2025, before working with AI assistants."
+  },
+  "sector": {
+    "es": "Operaciones industriales y de campo",
+    "en": "Industrial and field operations"
+  },
+  "period": {
+    "es": "2025",
+    "en": "2025"
+  },
   "problem": {
     "es": "Las empresas necesitaban ubicar vehículos y personal en campo con rastreadores físicos y con celulares, sin depender de un servicio externo de rastreo, con rutas legibles sobre vías reales, geocercas y reportes para auditoría, y con el consentimiento de cada persona rastreada.",
     "en": "Companies needed to locate vehicles and field staff using physical trackers and phones, without depending on an external tracking service, with readable routes on real roads, geofences, audit-ready reports, and the consent of every tracked person."
@@ -70,11 +85,53 @@
       "No automated tests for the decoder; validation was done with real devices in the field."
     ]
   },
-  "technologies": ["PHP", "Sockets TCP", "Teltonika Codec 8/8E", "MySQL", "Traccar (protocolo)", "OSRM", "Leaflet", "Leaflet.draw", "Android", "PhpSpreadsheet", "Dompdf"],
+  "technologies": [
+    "PHP",
+    "Sockets TCP",
+    "Teltonika Codec 8/8E",
+    "MySQL",
+    "Traccar (protocolo)",
+    "OSRM",
+    "Leaflet",
+    "Leaflet.draw",
+    "Android",
+    "PhpSpreadsheet",
+    "Dompdf"
+  ],
   "metrics": [
-    { "value": "4", "label": { "es": "clientes desplegados", "en": "customers deployed" }, "context": { "es": "Instancias replicadas y adaptadas", "en": "Replicated and adapted instances" } },
-    { "value": "~55K", "label": { "es": "líneas de código", "en": "lines of code" }, "context": { "es": "En la instancia original del módulo", "en": "In the module's original instance" } },
-    { "value": "2", "label": { "es": "fuentes de ingesta", "en": "ingestion sources" }, "context": { "es": "Rastreadores Teltonika por TCP y celulares por HTTP", "en": "Teltonika trackers over TCP and phones over HTTP" } }
+    {
+      "value": "4",
+      "label": {
+        "es": "clientes desplegados",
+        "en": "customers deployed"
+      },
+      "context": {
+        "es": "Instancias replicadas y adaptadas",
+        "en": "Replicated and adapted instances"
+      }
+    },
+    {
+      "value": "~55K",
+      "label": {
+        "es": "líneas de código",
+        "en": "lines of code"
+      },
+      "context": {
+        "es": "En la instancia original del módulo",
+        "en": "In the module's original instance"
+      }
+    },
+    {
+      "value": "2",
+      "label": {
+        "es": "fuentes de ingesta",
+        "en": "ingestion sources"
+      },
+      "context": {
+        "es": "Rastreadores Teltonika por TCP y celulares por HTTP",
+        "en": "Teltonika trackers over TCP and phones over HTTP"
+      }
+    }
   ],
   "images": [],
   "evidenceUrl": null,

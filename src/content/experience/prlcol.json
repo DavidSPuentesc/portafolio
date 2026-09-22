@@ -2,11 +2,17 @@
   "order": 1,
   "company": "PRLCOL",
   "location": "Tocancipá, Cundinamarca, Colombia",
-  "period": { "es": "Agosto 2025 — actualidad", "en": "August 2025 — present" },
-  "role": { "es": "Full-Stack Software Developer & Data Analyst", "en": "Full-Stack Software Developer & Data Analyst" },
+  "period": {
+    "es": "Agosto 2025 — actualidad",
+    "en": "August 2025 — present"
+  },
+  "role": {
+    "es": "Full-Stack Software Developer & Data Analyst",
+    "en": "Full-Stack Software Developer & Data Analyst"
+  },
   "summary": {
-    "es": "Desarrollador responsable del ciclo completo —requerimiento, desarrollo, migración de base de datos, despliegue y soporte— de 7 clientes empresariales de una plataforma SaaS B2B multi-instancia de gestión operativa y SST, en manufactura de alimentos, energía, hidrocarburos e ingeniería. Cada push a main despliega a producción por webhook.",
-    "en": "Developer owning the full delivery cycle — requirements, development, database migrations, deployment, and support — for 7 enterprise customers of a multi-instance B2B SaaS platform for operations and workplace-safety management, across food manufacturing, energy, oil and gas, and engineering. Every push to main deploys to production through a webhook."
+    "es": "Desarrollador en el equipo de SecurApp, la plataforma SaaS B2B multi-instancia de PRLCOL para gestión operativa y SST (producto de la empresa, construido en equipo). Responsable del ciclo completo —requerimiento, desarrollo, migración de base de datos, despliegue y soporte— de 7 clientes empresariales en manufactura de alimentos, energía, hidrocarburos e ingeniería. Cada push a main despliega a producción por webhook.",
+    "en": "Developer on the team behind SecurApp, PRLCOL’s multi-instance B2B SaaS platform for operations and workplace-safety management (a company product built by a team). Owner of the full delivery cycle — requirements, development, database migrations, deployment, and support — for 7 enterprise customers across food manufacturing, energy, oil and gas, and engineering. Every push to main deploys to production through a webhook."
   },
   "highlights": {
     "es": [
@@ -35,8 +41,26 @@
     ]
   },
   "metrics": [
-    { "value": "7", "label": { "es": "clientes B2B en producción", "en": "B2B customers in production" } },
-    { "value": "987", "label": { "es": "commits en 8 semanas", "en": "commits in 8 weeks" } },
-    { "value": "47", "label": { "es": "migraciones SQL sin downtime", "en": "zero-downtime SQL migrations" } }
+    {
+      "value": "7",
+      "label": {
+        "es": "clientes B2B en producción",
+        "en": "B2B customers in production"
+      }
+    },
+    {
+      "value": "987",
+      "label": {
+        "es": "commits en 8 semanas",
+        "en": "commits in 8 weeks"
+      }
+    },
+    {
+      "value": "47",
+      "label": {
+        "es": "migraciones SQL sin downtime",
+        "en": "zero-downtime SQL migrations"
+      }
+    }
   ]
 }
