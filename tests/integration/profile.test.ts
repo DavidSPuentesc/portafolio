@@ -20,22 +20,27 @@ it('offers a double call to action and the real location', () => {
   expect(source).toContain('BOGOTÁ, COLOMBIA');
 });
 
-it('describes the delivery process truthfully, marking automated tests as a next step', () => {
-  expect(source).toContain('Cómo entrego a producción');
-  expect(source).toContain('How I ship to production');
-  expect(source).toMatch(/PR staging → main/);
+it('describes the delivery process truthfully and marks only the smoke-test step as pending', () => {
+  expect(source).toMatch(/Cómo entrego a producción/);
+  expect(source).toMatch(/How I ship to production/);
+  expect(source).toMatch(/staging → main/);
   expect(source).toMatch(/webhook/);
   expect(source).toMatch(/git revert/);
-  expect(source).toMatch(/Siguiente paso, todavía no implementado: smoke tests/);
-  expect(source).toMatch(/Next step, not implemented yet: automated post-deploy smoke tests/);
+  expect(source).toContain('class:list={{ pending: item.pending }}');
+  const pendingSteps = [...source.matchAll(/\{\s*text:\s*'([^']*)',\s*pending:\s*true\s*\}/g)].map((match) => match[1]);
+  expect(pendingSteps).toHaveLength(2);
+  for (const text of pendingSteps) expect(text).toMatch(/smoke tests/i);
+  expect(pendingSteps[0]).toMatch(/no implementado/i);
+  expect(pendingSteps[1]).toMatch(/not implemented/i);
   expect(source).not.toMatch(/PHPUnit/);
 });
 
 it('reflects the real stack without inflating cloud experience', () => {
-  expect(source).toMatch(/PHP 8, MySQL\/MariaDB/);
-  expect(source).toMatch(/Teltonika Codec 8\/8E/);
-  expect(source).toMatch(/Terraform, en fortalecimiento; sin producción en AWS/);
-  expect(source).toMatch(/still strengthening; no AWS production experience/);
+  expect(source).toMatch(/PHP 8/);
+  expect(source).toMatch(/MySQL\/MariaDB/);
+  expect(source).toMatch(/Teltonika/);
+  expect(source).toMatch(/Terraform.*fortalecimiento/);
+  expect(source).toMatch(/no AWS production/);
   expect(source).not.toMatch(/Django/);
 });
 

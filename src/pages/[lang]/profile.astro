@@ -16,7 +16,7 @@ const cv = es ? '/cv/david-puentes-cv-es.pdf' : '/cv/david-puentes-cv-en.pdf';
 const email = 'mailto:davidsantiago.puentesc@gmail.com';
 const linkedin = 'https://www.linkedin.com/in/david-santiago-puentes-c%C3%A1rdenas-914815186/';
 
-/** Capabilities reflect the stack with production or public evidence (tareas2 §4 and §7). Cloud is deliberately not inflated. */
+/** Capabilities reflect only the stack with production or public evidence. Cloud is deliberately not inflated. */
 const capabilities = es
   ? [
       ['Backend en producción', 'PHP 8, MySQL/MariaDB, prepared statements y transacciones, migraciones versionadas, sockets TCP y decodificación de protocolos binarios, generación Excel/PDF y correo transaccional. Columna vertebral de 7 clientes en producción.'],
@@ -35,27 +35,28 @@ const capabilities = es
       ['Applied AI', 'LLM integration (Gemini API) with scoped context, usage caps, and injection defenses. Daily agentic workflows with Claude Code and opencode: specs, plans, subagents, skills, MCP, and review with human validation before every deployment.'],
     ];
 
-/** Only what is true today. Automated smoke tests and unit suites are explicitly marked as the next step, not as practice. */
-const delivery = es
+/** Only what is true today. Steps flagged `pending` are explicitly not practice yet (automated smoke tests and unit suites). */
+type DeliveryStep = { text: string; pending?: boolean };
+const delivery: DeliveryStep[] = es
   ? [
-      'Rama staging por cliente, con subdominio propio, donde se construye y prueba cada tarea antes de tocar producción.',
-      'Un commit por tarea, ligado a su tarjeta kanban; los commits nunca se aplastan, para poder revertir tarea a tarea.',
-      'Pruebas exploratorias en staging antes de cada PR; el asistente de IA participa habitualmente como par revisor del diff.',
-      'Cierre de lote con un único PR staging → main que el cliente revisa y aprueba; nada llega a producción sin ese visto bueno.',
-      'Push a main = despliegue automático por webhook a la instancia productiva del cliente.',
-      'Migraciones SQL versionadas e idempotentes que se aplican solas en el despliegue, sin ventanas de mantenimiento.',
-      'git revert como rollback de producción en segundos; 987 commits y 47 migraciones desplegados así en 8 semanas.',
-      'Siguiente paso, todavía no implementado: smoke tests automáticos post-deploy y pruebas unitarias sobre la lógica crítica (firmas, permisos, inventario).',
+      { text: 'Rama staging por cliente, con subdominio propio, donde se construye y prueba cada tarea antes de tocar producción.' },
+      { text: 'Un commit por tarea, ligado a su tarjeta kanban; los commits nunca se aplastan, para poder revertir tarea a tarea.' },
+      { text: 'Pruebas exploratorias en staging antes de cada PR; el asistente de IA participa habitualmente como par revisor del diff.' },
+      { text: 'Cierre de lote con un único PR staging → main que el cliente revisa y aprueba; nada llega a producción sin ese visto bueno.' },
+      { text: 'Push a main = despliegue automático por webhook a la instancia productiva del cliente.' },
+      { text: 'Migraciones SQL versionadas e idempotentes que se aplican solas en el despliegue, sin ventanas de mantenimiento.' },
+      { text: 'git revert como rollback de producción en segundos; 987 commits y 47 migraciones desplegados así en 8 semanas.' },
+      { text: 'Siguiente paso, todavía no implementado: smoke tests automáticos post-deploy y pruebas unitarias sobre la lógica crítica (firmas, permisos, inventario).', pending: true },
     ]
   : [
-      'A staging branch per customer, on its own subdomain, where every task is built and tested before production is touched.',
-      'One commit per task, tied to its kanban card; commits are never squashed, so any task can be reverted on its own.',
-      'Exploratory testing in staging before every PR; the AI assistant routinely takes part as a reviewing pair on the diff.',
-      'Batch closure through a single staging → main PR that the customer reviews and approves; nothing reaches production without that sign-off.',
-      'Push to main = automatic webhook deployment to the customer production instance.',
-      'Versioned, idempotent SQL migrations that apply themselves on deployment, with no maintenance windows.',
-      'git revert as the production rollback within seconds; 987 commits and 47 migrations shipped this way in 8 weeks.',
-      'Next step, not implemented yet: automated post-deploy smoke tests and unit tests over the critical logic (signatures, permissions, inventory).',
+      { text: 'A staging branch per customer, on its own subdomain, where every task is built and tested before production is touched.' },
+      { text: 'One commit per task, tied to its kanban card; commits are never squashed, so any task can be reverted on its own.' },
+      { text: 'Exploratory testing in staging before every PR; the AI assistant routinely takes part as a reviewing pair on the diff.' },
+      { text: 'Batch closure through a single staging → main PR that the customer reviews and approves; nothing reaches production without that sign-off.' },
+      { text: 'Push to main = automatic webhook deployment to the customer production instance.' },
+      { text: 'Versioned, idempotent SQL migrations that apply themselves on deployment, with no maintenance windows.' },
+      { text: 'git revert as the production rollback within seconds; 987 commits and 47 migrations shipped this way in 8 weeks.' },
+      { text: 'Next step, not implemented yet: automated post-deploy smoke tests and unit tests over the critical logic (signatures, permissions, inventory).', pending: true },
     ];
 
 const education = es
@@ -94,7 +95,7 @@ const education = es
     <p class="eyebrow">{es ? 'ENTREGA' : 'DELIVERY'}</p>
     <h2>{es ? 'Cómo entrego a producción' : 'How I ship to production'}</h2>
     <p class="section-lede">{es ? 'Con despliegue continuo no hay red de seguridad: la calidad se construye por capas antes de cada push. Esto es lo que hago hoy, y lo que todavía no.' : 'With continuous deployment there is no safety net: quality is built in layers before every push. This is what I do today, and what I do not yet.'}</p>
-    <ol class="delivery-list">{delivery.map((item, index) => <li class:list={{ pending: index === delivery.length - 1 }}>{item}</li>)}</ol>
+    <ol class="delivery-list">{delivery.map((item) => <li class:list={{ pending: item.pending }}>{item.text}</li>)}</ol>
   </section>
 
   <section class="section">
