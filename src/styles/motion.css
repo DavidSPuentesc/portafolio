@@ -57,13 +57,16 @@
   .hero-content > :nth-child(5), header.section > :nth-child(5), .case-study > :nth-child(5) { animation-delay: .48s; }
 
   /* Scroll reveal: hidden state exists only when the script is running (html.js-motion) and only below the first viewport. */
-  html.js-motion .reveal { opacity: 0; translate: 0 20px; }
-  html.js-motion .architecture li.reveal:not(.is-visible) { translate: -16px 0; } /* :not() keeps the li type selector from outranking .is-visible */
-  html.js-motion .reveal.is-visible { opacity: 1; translate: none; transition: opacity .75s var(--ease), translate .75s var(--ease); transition-delay: calc(var(--i, 0) * 70ms); }
+  /* Animation, not transition: a transition here (0,3,1) would override the cards' own hover transition (0,1,0) for good. */
+  html.js-motion .reveal { opacity: 0; translate: var(--reveal-from, 0 20px); }
+  html.js-motion .architecture li { --reveal-from: -16px 0; }
+  html.js-motion .reveal.is-visible { opacity: 1; translate: none; animation: reveal-in .75s var(--ease) both calc(var(--i, 0) * 70ms); }
+  @keyframes reveal-in { from { opacity: 0; translate: var(--reveal-from, 0 20px); } }
 
   /* Timeline: the vertical line draws itself instead of fading. */
   .timeline { position: relative; }
   html.js-motion .timeline.reveal { opacity: 1; translate: none; border-left-color: transparent; }
+  html.js-motion .timeline.reveal.is-visible { animation: none; }
   html.js-motion .timeline.reveal::before { content: ''; position: absolute; top: 0; bottom: 0; left: -1px; width: 1px; background: linear-gradient(180deg, var(--cyan), #9c7cff99 60%, #9c7cff22); transform: scaleY(0); transform-origin: top; }
   html.js-motion .timeline.reveal.is-visible::before { transform: scaleY(1); transition: transform 1.6s var(--ease); }
 }
