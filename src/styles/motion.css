@@ -34,7 +34,8 @@
 }
 .scroll-cue { position: absolute; left: 50%; bottom: 1.6rem; z-index: 1; width: .9rem; height: .9rem; border-right: 2px solid #65defeaa; border-bottom: 2px solid #65defeaa; translate: -50% 0; rotate: 45deg; opacity: 0; animation: cue 2.4s ease-in-out 1.4s infinite; }
 @keyframes cue { 0% { opacity: 0; translate: -50% -6px; } 50% { opacity: .8; } 100% { opacity: 0; translate: -50% 8px; } }
-@keyframes hero-in { from { opacity: 0; translate: 0 22px; filter: blur(12px); } }
+/* No opacity here on purpose: above-the-fold text must keep full contrast at every frame (axe measures mid-animation). */
+@keyframes hero-in { from { translate: 0 22px; filter: blur(14px); } }
 
 /* ---------- Cards: cursor spotlight + lift ---------- */
 .project-card, .solution-card, .audience-grid > a, .skills-grid article, .agent-workflow article, .credential-grid article { position: relative; overflow: hidden; isolation: isolate; transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease); }
