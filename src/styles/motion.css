@@ -24,11 +24,12 @@
 .space-hero { isolation: isolate; }
 .space-hero::after { content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none; background: linear-gradient(to bottom, transparent 62%, var(--space-950) 100%), linear-gradient(90deg, #040610a6 0%, #04061000 58%); }
 .hero-orbs { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-.orb { position: absolute; aspect-ratio: 1; border-radius: 50%; filter: blur(64px); opacity: .5; will-change: transform; }
+.orb { position: absolute; aspect-ratio: 1; border-radius: 50%; filter: blur(64px); opacity: .5; }
 .orb-cyan { --drift: 26px; width: min(44vw, 620px); right: -12vw; bottom: -18vw; background: radial-gradient(circle at 40% 40%, #2fb8ff, transparent 62%); }
 .orb-violet { --drift: -18px; width: min(38vw, 520px); left: 38%; bottom: -22vw; opacity: .42; background: radial-gradient(circle at 45% 45%, #8b5cf6, transparent 60%); }
 .orb-blue { --drift: 12px; width: min(30vw, 420px); left: -10vw; top: -10vw; opacity: .35; background: radial-gradient(circle, #2b5ce6, transparent 62%); }
 [data-parallax] { transform: translate3d(calc(var(--px, 0) * var(--drift, 0px)), calc(var(--py, 0) * var(--drift, 0px) + var(--sy, 0px)), 0); }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) { .orb { will-change: transform; } } /* only while initParallax actually moves them */
 @supports ((-webkit-background-clip: text) or (background-clip: text)) {
   .space-hero h1 { background: linear-gradient(118deg, #fff 35%, #dff7ff 65%, #9be9ff 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
   @media (forced-colors: active) { .space-hero h1 { background: none; color: CanvasText; -webkit-text-fill-color: CanvasText; } }
