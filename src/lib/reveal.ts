@@ -12,29 +12,11 @@ export const REVEAL_SELECTOR = [
 const THRESHOLD = 0.15;
 const STAGGER_CAP = 8;
 
-interface StaggerTarget { parentElement: unknown; style: { setProperty(name: string, value: string): void } }
 interface RevealEntry {
   isIntersecting: boolean;
   intersectionRatio: number;
   boundingClientRect: { height: number; bottom: number };
   rootBounds: { height: number; top: number } | null;
-}
-
-/** querySelectorAll already returns each element once, in document order, even when several selectors match it. */
-export function collectRevealTargets(root: ParentNode): Element[] {
-  return Array.from(root.querySelectorAll(REVEAL_SELECTOR));
-}
-
-/** Writes `--i` (index among revealed siblings, capped) so CSS can stagger the entrance. Returns the indices for tests. */
-export function assignStagger(elements: StaggerTarget[], cap = STAGGER_CAP): number[] {
-  const perParent = new Map<unknown, number>();
-  return elements.map((element) => {
-    const index = perParent.get(element.parentElement) ?? 0;
-    perParent.set(element.parentElement, index + 1);
-    const capped = Math.min(index, cap);
-    element.style.setProperty('--i', String(capped));
-    return capped;
-  });
 }
 
 /** Only content below the first viewport is hidden, so nothing on screen ever flashes. */
@@ -48,20 +30,29 @@ export function shouldReveal(entry: RevealEntry): boolean {
   return entry.intersectionRatio >= THRESHOLD || tallerThanRoot;
 }
 
+/** Stagger index per element revealed in the same batch: siblings (same parent) count up, capped; a lone element gets 0. */
+export function batchStagger<T>(parents: T[], cap = STAGGER_CAP): number[] {
+  const seen = new Map<T, number>();
+  return parents.map((parent) => {
+    const index = seen.get(parent) ?? 0;
+    seen.set(parent, index + 1);
+    return Math.min(index, cap);
+  });
+}
+
 export function initReveal(root: ParentNode = document): void {
-  const targets = collectRevealTargets(root);
-  if (!targets.length) return;
-  assignStagger(targets as unknown as StaggerTarget[]);
   if (prefersReducedMotion() || !('IntersectionObserver' in window)) return;
-  const pending = targets.filter((element) => needsReveal(element.getBoundingClientRect().top, innerHeight));
+  const pending = Array.from(root.querySelectorAll<HTMLElement>(REVEAL_SELECTOR)).filter((element) => needsReveal(element.getBoundingClientRect().top, innerHeight));
   if (!pending.length) return;
   const observer = new IntersectionObserver(
     (entries) => {
-      for (const entry of entries) {
-        if (!shouldReveal(entry)) continue;
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      }
+      const revealed = entries.filter(shouldReveal).map((entry) => entry.target as HTMLElement);
+      const indices = batchStagger(revealed.map((element) => element.parentElement));
+      revealed.forEach((element, i) => {
+        element.style.setProperty('--i', String(indices[i] ?? 0));
+        element.classList.add('is-visible');
+        observer.unobserve(element);
+      });
     },
     { threshold: [0, THRESHOLD], rootMargin: '0px 0px -10% 0px' },
   );

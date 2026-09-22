@@ -1,36 +1,24 @@
 import { describe, expect, it } from 'vitest';
-import { REVEAL_SELECTOR, assignStagger, collectRevealTargets, needsReveal, shouldReveal } from '../../src/lib/reveal';
+import { REVEAL_SELECTOR, batchStagger, needsReveal, shouldReveal } from '../../src/lib/reveal';
 
-const fake = (parentElement: object) => {
-  const vars: Record<string, string> = {};
-  return { parentElement, vars, style: { setProperty: (k: string, v: string) => void (vars[k] = v) } };
-};
-
-describe('collectRevealTargets', () => {
-  it('queries the generic selector list once and returns a plain array', () => {
-    const seen: string[] = [];
-    const a = {}, b = {};
-    const root = { querySelectorAll: (s: string) => { seen.push(s); return [a, b]; } };
-    expect(collectRevealTargets(root as never)).toEqual([a, b]);
-    expect(seen).toEqual([REVEAL_SELECTOR]);
-  });
+describe('REVEAL_SELECTOR', () => {
   it('covers the shared class vocabulary used by every page', () => {
     for (const s of ['.section > h2', '.metric-strip > div', '.audience-grid > a', '.project-card', '.solution-card', '.timeline article', '.commercial-process li', '.architecture li', '.tech-list li', '.contact-form'])
       expect(REVEAL_SELECTOR).toContain(s);
   });
 });
 
-describe('assignStagger', () => {
-  it('numbers siblings from 0 per parent, restarting for each parent', () => {
-    const p1 = {}, p2 = {};
-    const els = [fake(p1), fake(p1), fake(p2), fake(p1), fake(p2)];
-    expect(assignStagger(els)).toEqual([0, 1, 0, 2, 1]);
-    expect(els.map((e) => e.vars['--i'])).toEqual(['0', '1', '0', '2', '1']);
+describe('batchStagger', () => {
+  it('numbers siblings revealed together from 0 per parent, in batch order', () => {
+    const a = {}, b = {};
+    expect(batchStagger([a, a, b, a, b])).toEqual([0, 1, 0, 2, 1]);
+  });
+  it('gives an element revealed on its own no delay', () => {
+    expect(batchStagger([{}])).toEqual([0]);
   });
   it('caps the index so long lists do not wait forever', () => {
     const p = {};
-    const els = Array.from({ length: 12 }, () => fake(p));
-    expect(assignStagger(els, 6).at(-1)).toBe(6);
+    expect(batchStagger(Array.from({ length: 12 }, () => p), 6).at(-1)).toBe(6);
   });
 });
 
