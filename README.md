@@ -36,7 +36,7 @@ All content lives under `src/content` as JSON validated by the Zod schemas in `s
 - `solutions/solutions.json`: the three B2B lines, each with `proof` (delivered work that backs the offer) and `pilotMetrics`, plus the served `sectors`.
 - `certifications/certifications.json`: credentials grouped by category.
 
-`tests/unit/content.test.ts` validates every file against the schema, enforces the agreed order, and rejects customer names. Keep claims evidence-based and run through [the content-safety checklist](docs/content-safety-checklist.md) before publishing.
+`tests/unit/content.test.ts` validates every file against the schema, enforces the agreed order, and rejects customer names when `CONTENT_DENYLIST` is configured (see `.env.example`; the check is skipped otherwise). Keep claims evidence-based and run through [the content-safety checklist](docs/content-safety-checklist.md) before publishing.
 
 ## CVs
 
