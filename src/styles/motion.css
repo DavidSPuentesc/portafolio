@@ -31,6 +31,7 @@
 [data-parallax] { transform: translate3d(calc(var(--px, 0) * var(--drift, 0px)), calc(var(--py, 0) * var(--drift, 0px) + var(--sy, 0px)), 0); }
 @supports ((-webkit-background-clip: text) or (background-clip: text)) {
   .space-hero h1 { background: linear-gradient(118deg, #fff 35%, #dff7ff 65%, #9be9ff 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+  @media (forced-colors: active) { .space-hero h1 { background: none; color: CanvasText; -webkit-text-fill-color: CanvasText; } }
 }
 .scroll-cue { position: absolute; left: 50%; bottom: 1.6rem; z-index: 1; width: .9rem; height: .9rem; border-right: 2px solid #65defeaa; border-bottom: 2px solid #65defeaa; translate: -50% 0; rotate: 45deg; opacity: 0; animation: cue 2.4s ease-in-out 1.4s infinite; }
 @keyframes cue { 0% { opacity: 0; translate: -50% -6px; } 50% { opacity: .8; } 100% { opacity: 0; translate: -50% 8px; } }
