@@ -22,7 +22,7 @@
 
 /* ---------- Hero: orbs, scrim, entrance, gradient title, scroll cue ---------- */
 .space-hero { isolation: isolate; }
-.space-hero::after { content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none; background: linear-gradient(to bottom, transparent 62%, var(--space-950) 100%), linear-gradient(90deg, #040610a6 0%, #04061000 58%); }
+.space-hero::after { content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none; background: linear-gradient(90deg, #040610a6 0%, #04061000 58%); } /* left scrim only: the sky now continues below the hero, so no bottom fade */
 .hero-orbs { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
 .orb { position: absolute; aspect-ratio: 1; border-radius: 50%; filter: blur(64px); opacity: .5; }
 .orb-cyan { --drift: 26px; width: min(44vw, 620px); right: -12vw; bottom: -18vw; background: radial-gradient(circle at 40% 40%, #2fb8ff, transparent 62%); }
@@ -38,6 +38,20 @@
 @keyframes cue { 0% { opacity: 0; translate: -50% -6px; } 50% { opacity: .8; } 100% { opacity: 0; translate: -50% 8px; } }
 /* No opacity here on purpose: above-the-fold text must keep full contrast at every frame (axe measures mid-animation). */
 @keyframes hero-in { from { translate: 0 22px; filter: blur(14px); } }
+
+/* ---------- Ambience below the fold: orbit dividers, signal LEDs, card edges, gradient headings ---------- */
+.section { position: relative; }
+.section + .section:not(.confidentiality)::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, #65defe40 25%, #9c7cff40 75%, transparent); }
+.section + .section:not(.confidentiality)::after { content: ''; position: absolute; top: -3px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 10px 2px #65defe80; opacity: 0; animation: satellite 16s linear infinite; }
+.section + .section:nth-child(odd)::after { animation-delay: -8s; background: var(--violet); box-shadow: 0 0 10px 2px #9c7cff80; }
+@keyframes satellite { 0% { translate: -8px 0; opacity: 0; } 6% { opacity: 1; } 94% { opacity: 1; } 100% { translate: calc(min(1120px, 90vw) + 2px) 0; opacity: 0; } }
+.eyebrow::before { content: ''; display: inline-block; width: 6px; height: 6px; margin-right: .6rem; border-radius: 50%; background: currentColor; vertical-align: middle; box-shadow: 0 0 0 0 #65defe66; animation: ping 2.8s ease-out infinite; }
+@keyframes ping { 70% { box-shadow: 0 0 0 8px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
+.project-card::after, .solution-card::after, .audience-grid > a::after, .skills-grid article::after, .agent-workflow article::after, .credential-grid article::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 1px; pointer-events: none; background: linear-gradient(90deg, transparent, #65defe66 40%, #9c7cff66 60%, transparent); }
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .section > h2, .section > h1, .case-study h1 { background: linear-gradient(118deg, #fff 40%, #dff7ff 75%, #b9edff 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+  @media (forced-colors: active) { .section > h2, .section > h1, .case-study h1 { background: none; color: CanvasText; -webkit-text-fill-color: CanvasText; } }
+}
 
 /* ---------- Cards: cursor spotlight + lift ---------- */
 .project-card, .solution-card, .audience-grid > a, .skills-grid article, .agent-workflow article, .credential-grid article { position: relative; overflow: hidden; isolation: isolate; transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease); }
@@ -77,6 +91,8 @@
 @media (prefers-reduced-motion: reduce) {
   .scroll-cue, .scroll-progress { display: none; }
   [data-parallax] { transform: none; }
+  .section + .section::after { animation: none; opacity: 1; }
+  .eyebrow::before { animation: none; }
 }
 
 @media (max-width: 720px) {
