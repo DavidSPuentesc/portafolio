@@ -17,6 +17,8 @@ const oppositePath = canonicalPath.replace(/^\/(es|en)\//, `/${opposite}/`);
   import { initParallax } from '../lib/parallax';
   import { initNav } from '../lib/nav';
   document.documentElement.classList.add('js-motion');
+  // ponytail: the init* functions register listeners/observers for the page's lifetime and return nothing.
+  // Improvement: have each return a disposer and call them on astro:before-swap if <ClientRouter> is adopted.
   const start = () => { initReveal(); initCounters(); initParallax(); initNav(); };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true }); else start();
 </script></body></html>

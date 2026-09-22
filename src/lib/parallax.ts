@@ -2,6 +2,8 @@ import { lacksHover, lerp, prefersReducedMotion } from './motion';
 
 const MAX_OFFSET = 240;
 const POINTER_EASE = 0.08;
+// ponytail: this list is duplicated in the cards block of motion.css, so a new card type must be added in both places.
+// Improvement: one shared class (or a data-spotlight attribute) that both the CSS and this selector key off.
 const SPOTLIGHT_SELECTOR = '.project-card, .solution-card, .audience-grid > a, .skills-grid article, .agent-workflow article, .credential-grid article';
 
 export function parallaxOffset(scrollY: number, speed: number, max = MAX_OFFSET): number {
