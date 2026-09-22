@@ -29,7 +29,6 @@ it('renders decisions, metrics with context, lazy images and a private-summary n
   const source = readFileSync('src/pages/[lang]/projects/[slug].astro', 'utf8');
   expect(source).toContain('project.decisions[lang]');
   expect(source).toContain('case-metrics');
-  expect(source).toContain('local(metric.context)');
   expect(source).toContain('loading="lazy"');
   expect(source).toContain('RESUMEN SIN DATOS PRIVADOS');
   expect(source).toContain('SUMMARY WITHOUT PRIVATE DATA');

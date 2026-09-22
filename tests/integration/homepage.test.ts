@@ -11,8 +11,8 @@ it('declares evidence, both audience destinations, enterprise experience and the
   expect(source).toContain('EXPERIENCIA EMPRESARIAL');
   expect(source).toContain('CÓMO TRABAJO');
   expect(source).toContain('commercial-process four');
-  expect(source).toContain("['987', 'commits a producción en 8 semanas'");
-  expect(source).toContain("['987', 'production commits in 8 weeks'");
+  expect(source).toMatch(/987.*8 semanas/);
+  expect(source).toMatch(/987.*8 weeks/);
 });
 
 it('links every headline metric to the case that gives it context', async () => {

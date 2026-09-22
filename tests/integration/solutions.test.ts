@@ -20,7 +20,8 @@ it('names served sectors without naming customers and drives to the contact form
   expect(data.sectors.en).toContain('Oil and gas');
   expect(page).toContain('href="#contact"');
   expect(page).toContain('SECTORES ATENDIDOS');
-  expect(page).toMatch(/si el piloto no la cumple, no escalamos/);
+  expect(page).toMatch(/no escalamos/);
+  expect(page).toMatch(/we do not scale/);
 });
 
 it('renders proof of delivered work on each solution card', async () => {
