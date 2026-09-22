@@ -1,5 +1,8 @@
 ---
 import { ui } from '../../i18n/ui'; import { localizedPath, type Locale } from '../../i18n/locales';
 const { lang, currentPath } = Astro.props as { lang: Locale; currentPath: string }; const t = ui[lang].nav; const other = lang === 'es' ? 'en' : 'es'; const otherPath = currentPath.replace(/^\/(es|en)\//, `/${other}/`);
+const home = localizedPath(lang);
+const links = [[home, t.home], [localizedPath(lang,'/profile/'), t.profile], [localizedPath(lang,'/projects/'), t.projects], [localizedPath(lang,'/solutions/'), t.solutions]] as const;
+const isCurrent = (href: string) => (href === home ? currentPath === home : currentPath.startsWith(href));
 ---
-<header class="site-header"><a class="brand" href={localizedPath(lang)}>DP / SYSTEMS</a><nav aria-label={lang === 'es' ? 'Navegación principal' : 'Main navigation'}><a href={localizedPath(lang)}>{t.home}</a><a href={localizedPath(lang,'/profile/')}>{t.profile}</a><a href={localizedPath(lang,'/projects/')}>{t.projects}</a><a href={localizedPath(lang,'/solutions/')}>{t.solutions}</a></nav><a class="locale" href={otherPath} hreflang={other} data-locale-switch>{other.toUpperCase()}</a></header>
+<header class="site-header"><div class="scroll-progress" aria-hidden="true"></div><a class="brand" href={home}>DP / SYSTEMS</a><nav aria-label={lang === 'es' ? 'Navegación principal' : 'Main navigation'}>{links.map(([href, label]) => <a href={href} aria-current={isCurrent(href) ? 'page' : undefined}>{label}</a>)}</nav><a class="locale" href={otherPath} hreflang={other} data-locale-switch>{other.toUpperCase()}</a></header>

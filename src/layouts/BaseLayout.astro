@@ -2,6 +2,7 @@
 import Navigation from '../components/layout/Navigation.astro';
 import Footer from '../components/layout/Footer.astro';
 import '../styles/global.css';
+import '../styles/motion.css';
 import type { Locale } from '../i18n/locales';
 interface Props { lang: Locale; title: string; description: string; canonicalPath: string }
 const { lang, title, description, canonicalPath } = Astro.props;
@@ -10,4 +11,14 @@ const canonical = new URL(canonicalPath, site);
 const opposite = lang === 'es' ? 'en' : 'es';
 const oppositePath = canonicalPath.replace(/^\/(es|en)\//, `/${opposite}/`);
 ---
-<!doctype html><html lang={lang}><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width"/><meta name="description" content={description}/><title>{title} · David Puentes</title><link rel="canonical" href={canonical}/><link rel="alternate" hreflang={lang} href={canonical}/><link rel="alternate" hreflang={opposite} href={new URL(oppositePath, site)}/><link rel="alternate" hreflang="x-default" href={new URL('/es/', site)}/></head><body><a class="skip-link" href="#main-content">{lang === 'es' ? 'Saltar al contenido' : 'Skip to content'}</a><Navigation {lang} currentPath={canonicalPath}/><main id="main-content"><slot/></main><Footer {lang}/></body></html>
+<!doctype html><html lang={lang}><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width"/><meta name="description" content={description}/><title>{title} · David Puentes</title><link rel="canonical" href={canonical}/><link rel="alternate" hreflang={lang} href={canonical}/><link rel="alternate" hreflang={opposite} href={new URL(oppositePath, site)}/><link rel="alternate" hreflang="x-default" href={new URL('/es/', site)}/></head><body><a class="skip-link" href="#main-content">{lang === 'es' ? 'Saltar al contenido' : 'Skip to content'}</a><Navigation {lang} currentPath={canonicalPath}/><main id="main-content"><slot/></main><Footer {lang}/><script>
+  import { initReveal } from '../lib/reveal';
+  import { initCounters } from '../lib/counter';
+  import { initParallax } from '../lib/parallax';
+  import { initNav } from '../lib/nav';
+  document.documentElement.classList.add('js-motion');
+  // ponytail: the init* functions register listeners/observers for the page's lifetime and return nothing.
+  // Improvement: have each return a disposer and call them on astro:before-swap if <ClientRouter> is adopted.
+  const start = () => { initReveal(); initCounters(); initParallax(); initNav(); };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true }); else start();
+</script></body></html>
