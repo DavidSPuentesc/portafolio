@@ -201,6 +201,7 @@ export default function SpaceCanvas() {
     };
 
     const resize = () => {
+      if (canvas.clientWidth === width && canvas.clientHeight === height) return; // mobile URL-bar bursts fire resize without changing the box
       const dpr = Math.min(devicePixelRatio || 1, 2);
       width = canvas.clientWidth;
       height = canvas.clientHeight;
@@ -215,6 +216,8 @@ export default function SpaceCanvas() {
       if (!frame) render(0);
     };
 
+    // ponytail: the cursor is tracked twice (here and in parallax.ts) with two independent lerps, so canvas and orbs can
+    // disagree by a frame. Improvement: read --px/--py off .space-hero once per frame instead of keeping a second copy.
     const onPointer = (event: PointerEvent) => {
       targetX = pointerToUnit(event.clientX, innerWidth);
       targetY = pointerToUnit(event.clientY, innerHeight);
@@ -236,7 +239,7 @@ export default function SpaceCanvas() {
       cancelAnimationFrame(frame);
       observer.disconnect();
       removeEventListener('resize', resize);
-      removeEventListener('pointermove', onPointer);
+      if (!hoverless) removeEventListener('pointermove', onPointer);
       document.removeEventListener('visibilitychange', update);
       reduced.removeEventListener('change', update);
     };
