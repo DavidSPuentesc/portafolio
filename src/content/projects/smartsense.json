@@ -93,12 +93,16 @@
     {
       "src": "/images/projects/smartsense-architecture.png",
       "alt": { "es": "Diagrama de arquitectura: tres nodos de temperatura con XIAO ESP32-C6, PT100 de 3 hilos, MAX31865, batería LiPo y LoRa 433 MHz envían al gateway ESP32-C6 con pantalla, microSD y punto de acceso Wi-Fi, que alimenta un dashboard web local y el registro para análisis.", "en": "Architecture diagram: three temperature nodes with XIAO ESP32-C6, three-wire PT100, MAX31865, LiPo battery, and LoRa 433 MHz send to an ESP32-C6 gateway with display, microSD, and Wi-Fi access point, which feeds a local web dashboard and the analysis log." },
-      "caption": { "es": "Arquitectura delimitada para la validación en planta piloto.", "en": "Architecture scoped for the pilot-plant validation." }
+      "caption": { "es": "Arquitectura delimitada para la validación en planta piloto.", "en": "Architecture scoped for the pilot-plant validation." },
+      "width": 1600,
+      "height": 900
     },
     {
       "src": "/images/projects/smartsense-dashboard-replica.png",
       "alt": { "es": "Réplica neutra del dashboard: histórico de temperatura de un motor con 17.537 lecturas entre el 8 de mayo y el 9 de junio de 2026, mínima 17,1 °C, máxima 70,0 °C y promedio 45,4 °C.", "en": "Neutral dashboard replica: temperature history for one motor with 17,537 readings between 8 May and 9 June 2026, minimum 17.1 °C, maximum 70.0 °C, and average 45.4 °C." },
-      "caption": { "es": "Réplica neutra en Docker (Flask + SQLite) con los datos exportados de un nodo. Sin marca ni datos de la empresa aliada.", "en": "Neutral Docker replica (Flask + SQLite) with one node's exported data. No partner branding or data." }
+      "caption": { "es": "Réplica neutra en Docker (Flask + SQLite) con los datos exportados de un nodo. Sin marca ni datos de la empresa aliada.", "en": "Neutral Docker replica (Flask + SQLite) with one node's exported data. No partner branding or data." },
+      "width": 1120,
+      "height": 620
     }
   ],
   "evidenceUrl": "https://github.com/jesusabojacal-commits/SmartSense-Monitoring",

@@ -13,6 +13,8 @@ const projectImage = z.object({
   src: z.string().regex(/^\/images\/projects\/[a-z0-9-]+\.(png|jpg|jpeg|webp|svg)$/),
   alt: localizedText,
   caption: localizedText.nullable().default(null),
+  width: z.number().int().positive().optional(),
+  height: z.number().int().positive().optional(),
 });
 
 export const projectSchema = z.object({
