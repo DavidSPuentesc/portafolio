@@ -1,8 +1,19 @@
 ---
-import type {Locale} from '../../i18n/locales';
-const {lang}=Astro.props as {lang:Locale};
-const stages=lang==='es'
-  ? [['01','Contexto','Objetivos, restricciones y fuentes verificables.'],['02','Orquestación','Agentes, subagentes y skills especializados por tarea.'],['03','Control','Presupuesto de tokens, trazabilidad y validación humana.'],['04','Entrega','Resultado probado, documentado y listo para iterar.']]
-  : [['01','Context','Goals, constraints, and verifiable sources.'],['02','Orchestration','Agents, subagents, and task-specific skills.'],['03','Control','Token budgets, traceability, and human validation.'],['04','Delivery','Tested, documented outcomes ready to iterate.']];
+import type { Locale } from '../../i18n/locales';
+const { lang } = Astro.props as { lang: Locale };
+/** The four stages mirror the real daily flow with Claude Code and opencode; nothing here claims production multi-agent systems. */
+const stages = lang === 'es'
+  ? [
+      ['01', 'Brainstorm y spec', 'Defino objetivo, restricciones y fuentes verificables con el asistente; la spec queda escrita antes de tocar código.'],
+      ['02', 'Plan', 'Descompongo en tareas pequeñas con criterio de aceptación, skills reutilizables y presupuesto de tokens por etapa.'],
+      ['03', 'Implementación', 'Subagentes especializados por tarea, TDD donde aplica, herramientas y MCP, y control de contexto para no perder el hilo.'],
+      ['04', 'Revisión y verificación', 'Revisión adversarial del diff, pruebas y validación humana antes de cada despliegue; trazabilidad en commits granulares.'],
+    ]
+  : [
+      ['01', 'Brainstorm and spec', 'I define the goal, constraints, and verifiable sources with the assistant; the spec is written before any code.'],
+      ['02', 'Plan', 'I break the work into small tasks with acceptance criteria, reusable skills, and a token budget per stage.'],
+      ['03', 'Implementation', 'Task-specific subagents, TDD where it applies, tools and MCP, and context control so the thread is never lost.'],
+      ['04', 'Review and verification', 'Adversarial diff review, tests, and human validation before every deployment; traceability through granular commits.'],
+    ];
 ---
-<div class="agent-workflow">{stages.map(([number,title,body])=><article><span>{number}</span><h3>{title}</h3><p>{body}</p></article>)}</div>
+<div class="agent-workflow">{stages.map(([number, title, body]) => <article><span>{number}</span><h3>{title}</h3><p>{body}</p></article>)}</div>
