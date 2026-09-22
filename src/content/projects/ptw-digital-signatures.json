@@ -1,0 +1,85 @@
+{
+  "slug": "ptw-digital-signatures",
+  "order": 3,
+  "featured": true,
+  "visibility": "private-summary",
+  "title": { "es": "Permisos de trabajo con firma digital y OTP", "en": "Work permits with digital signatures and OTP" },
+  "summary": {
+    "es": "Sistema de permisos de trabajo de alto riesgo con flujo multi-etapa, firma digital sobre el PDF real y firma remota con enlaces de un solo uso y OTP por correo, en operación real en dos plantas industriales.",
+    "en": "High-risk work-permit system with a multi-stage flow, digital signatures drawn on the actual PDF, and remote signing through single-use links with email OTP, in live operation at two industrial plants."
+  },
+  "seoTitle": { "es": "Permisos de trabajo con firma digital y OTP", "en": "Work permits with digital signatures and OTP" },
+  "seoDescription": { "es": "Flujo Planeación → Aprobación → Ejecución → Cierre con firma sobre PDF, enlaces tokenizados y OTP, usado por dos plantas industriales.", "en": "Planning → Approval → Execution → Closure flow with on-PDF signatures, tokenized links, and OTP, used by two industrial plants." },
+  "role": {
+    "es": "Diseño e implementación de punta a punta: formato oficial, flujo de estados, borradores, tres flujos de firma, correos, panel de firmantes y despliegue en dos instancias de clientes distintos.",
+    "en": "End-to-end design and implementation: official form, state flow, drafts, three signing flows, email, signer administration, and deployment to two separate customer instances."
+  },
+  "sector": { "es": "Plantas industriales", "en": "Industrial plants" },
+  "period": { "es": "2026", "en": "2026" },
+  "problem": {
+    "es": "Los permisos de trabajo de alto riesgo se diligenciaban y firmaban en papel: sin trazabilidad de quién aprobó qué y cuándo, con aprobadores que no siempre están en planta y con un formato oficial de seis secciones (peligros, preparación, EPP, controles, pruebas de gas) que no admite errores ni omisiones.",
+    "en": "High-risk work permits were filled in and signed on paper: no trace of who approved what and when, approvers who are not always on site, and an official six-section form (hazards, preparation, PPE, controls, gas tests) that tolerates neither mistakes nor omissions."
+  },
+  "architecture": {
+    "es": "Formulario del formato oficial en seis secciones → Borradores en dos niveles: autoguardado en el navegador y borrador en base de datos → Flujo de estados Planeación, Aprobación, Ejecución y Cierre con stepper visual → Firma sobre el PDF real (pdf.js + canvas) o firma remota por enlace tokenizado de un solo uso con OTP por correo → Candado de firmas, PDF final y correos transaccionales en cada transición",
+    "en": "Official six-section form → Two-level drafts: browser autosave and a database draft → Planning, Approval, Execution, and Closure state flow with a visual stepper → Signature on the actual PDF (pdf.js + canvas) or remote signing through a single-use tokenized link with email OTP → Signature lock, final PDF, and transactional email on every transition"
+  },
+  "decisions": {
+    "es": [
+      "Firmar sobre el documento real: el PDF multipágina se renderiza con pdf.js, la firma en canvas se arrastra sobre la página, se aplana a PNG y se persiste; lo que ve el firmante es lo que queda.",
+      "Borradores en dos niveles: autoguardado en el navegador para no perder trabajo y borrador en base de datos con insert-o-update idempotente dentro de una transacción; el consecutivo se asigna solo al promover el borrador.",
+      "Firma remota sin usuario de plataforma: enlace tokenizado de un solo uso más código OTP por correo, hasheado y verificado en backend, con registro de apertura, IP y momento de la firma.",
+      "Candado de etapa: no se puede avanzar sin todas las firmas requeridas o sin una excepción justificada que queda registrada.",
+      "Firmantes designados con panel de administración, para que cada planta gestione sus aprobadores sin intervención del desarrollador.",
+      "Un mismo motor de firma para tres flujos distintos (en sitio, remoto y participantes de ATS), portado entre dos instancias adaptando formato y branding."
+    ],
+    "en": [
+      "Sign the real document: the multi-page PDF is rendered with pdf.js, the canvas signature is dragged onto the page, flattened to PNG, and persisted; what the signer sees is what is stored.",
+      "Two-level drafts: browser autosave so no work is lost, plus a database draft with an idempotent insert-or-update inside a transaction; the sequential number is assigned only when the draft is promoted.",
+      "Remote signing without a platform account: a single-use tokenized link plus an email OTP, hashed and verified in the backend, with a record of opening, IP, and signing time.",
+      "Stage lock: the flow cannot advance without every required signature or a justified exception that is recorded.",
+      "Designated signers with an admin panel, so each plant manages its own approvers without developer intervention.",
+      "One signing engine for three different flows (on site, remote, and job-safety-analysis participants), ported between two instances with adapted forms and branding."
+    ]
+  },
+  "results": {
+    "es": [
+      "En operación real en dos plantas industriales.",
+      "Alrededor de 340 commits entre las dos instancias y más de 10 tipos de permiso soportados.",
+      "Tres flujos de firma: en sitio sobre canvas, remota con OTP y participantes de ATS por enlace público de un solo uso.",
+      "Trazabilidad completa: quién abrió el enlace, desde qué IP y cuándo firmó cada persona.",
+      "Los formularios a medio diligenciar sobreviven a cierres del navegador y cambios de equipo gracias al doble borrador."
+    ],
+    "en": [
+      "In live operation at two industrial plants.",
+      "Around 340 commits across the two instances and more than 10 permit types supported.",
+      "Three signing flows: on site on canvas, remote with OTP, and job-safety-analysis participants through a single-use public link.",
+      "Full traceability: who opened the link, from which IP, and when each person signed.",
+      "Half-completed forms survive browser closures and device changes thanks to the two-level draft."
+    ]
+  },
+  "limitations": {
+    "es": [
+      "Caso privado: no se publican código, capturas ni los nombres de las empresas.",
+      "La firma es una imagen aplanada con registro de OTP, IP y momento; no es una firma electrónica certificada por una entidad de certificación.",
+      "Las reglas de estado y la validación de OTP se prueban hoy de forma exploratoria en staging; formalizar pruebas unitarias sobre esa lógica es el siguiente paso."
+    ],
+    "en": [
+      "Private case: no code, screenshots, or company names are published.",
+      "The signature is a flattened image with an OTP, IP, and timestamp record; it is not a certificate-based qualified electronic signature.",
+      "State rules and OTP validation are tested exploratorily in staging today; formal unit tests over that logic are the next step."
+    ]
+  },
+  "technologies": ["PHP 8", "MySQL/MariaDB", "pdf.js", "jSignature", "Canvas", "JavaScript ES6", "PHPMailer/ZeptoMail", "Dompdf", "localStorage"],
+  "metrics": [
+    { "value": "2", "label": { "es": "plantas en operación real", "en": "plants in live operation" }, "context": { "es": "Dos instancias de clientes distintos", "en": "Two separate customer instances" } },
+    { "value": "~340", "label": { "es": "commits", "en": "commits" }, "context": { "es": "Entre las dos instancias del módulo", "en": "Across both instances of the module" } },
+    { "value": "3", "label": { "es": "flujos de firma", "en": "signing flows" }, "context": { "es": "En sitio, remota con OTP y participantes de ATS", "en": "On site, remote with OTP, and job-safety-analysis participants" } },
+    { "value": "10+", "label": { "es": "tipos de permiso", "en": "permit types" }, "context": { "es": "Sobre el formato oficial de seis secciones", "en": "On the official six-section form" } }
+  ],
+  "images": [],
+  "evidenceUrl": null,
+  "repositoryUrl": null,
+  "repositoryLabel": null,
+  "demoUrl": null
+}

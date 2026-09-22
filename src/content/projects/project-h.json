@@ -1,1 +1,68 @@
-{"slug":"project-h","order":3,"featured":true,"visibility":"public","title":{"es":"Proyecto H","en":"Project H"},"summary":{"es":"Seguridad y trazabilidad de activos con BLE, ESP32, alarmas y Firebase.","en":"Asset security and traceability with BLE, ESP32, alarms, and Firebase."},"seoTitle":{"es":"Proyecto H: seguridad de activos","en":"Project H: asset security"},"seoDescription":{"es":"Sistema embebido y web para alertas tempranas.","en":"Embedded and web system for early alerts."},"role":{"es":"Integración de firmware, protocolo, backend y aplicación web","en":"Firmware, protocol, backend, and web application integration"},"problem":{"es":"Detectar movimiento o pérdida de conexión antes de que un activo desaparezca.","en":"Detect movement or loss of connectivity before an asset disappears."},"architecture":{"es":"Nodos BLE → maestro ESP32 → Firebase → aplicación web y notificaciones.","en":"BLE nodes → ESP32 master → Firebase → web app and notifications."},"decisions":{"es":["Protocolo binario propio con ACK y timeouts"],"en":["Custom binary protocol with acknowledgements and timeouts"]},"results":{"es":["Alarmas físicas, monitoreo de habitaciones y notificaciones push"],"en":["Physical alarms, room monitoring, and push notifications"]},"limitations":{"es":["El repositorio requiere saneamiento de seguridad antes de enlazarlo"],"en":["The repository requires security hardening before linking"]},"technologies":["ESP32","BLE","C++","Firebase","JavaScript"],"metrics":[],"evidenceUrl":null,"repositoryUrl":null,"demoUrl":null}
+{
+  "slug": "project-h",
+  "order": 6,
+  "featured": true,
+  "visibility": "public",
+  "title": { "es": "Proyecto H: seguridad de habitaciones y activos", "en": "Project H: room and asset security" },
+  "summary": {
+    "es": "Sistema de alarmas hardware + software para habitaciones: nodos BLE con detección de movimiento, maestro ESP32 con protocolo binario propio y alarma física, app web con Firebase Auth y notificaciones push al personal.",
+    "en": "Hardware + software alarm system for rooms: BLE nodes with motion detection, an ESP32 master with a custom binary protocol and a physical alarm, a web app with Firebase Auth, and push notifications to staff."
+  },
+  "seoTitle": { "es": "Proyecto H: seguridad de activos con BLE, ESP32 y Firebase", "en": "Project H: asset security with BLE, ESP32, and Firebase" },
+  "seoDescription": { "es": "Nodos BLE, maestro ESP32 con protocolo propio, alarma física, app web con Firebase Auth y push por Cloud Messaging.", "en": "BLE nodes, an ESP32 master with a custom protocol, a physical alarm, a Firebase Auth web app, and Cloud Messaging push." },
+  "role": {
+    "es": "Integración completa: firmware de nodos y maestro, protocolo BLE, servidor web embebido, app web, Firebase Authentication, Cloud Messaging y Cloud Functions.",
+    "en": "Full integration: node and master firmware, BLE protocol, embedded web server, web app, Firebase Authentication, Cloud Messaging, and Cloud Functions."
+  },
+  "sector": { "es": "Salud (hospital público)", "en": "Healthcare (public hospital)" },
+  "period": { "es": "2025", "en": "2025" },
+  "problem": {
+    "es": "Detectar movimiento no autorizado o pérdida de conexión en habitaciones y activos de un hospital público, avisar al personal de inmediato y mantener el estado consultable desde la web.",
+    "en": "Detect unauthorized movement or loss of connectivity in the rooms and assets of a public hospital, alert staff immediately, and keep the status available on the web."
+  },
+  "architecture": {
+    "es": "Nodos BLE por habitación (movimiento, alarma e inhibición por advertising) → Maestro ESP32 con escáner BLE, protocolo binario propio (PING, RECAL, RESET, INHIBIT, SET_TIMERS…) y alarma física → Servidor web asíncrono en el propio ESP32 con IP estática → App web con Firebase Authentication (verificación de correo y recuperación de contraseña) → Cloud Functions + Firebase Cloud Messaging para notificaciones push al personal",
+    "en": "BLE nodes per room (motion, alarm, and inhibit flags over advertising) → ESP32 master with a BLE scanner, a custom binary protocol (PING, RECAL, RESET, INHIBIT, SET_TIMERS…), and a physical alarm → Asynchronous web server on the ESP32 itself with a static IP → Web app with Firebase Authentication (email verification and password recovery) → Cloud Functions + Firebase Cloud Messaging for push notifications to staff"
+  },
+  "decisions": {
+    "es": [
+      "Protocolo binario propio sobre BLE con opcodes, acuse de recibo y timeouts: el maestro detecta nodos caídos y no depende de una conexión permanente.",
+      "Alarma física en el maestro además de la notificación push: la alerta funciona aunque no haya internet.",
+      "Autenticación con verificación de correo y recuperación de contraseña, para que solo el personal autorizado vea el estado de las habitaciones."
+    ],
+    "en": [
+      "A custom binary protocol over BLE with opcodes, acknowledgements, and timeouts: the master detects dropped nodes and does not depend on a permanent connection.",
+      "A physical alarm on the master in addition to the push notification: the alert works even without internet.",
+      "Authentication with email verification and password recovery, so only authorized staff can see room status."
+    ]
+  },
+  "results": {
+    "es": [
+      "Alarmas físicas, monitoreo por habitación y notificaciones push funcionando en prototipo.",
+      "Firmware, app web y funciones serverless integrados en un solo sistema."
+    ],
+    "en": [
+      "Physical alarms, per-room monitoring, and push notifications working as a prototype.",
+      "Firmware, web app, and serverless functions integrated into a single system."
+    ]
+  },
+  "limitations": {
+    "es": [
+      "El repositorio no se enlaza todavía: falta rotar una clave de API fija en Cloud Functions, proteger endpoints administrativos y de prueba y revisar credenciales históricas.",
+      "Versión básica de prototipo; sin métricas de operación ni validación prolongada en sitio.",
+      "La documentación del repositorio y la demo en video están pendientes de completar."
+    ],
+    "en": [
+      "The repository is not linked yet: a fixed API key in Cloud Functions must be rotated, admin and test endpoints protected, and historical credentials reviewed.",
+      "Basic prototype; no operating metrics or extended on-site validation.",
+      "Repository documentation and a video demo are still pending."
+    ]
+  },
+  "technologies": ["ESP32", "BLE", "C++ (Arduino)", "ESPAsyncWebServer", "Firebase Auth", "Firebase Cloud Messaging", "Cloud Functions (Node.js)", "JavaScript"],
+  "metrics": [],
+  "images": [],
+  "evidenceUrl": null,
+  "repositoryUrl": null,
+  "repositoryLabel": null,
+  "demoUrl": null
+}

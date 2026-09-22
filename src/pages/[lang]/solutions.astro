@@ -1,10 +1,76 @@
 ---
-import {getCollection} from 'astro:content'; import BaseLayout from '../../layouts/BaseLayout.astro'; import SolutionCard from '../../components/commercial/SolutionCard.astro'; import CommercialProcess from '../../components/commercial/CommercialProcess.astro'; import ContactForm from '../../components/contact/ContactForm'; import { locales, isLocale } from '../../i18n/locales'; export function getStaticPaths(){return locales.map(lang=>({params:{lang}}));} const lang=Astro.params.lang;if(!isLocale(lang))return Astro.redirect('/es/'); const solutions=(await getCollection('solutions'))[0]?.data.items??[];
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SolutionCard from '../../components/commercial/SolutionCard.astro';
+import CommercialProcess from '../../components/commercial/CommercialProcess.astro';
+import ContactForm from '../../components/contact/ContactForm';
+import { locales, isLocale } from '../../i18n/locales';
+export function getStaticPaths() { return locales.map((lang) => ({ params: { lang } })); }
+const lang = Astro.params.lang;
+if (!isLocale(lang)) return Astro.redirect('/es/');
+const es = lang === 'es';
+const data = (await getCollection('solutions'))[0]?.data;
+const solutions = data?.items ?? [];
+const sectors = data?.sectors[lang] ?? [];
+
+const pilot = es
+  ? [
+      ['Diagnóstico', 'Una conversación con quien opera el proceso, el mapa del flujo actual, la métrica de éxito y un alcance por escrito. Sin compromiso.'],
+      ['Piloto', 'El sistema funcionando en tu entorno —planta, oficina o campo— con datos reales, capacitación del equipo y soporte directo conmigo.'],
+      ['Medición y decisión', 'Informe con la métrica acordada frente a la línea base, los límites encontrados y una propuesta de escalar o cerrar.'],
+    ]
+  : [
+      ['Discovery', 'A conversation with the people running the process, a map of the current flow, the success metric, and a written scope. No commitment.'],
+      ['Pilot', 'The system running in your environment — plant, office, or field — with real data, team training, and direct support from me.'],
+      ['Measurement and decision', 'A report with the agreed metric against the baseline, the limits found, and a proposal to scale or stop.'],
+    ];
 ---
-<BaseLayout {lang} title={lang==='es'?'Soluciones tecnológicas B2B — David Puentes':'B2B technology solutions — David Puentes'} description="IoT, asset traceability, and applied AI pilots" canonicalPath={`/${lang}/solutions/`}>
-  <header class="solutions-hero section"><p class="eyebrow">B2B / PILOTS</p><h1>{lang==='es'?'Tecnología medible para problemas operativos reales.':'Measurable technology for real operational problems.'}</h1><p>{lang==='es'?'Diseño pilotos de alcance claro que conectan software, electrónica e IA. Empezamos por una métrica verificable antes de escalar.':'I design clearly scoped pilots connecting software, electronics, and AI. We begin with a verifiable metric before scaling.'}</p><a class="button primary" href="#contact">{lang==='es'?'Solicitar diagnóstico':'Request a discovery call'}</a></header>
-  <section class="section"><p class="eyebrow">{lang==='es'?'SOLUCIONES INICIALES':'INITIAL SOLUTIONS'}</p><h2>{lang==='es'?'Tres formas de empezar':'Three ways to start'}</h2><div class="solution-grid">{solutions.map(solution=><SolutionCard {solution} {lang}/>)}</div></section>
-  <section class="section"><p class="eyebrow">{lang==='es'?'PROCESO':'PROCESS'}</p><h2>{lang==='es'?'Diagnosticar, probar, medir':'Discover, pilot, measure'}</h2><CommercialProcess {lang}/></section>
-  <section class="confidentiality section"><h2>{lang==='es'?'Evidencia sin exponer información sensible':'Evidence without exposing sensitive information'}</h2><p>{lang==='es'?'Los casos públicos describen arquitectura, decisiones y resultados permitidos. No publicamos logos, fotografías, credenciales, datos ni detalles internos de empresas aliadas.':'Public cases describe permitted architecture, decisions, and outcomes. We do not publish partner-company logos, photographs, credentials, data, or internal details.'}</p></section>
-  <section class="section" id="contact"><p class="eyebrow">{lang==='es'?'SIGUIENTE PASO':'NEXT STEP'}</p><h2>{lang==='es'?'Cuéntame qué proceso quieres mejorar.':'Tell me which process you want to improve.'}</h2><ContactForm client:idle locale={lang} intent="business" /></section>
+<BaseLayout {lang} title={es ? 'Soluciones tecnológicas B2B — David Puentes' : 'B2B technology solutions — David Puentes'} description={es ? 'IoT industrial, trazabilidad de activos y automatización con IA para manufactura, energía, hidrocarburos e ingeniería, con pilotos medidos.' : 'Industrial IoT, asset traceability, and AI-backed automation for manufacturing, energy, oil and gas, and engineering, with measured pilots.'} canonicalPath={`/${lang}/solutions/`}>
+  <header class="solutions-hero section">
+    <p class="eyebrow">{es ? 'B2B · PILOTOS MEDIBLES' : 'B2B · MEASURABLE PILOTS'}</p>
+    <h1>{es ? 'Tecnología que ya opera en plantas, aplicada a tu proceso.' : 'Technology already running in plants, applied to your process.'}</h1>
+    <p>{es ? 'Trabajo con empresas de manufactura de alimentos, energía, hidrocarburos e ingeniería que necesitan medir equipos, rastrear activos y automatizar aprobaciones. Empezamos con un diagnóstico corto y un piloto de alcance cerrado con una métrica acordada de antemano; si el piloto no la cumple, no escalamos.' : 'I work with food manufacturing, energy, oil and gas, and engineering companies that need to measure equipment, track assets, and automate approvals. We start with a short discovery and a tightly scoped pilot against a metric agreed up front; if the pilot misses it, we do not scale.'}</p>
+    <div class="hero-actions">
+      <a class="button primary" href="#contact">{es ? 'Solicitar diagnóstico' : 'Request a discovery call'}</a>
+      <a class="button secondary" href={`/${lang}/projects/`}>{es ? 'Ver casos con métricas' : 'See cases with metrics'}</a>
+    </div>
+  </header>
+
+  <section class="section">
+    <p class="eyebrow">{es ? 'TRES LÍNEAS DE TRABAJO' : 'THREE LINES OF WORK'}</p>
+    <h2>{es ? 'Qué dolor resuelvo y con qué evidencia' : 'Which pain I solve, and the evidence behind it'}</h2>
+    <div class="solution-grid">{solutions.map((solution) => <SolutionCard {solution} {lang} />)}</div>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">{es ? 'QUÉ RECIBES' : 'WHAT YOU GET'}</p>
+    <h2>{es ? 'Un piloto con alcance cerrado y una métrica' : 'A tightly scoped pilot with one metric'}</h2>
+    <div class="skills-grid three">
+      {pilot.map(([title, body]) => <article><h3>{title}</h3><p>{body}</p></article>)}
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">{es ? 'PROCESO' : 'PROCESS'}</p>
+    <h2>{es ? 'Diagnosticar, probar, medir' : 'Discover, pilot, measure'}</h2>
+    <CommercialProcess {lang} />
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">{es ? 'SECTORES ATENDIDOS' : 'SECTORS SERVED'}</p>
+    <h2>{es ? 'Donde ya hay software mío en operación' : 'Where my software is already in operation'}</h2>
+    <ul class="sector-list">{sectors.map((sector) => <li>{sector}</li>)}</ul>
+  </section>
+
+  <section class="confidentiality section">
+    <h2>{es ? 'Evidencia sin exponer información sensible' : 'Evidence without exposing sensitive information'}</h2>
+    <p>{es ? 'Los casos públicos describen arquitectura, decisiones y resultados permitidos. No publico logos, fotografías, credenciales, datos ni detalles internos de clientes ni de empresas aliadas, y el mismo criterio aplicará a tu empresa.' : 'Public cases describe permitted architecture, decisions, and outcomes. I do not publish logos, photographs, credentials, data, or internal details of customers or partner companies, and the same rule will apply to yours.'}</p>
+  </section>
+
+  <section class="section" id="contact">
+    <p class="eyebrow">{es ? 'SIGUIENTE PASO' : 'NEXT STEP'}</p>
+    <h2>{es ? 'Cuéntame qué proceso quieres mejorar.' : 'Tell me which process you want to improve.'}</h2>
+    <p class="section-lede">{es ? 'Respondo con una propuesta de diagnóstico: qué mediríamos, en cuánto tiempo y qué necesitaría de tu equipo.' : 'I reply with a discovery proposal: what we would measure, how long it would take, and what I would need from your team.'}</p>
+    <ContactForm client:idle locale={lang} intent="business" />
+  </section>
 </BaseLayout>

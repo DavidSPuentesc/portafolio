@@ -1,11 +1,129 @@
 ---
-import {getCollection} from 'astro:content'; import BaseLayout from '../../layouts/BaseLayout.astro'; import AgenticWorkflow from '../../components/ai/AgenticWorkflow.astro'; import ExperienceTimeline from '../../components/profile/ExperienceTimeline.astro'; import CertificationGrid from '../../components/profile/CertificationGrid.astro'; import ContactForm from '../../components/contact/ContactForm'; import { locales, isLocale } from '../../i18n/locales'; export function getStaticPaths(){return locales.map(lang=>({params:{lang}}));} const lang=Astro.params.lang;if(!isLocale(lang))return Astro.redirect('/es/'); const experience=(await getCollection('experience')).sort((a,b)=>a.data.order-b.data.order); const certificates=(await getCollection('certifications'))[0]?.data.items??[]; const cv=lang==='es'?'/cv/david-puentes-cv-es.pdf':'/cv/david-puentes-cv-en.pdf';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AgenticWorkflow from '../../components/ai/AgenticWorkflow.astro';
+import ExperienceTimeline from '../../components/profile/ExperienceTimeline.astro';
+import CertificationGrid from '../../components/profile/CertificationGrid.astro';
+import ContactForm from '../../components/contact/ContactForm';
+import { locales, isLocale, localizedPath } from '../../i18n/locales';
+export function getStaticPaths() { return locales.map((lang) => ({ params: { lang } })); }
+const lang = Astro.params.lang;
+if (!isLocale(lang)) return Astro.redirect('/es/');
+const es = lang === 'es';
+const experience = (await getCollection('experience')).sort((a, b) => a.data.order - b.data.order);
+const certificates = (await getCollection('certifications'))[0]?.data.items ?? [];
+const cv = es ? '/cv/david-puentes-cv-es.pdf' : '/cv/david-puentes-cv-en.pdf';
+const email = 'mailto:davidsantiago.puentesc@gmail.com';
+const linkedin = 'https://www.linkedin.com/in/david-santiago-puentes-c%C3%A1rdenas-914815186/';
+
+/** Capabilities reflect only the stack with production or public evidence. Cloud is deliberately not inflated. */
+const capabilities = es
+  ? [
+      ['Backend en producción', 'PHP 8, MySQL/MariaDB, prepared statements y transacciones, migraciones versionadas, sockets TCP y decodificación de protocolos binarios, generación Excel/PDF y correo transaccional. Columna vertebral de 7 clientes en producción.'],
+      ['Frontend y TypeScript', 'JavaScript ES6, jQuery, Chart.js, Leaflet, pdf.js y Service Workers en producción. TypeScript, React, Next.js y Astro respaldados por proyectos públicos: Sensor Dashboard, el sitio de divulgación de CEINTECCI y este portafolio.'],
+      ['Python y datos', 'Flask, pandas/NumPy, SciPy y scripts de análisis: GenACT (estilometría con algoritmos genéticos, patente concedida), gas de Dyson y el análisis de evidencia de SmartSense. Datasets de más de 1,5 millones de registros.'],
+      ['Electrónica e IoT', 'ESP32 (C6, S3), LoRa, BLE, PT100/MAX31865, MicroPython, protocolos binarios (Teltonika Codec 8/8E, BLE propio), deep sleep y autonomía, KiCad. Formación en ingeniería electrónica en la Universidad ECCI.'],
+      ['Entrega y operación', 'Git flow staging → main con PR por lote, commits granulares, despliegue continuo por webhook, Docker para replicar producción en local y Node.js en Firebase Cloud Functions. Cloud: certificación en Terraform, en fortalecimiento; sin producción en AWS.'],
+      ['IA aplicada', 'Integración de LLM (Gemini API) con contexto acotado, límites de consumo y defensas contra inyección. Flujos agentic diarios con Claude Code y opencode: specs, planes, subagentes, skills, MCP y revisión con validación humana antes de cada despliegue.'],
+    ]
+  : [
+      ['Backend in production', 'PHP 8, MySQL/MariaDB, prepared statements and transactions, versioned migrations, TCP sockets and binary-protocol decoding, Excel/PDF generation, and transactional email. The backbone of 7 customers in production.'],
+      ['Frontend and TypeScript', 'JavaScript ES6, jQuery, Chart.js, Leaflet, pdf.js, and Service Workers in production. TypeScript, React, Next.js, and Astro backed by public projects: Sensor Dashboard, the CEINTECCI outreach site, and this portfolio.'],
+      ['Python and data', 'Flask, pandas/NumPy, SciPy, and analysis scripts: GenACT (genetic-algorithm stylometry, patent granted), the Dyson gas model, and the SmartSense evidence analysis. Datasets of more than 1.5 million records.'],
+      ['Electronics and IoT', 'ESP32 (C6, S3), LoRa, BLE, PT100/MAX31865, MicroPython, binary protocols (Teltonika Codec 8/8E, custom BLE), deep sleep and battery life, KiCad. Electronic-engineering training at Universidad ECCI.'],
+      ['Delivery and operations', 'Git flow staging → main with batch PRs, granular commits, webhook-driven continuous deployment, Docker to replicate production locally, and Node.js on Firebase Cloud Functions. Cloud: Terraform certification, still strengthening; no AWS production experience.'],
+      ['Applied AI', 'LLM integration (Gemini API) with scoped context, usage caps, and injection defenses. Daily agentic workflows with Claude Code and opencode: specs, plans, subagents, skills, MCP, and review with human validation before every deployment.'],
+    ];
+
+/** Only what is true today. Steps flagged `pending` are explicitly not practice yet (automated smoke tests and unit suites). */
+type DeliveryStep = { text: string; pending?: boolean };
+const delivery: DeliveryStep[] = es
+  ? [
+      { text: 'Rama staging por cliente, con subdominio propio, donde se construye y prueba cada tarea antes de tocar producción.' },
+      { text: 'Un commit por tarea, ligado a su tarjeta kanban; los commits nunca se aplastan, para poder revertir tarea a tarea.' },
+      { text: 'Pruebas exploratorias en staging antes de cada PR; el asistente de IA participa habitualmente como par revisor del diff.' },
+      { text: 'Cierre de lote con un único PR staging → main que el cliente revisa y aprueba; nada llega a producción sin ese visto bueno.' },
+      { text: 'Push a main = despliegue automático por webhook a la instancia productiva del cliente.' },
+      { text: 'Migraciones SQL versionadas e idempotentes que se aplican solas en el despliegue, sin ventanas de mantenimiento.' },
+      { text: 'git revert como rollback de producción en segundos; 987 commits y 47 migraciones desplegados así en 8 semanas.' },
+      { text: 'Siguiente paso, todavía no implementado: smoke tests automáticos post-deploy y pruebas unitarias sobre la lógica crítica (firmas, permisos, inventario).', pending: true },
+    ]
+  : [
+      { text: 'A staging branch per customer, on its own subdomain, where every task is built and tested before production is touched.' },
+      { text: 'One commit per task, tied to its kanban card; commits are never squashed, so any task can be reverted on its own.' },
+      { text: 'Exploratory testing in staging before every PR; the AI assistant routinely takes part as a reviewing pair on the diff.' },
+      { text: 'Batch closure through a single staging → main PR that the customer reviews and approves; nothing reaches production without that sign-off.' },
+      { text: 'Push to main = automatic webhook deployment to the customer production instance.' },
+      { text: 'Versioned, idempotent SQL migrations that apply themselves on deployment, with no maintenance windows.' },
+      { text: 'git revert as the production rollback within seconds; 987 commits and 47 migrations shipped this way in 8 weeks.' },
+      { text: 'Next step, not implemented yet: automated post-deploy smoke tests and unit tests over the critical logic (signatures, permissions, inventory).', pending: true },
+    ];
+
+const education = es
+  ? [
+      ['Ingeniería Electrónica', 'Universidad ECCI, Bogotá · en curso'],
+      ['Tecnólogo en Electrónica Industrial', 'Universidad ECCI, Bogotá · 2023'],
+    ]
+  : [
+      ['Electronic Engineering', 'Universidad ECCI, Bogotá · in progress'],
+      ['Technologist in Industrial Electronics', 'Universidad ECCI, Bogotá · 2023'],
+    ];
 ---
-<BaseLayout {lang} title={lang==='es'?'Perfil profesional — David Puentes':'Professional profile — David Puentes'} description="Software, AI, electronics, IoT and scientific computing" canonicalPath={`/${lang}/profile/`}>
-<header class="profile-intro section"><p class="eyebrow">{lang==='es'?'PERFIL PROFESIONAL':'PROFESSIONAL PROFILE'}</p><h1>{lang==='es'?'Ingeniería de software conectada con el mundo físico.':'Software engineering connected to the physical world.'}</h1><p>{lang==='es'?'Desarrollo productos web, sistemas IoT y flujos de IA con agentes y subagentes. Integro skills, herramientas, control de contexto y manejo consciente de tokens; mantengo trazabilidad y validación humana en decisiones sensibles. También trabajo con visión artificial, electrónica y computación científica.':'I build web products, IoT systems, and AI workflows with agents and subagents. I integrate skills, tools, context control, and deliberate token management while keeping traceability and human validation for sensitive decisions. My work also spans computer vision, electronics, and scientific computing.'}</p><a class="button primary" href={cv} download>{lang==='es'?'Descargar CV':'Download CV'} ↓</a></header>
-<section class="section"><p class="eyebrow">AGENTIC AI</p><h2>{lang==='es'?'IA aplicada con control de ingeniería':'Applied AI with engineering control'}</h2><AgenticWorkflow {lang}/></section>
-<section class="section"><p class="eyebrow">{lang==='es'?'EXPERIENCIA':'EXPERIENCE'}</p><h2>{lang==='es'?'Trayectoria profesional':'Professional journey'}</h2><ExperienceTimeline entries={experience} {lang}/></section>
-<section class="section"><p class="eyebrow">{lang==='es'?'CAPACIDADES':'CAPABILITIES'}</p><h2>{lang==='es'?'Del firmware al producto digital':'From firmware to digital product'}</h2><div class="skills-grid"><article><h3>AI & Automation</h3><p>{lang==='es'?'Agentes, subagentes, skills, RAG, prompts, presupuestos de tokens y visión artificial.':'Agents, subagents, skills, RAG, prompting, token budgets, and computer vision.'}</p></article><article><h3>Software & Data</h3><p>TypeScript, React, Python, Django, Flask, SQL, APIs, Docker</p></article><article><h3>Electronics & IoT</h3><p>ESP32, C++, LoRa, BLE, sensores, instrumentación, Edge AI</p></article><article><h3>Cloud & Security</h3><p>Terraform, AWS, CI/CD, privacidad y observabilidad</p></article></div></section>
-<section class="section"><p class="eyebrow">{lang==='es'?'FORMACIÓN CONTINUA':'CONTINUOUS LEARNING'}</p><h2>{lang==='es'?'Certificaciones':'Certifications'}</h2><CertificationGrid items={certificates} {lang}/></section>
-<section class="section" id="contact"><p class="eyebrow">{lang==='es'?'CONTACTO':'CONTACT'}</p><h2>{lang==='es'?'Hablemos de tu equipo y el próximo reto.':'Let’s discuss your team and the next challenge.'}</h2><ContactForm client:idle locale={lang} intent="hiring" /></section>
+<BaseLayout {lang} title={es ? 'Perfil profesional — David Puentes' : 'Professional profile — David Puentes'} description={es ? 'Desarrollador full-stack responsable de 7 clientes B2B en producción; electrónica, IoT, telemetría e IA aplicada. CV descargable.' : 'Full-stack developer owning 7 B2B customers in production; electronics, IoT, telemetry, and applied AI. Downloadable CV.'} canonicalPath={`/${lang}/profile/`}>
+  <header class="profile-intro section">
+    <p class="eyebrow">{es ? 'PERFIL PROFESIONAL' : 'PROFESSIONAL PROFILE'}</p>
+    <h1>{es ? 'Responsable de software en producción, de la electrónica a la IA aplicada.' : 'Owning production software, from electronics to applied AI.'}</h1>
+    <p>{es
+      ? 'Soy desarrollador full-stack en PRLCOL, responsable del ciclo completo de 7 clientes empresariales de una plataforma SaaS B2B multi-instancia: levanto el requerimiento, diseño, implemento, migro la base de datos, despliego a producción y doy soporte. Vengo de la ingeniería electrónica, así que construyo desde el firmware y el protocolo binario hasta el dashboard. Integro LLMs en producto con control de costos y trabajo a diario con flujos agentic (Claude Code, opencode) con validación humana antes de cada despliegue.'
+      : 'I am a full-stack developer at PRLCOL, owning the full cycle for 7 enterprise customers of a multi-instance B2B SaaS platform: I gather the requirement, design, implement, migrate the database, deploy to production, and provide support. I come from electronic engineering, so I build from firmware and binary protocols up to the dashboard. I integrate LLMs into products with cost controls and work daily with agentic workflows (Claude Code, opencode) under human validation before every deployment.'}</p>
+    <div class="profile-actions">
+      <a class="button primary" href={cv} download>{es ? 'Descargar CV' : 'Download CV'} ↓</a>
+      <a class="button secondary" href={email}>{es ? 'Escribir por correo' : 'Email me'}</a>
+      <a class="button secondary" href={linkedin} rel="noreferrer" target="_blank">LinkedIn ↗</a>
+    </div>
+    <p class="profile-meta">{es ? 'BOGOTÁ, COLOMBIA · ESPAÑOL NATIVO · INGLÉS B2' : 'BOGOTÁ, COLOMBIA · NATIVE SPANISH · ENGLISH B2'}</p>
+  </header>
+
+  <section class="section">
+    <p class="eyebrow">{es ? 'EXPERIENCIA' : 'EXPERIENCE'}</p>
+    <h2>{es ? 'Trayectoria profesional' : 'Professional journey'}</h2>
+    <ExperienceTimeline entries={experience} {lang} />
+    <a class="section-link" href={localizedPath(lang, '/projects/')}>{es ? 'Ver los casos de estudio con métricas' : 'See the case studies with metrics'} →</a>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">{es ? 'ENTREGA' : 'DELIVERY'}</p>
+    <h2>{es ? 'Cómo entrego a producción' : 'How I ship to production'}</h2>
+    <p class="section-lede">{es ? 'Con despliegue continuo no hay red de seguridad: la calidad se construye por capas antes de cada push. Esto es lo que hago hoy, y lo que todavía no.' : 'With continuous deployment there is no safety net: quality is built in layers before every push. This is what I do today, and what I do not yet.'}</p>
+    <ol class="delivery-list">{delivery.map((item) => <li class:list={{ pending: item.pending }}>{item.text}</li>)}</ol>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">AGENTIC AI</p>
+    <h2>{es ? 'IA aplicada con control de ingeniería' : 'Applied AI with engineering control'}</h2>
+    <AgenticWorkflow {lang} />
+    <p class="approved-statement">{es
+      ? 'Diseño y utilizo flujos agentic para investigación, planificación, implementación, revisión y documentación, con delegación especializada, control de contexto y validación humana. En producto, integro LLMs existentes (Gemini API) con contexto acotado y control de costos; no desarrollo modelos.'
+      : 'I design and use agentic workflows for research, planning, implementation, review, and documentation, with specialized delegation, context control, and human validation. In products, I integrate existing LLMs (Gemini API) with scoped context and cost controls; I do not build models.'}</p>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">{es ? 'CAPACIDADES' : 'CAPABILITIES'}</p>
+    <h2>{es ? 'Del firmware al producto en producción' : 'From firmware to product in production'}</h2>
+    <div class="skills-grid">{capabilities.map(([title, body]) => <article><h3>{title}</h3><p>{body}</p></article>)}</div>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">{es ? 'FORMACIÓN' : 'EDUCATION'}</p>
+    <h2>{es ? 'Educación y certificaciones' : 'Education and certifications'}</h2>
+    <div class="skills-grid">{education.map(([title, detail]) => <article><h3>{title}</h3><p>{detail}</p></article>)}</div>
+    <CertificationGrid items={certificates} {lang} />
+  </section>
+
+  <section class="section" id="contact">
+    <p class="eyebrow">{es ? 'CONTACTO' : 'CONTACT'}</p>
+    <h2>{es ? 'Hablemos de tu equipo y el próximo reto.' : 'Let’s discuss your team and the next challenge.'}</h2>
+    <p class="section-lede">{es ? 'Escríbeme por el formulario, por correo o por LinkedIn. Respondo con disponibilidad, expectativas y los casos que mejor encajen con tu vacante.' : 'Reach me through the form, by email, or on LinkedIn. I reply with availability, expectations, and the cases that best match your role.'}</p>
+    <ContactForm client:idle locale={lang} intent="hiring" />
+  </section>
 </BaseLayout>

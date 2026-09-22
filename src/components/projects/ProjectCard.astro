@@ -1,4 +1,29 @@
 ---
-import type {Locale} from '../../i18n/locales'; const {project,lang}=Astro.props as {project:any;lang:Locale};
+import type { Locale } from '../../i18n/locales';
+import type { getProjects } from '../../lib/content';
+/** getProjects already resolves title/summary to the active locale. */
+type CardProject = Awaited<ReturnType<typeof getProjects>>[number];
+const { project, lang } = Astro.props as { project: CardProject; lang: Locale };
+const es = lang === 'es';
+const labels: Record<CardProject['visibility'], string> = {
+  public: 'CASE STUDY',
+  'private-summary': es ? 'CASO PRIVADO · RESUMEN' : 'PRIVATE CASE · SUMMARY',
+  development: es ? 'EN DESARROLLO' : 'IN DEVELOPMENT',
+};
+const metrics = project.metrics.slice(0, 2);
 ---
-<article class="project-card"><p class="eyebrow">{project.visibility==='development'?(lang==='es'?'EN DESARROLLO':'IN DEVELOPMENT'):'CASE STUDY'}</p><h3>{project.title}</h3><p>{project.summary}</p><ul>{project.technologies.slice(0,5).map((x:string)=><li>{x}</li>)}</ul><a href={`/${lang}/projects/${project.slug}/`}>{lang==='es'?'Ver caso':'View case'} ↗</a></article>
+<article class="project-card" data-visibility={project.visibility}>
+  <p class="eyebrow">{labels[project.visibility]}</p>
+  <h3>{project.title}</h3>
+  {project.sector && <p class="project-sector">{project.sector[lang]}</p>}
+  <p>{project.summary}</p>
+  {metrics.length > 0 && (
+    <p class="project-metrics">
+      {metrics.map((metric) => (
+        <span><strong>{metric.value}</strong><span>{metric.label[lang]}</span></span>
+      ))}
+    </p>
+  )}
+  <ul>{project.technologies.slice(0, 5).map((item) => <li>{item}</li>)}</ul>
+  <a href={`/${lang}/projects/${project.slug}/`}>{es ? 'Ver caso' : 'View case'} ↗</a>
+</article>

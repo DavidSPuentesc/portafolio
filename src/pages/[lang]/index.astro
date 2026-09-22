@@ -1,6 +1,75 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro'; import SpaceHero from '../../components/home/SpaceHero.astro'; import MetricStrip from '../../components/home/MetricStrip.astro'; import AudienceGateway from '../../components/home/AudienceGateway.astro'; import ProjectCard from '../../components/projects/ProjectCard.astro'; import {getProjects} from '../../lib/content'; import { locales, isLocale } from '../../i18n/locales';
-export function getStaticPaths(){ return locales.map(lang=>({params:{lang}})); } const lang = Astro.params.lang; if(!isLocale(lang)) return Astro.redirect('/es/');
-const projects=(await getProjects(lang)).filter(p=>p.featured);
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SpaceHero from '../../components/home/SpaceHero.astro';
+import MetricStrip from '../../components/home/MetricStrip.astro';
+import AudienceGateway from '../../components/home/AudienceGateway.astro';
+import ProjectCard from '../../components/projects/ProjectCard.astro';
+import { getProjects } from '../../lib/content';
+import { locales, isLocale, localizedPath } from '../../i18n/locales';
+export function getStaticPaths() { return locales.map((lang) => ({ params: { lang } })); }
+const lang = Astro.params.lang;
+if (!isLocale(lang)) return Astro.redirect('/es/');
+const es = lang === 'es';
+const projects = (await getProjects(lang)).filter((project) => project.featured);
+
+/** Enterprise evidence: every figure is sourced from the SecurApp and PTW cases. */
+const enterprise = es
+  ? [
+      ['7', 'clientes B2B en producción', 'Responsable del ciclo completo —requerimiento, desarrollo, migración de base de datos, despliegue y soporte— en manufactura de alimentos, energía, hidrocarburos e ingeniería.'],
+      ['987', 'commits a producción en 8 semanas', 'Despliegue continuo por webhook: cada push a main llega a la instancia del cliente. 47 migraciones SQL sin downtime y git revert como rollback.'],
+      ['2', 'plantas firmando permisos de trabajo en digital', 'Firma sobre PDF y OTP por correo en operación real. Además: asistente LLM con control de costos y telemetría GPS con protocolo binario Teltonika en 4 clientes.'],
+    ]
+  : [
+      ['7', 'B2B customers in production', 'Owning the full cycle — requirements, development, database migrations, deployment, and support — across food manufacturing, energy, oil and gas, and engineering.'],
+      ['987', 'production commits in 8 weeks', 'Webhook-driven continuous deployment: every push to main reaches the customer instance. 47 zero-downtime SQL migrations and git revert as rollback.'],
+      ['2', 'plants signing work permits digitally', 'On-PDF signatures and email OTP in live operation. Plus an LLM assistant with cost controls and GPS telemetry decoding the Teltonika binary protocol for 4 customers.'],
+    ];
+
+const steps = es
+  ? [
+      ['01', 'Entender', 'Levanto el requerimiento con quien va a usar el sistema y lo convierto en tarjetas con criterio de aceptación.'],
+      ['02', 'Construir', 'Un commit por tarea en la rama staging del cliente, con pruebas exploratorias; el asistente de IA suele revisar el diff como segundo par de ojos.'],
+      ['03', 'Entregar', 'PR por lote que el cliente aprueba; el push a main despliega a producción con migraciones automáticas.'],
+      ['04', 'Sostener', 'Soporte directo, revert en segundos si algo falla y evolución continua sobre la misma base.'],
+    ]
+  : [
+      ['01', 'Understand', 'I gather the requirement with the people who will use the system and turn it into cards with acceptance criteria.'],
+      ['02', 'Build', 'One commit per task on the customer staging branch, with exploratory testing; the AI assistant usually reviews the diff as a second pair of eyes.'],
+      ['03', 'Deliver', 'A batch PR the customer approves; the push to main deploys to production with automatic migrations.'],
+      ['04', 'Sustain', 'Direct support, a revert within seconds if something breaks, and continuous evolution on the same base.'],
+    ];
 ---
-<BaseLayout {lang} title={lang==='es'?'Inicio':'Home'} description={lang==='es'?'Portafolio de ingeniería, IA e IoT de David Puentes.':'David Puentes engineering, AI, and IoT portfolio.'} canonicalPath={`/${lang}/`}><SpaceHero {lang}/><MetricStrip {lang}/><AudienceGateway {lang}/><section class="section"><p class="eyebrow">{lang==='es'?'EVIDENCIA':'EVIDENCE'}</p><h2>{lang==='es'?'Sistemas construidos y medidos':'Systems built and measured'}</h2><div class="project-grid">{projects.map(project=><ProjectCard {project} {lang}/>)}</div></section></BaseLayout>
+<BaseLayout {lang} title={es ? 'Inicio' : 'Home'} description={es ? 'David Puentes: desarrollador full-stack responsable de 7 clientes B2B en producción, IoT y LoRa de extremo a extremo e IA aplicada con integración de LLM.' : 'David Puentes: full-stack developer owning 7 B2B customers in production, end-to-end IoT and LoRa, and applied AI through LLM integration.'} canonicalPath={`/${lang}/`}>
+  <SpaceHero {lang} />
+  <MetricStrip {lang} />
+  <AudienceGateway {lang} />
+
+  <section class="section">
+    <p class="eyebrow">{es ? 'EVIDENCIA' : 'EVIDENCE'}</p>
+    <h2>{es ? 'Sistemas construidos y medidos' : 'Systems built and measured'}</h2>
+    <p class="section-lede">{es ? 'Casos con problema, arquitectura, decisiones, resultados y límites. Los casos privados describen el sistema sin código, capturas ni nombres de clientes.' : 'Cases with the problem, architecture, decisions, outcomes, and limits. Private cases describe the system without code, screenshots, or customer names.'}</p>
+    <div class="project-grid">{projects.map((project) => <ProjectCard {project} {lang} />)}</div>
+    <a class="section-link" href={localizedPath(lang, '/projects/')}>{es ? 'Ver todos los casos' : 'See all cases'} →</a>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">{es ? 'EXPERIENCIA EMPRESARIAL' : 'ENTERPRISE EXPERIENCE'}</p>
+    <h2>{es ? 'Software que ya opera en plantas reales' : 'Software already running in real plants'}</h2>
+    <div class="skills-grid three">
+      {enterprise.map(([value, label, body]) => (
+        <article><strong>{value}</strong><h3>{label}</h3><p>{body}</p></article>
+      ))}
+    </div>
+    <a class="section-link" href={localizedPath(lang, '/profile/')}>{es ? 'Ver perfil completo y CV' : 'See the full profile and CV'} →</a>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">{es ? 'CÓMO TRABAJO' : 'HOW I WORK'}</p>
+    <h2>{es ? 'Del requerimiento a producción, sin ceremonia' : 'From requirement to production, without ceremony'}</h2>
+    <ol class="commercial-process four">
+      {steps.map(([number, title, body]) => (
+        <li><span>{number}</span><div><h3>{title}</h3><p>{body}</p></div></li>
+      ))}
+    </ol>
+  </section>
+</BaseLayout>

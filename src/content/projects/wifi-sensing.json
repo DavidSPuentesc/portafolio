@@ -1,1 +1,66 @@
-{"slug":"wifi-sensing","order":5,"featured":false,"visibility":"development","title":{"es":"WiFi Sensing","en":"WiFi Sensing"},"summary":{"es":"Investigación de presencia y movimiento mediante CSI de Wi-Fi sin cámaras.","en":"Camera-free presence and movement research using Wi-Fi CSI."},"seoTitle":{"es":"Investigación Wi-Fi CSI","en":"Wi-Fi CSI research"},"seoDescription":{"es":"Experimentos reproducibles con ESP32-S3.","en":"Reproducible experiments with ESP32-S3."},"role":{"es":"Diseño experimental, firmware y procesamiento","en":"Experimental design, firmware, and processing"},"problem":{"es":"Explorar sensado de bajo costo y respetuoso con la privacidad.","en":"Explore low-cost, privacy-preserving sensing."},"architecture":{"es":"ESP32-S3 CSI → transporte → procesamiento Python.","en":"ESP32-S3 CSI → transport → Python processing."},"decisions":{"es":["Separar resultados verificados de la hoja de ruta"],"en":["Separate verified results from roadmap claims"]},"results":{"es":["Validación inicial de hardware y estructura de investigación"],"en":["Initial hardware validation and research structure"]},"limitations":{"es":["Detección y localización aún no tienen métricas publicables"],"en":["Detection and localization do not yet have publishable metrics"]},"technologies":["ESP32-S3","ESP-IDF","C","Python","FastAPI"],"metrics":[],"evidenceUrl":"https://github.com/DavidSPuentesc/WifiSensing","repositoryUrl":"https://github.com/DavidSPuentesc/WifiSensing","demoUrl":null}
+{
+  "slug": "wifi-sensing",
+  "order": 8,
+  "featured": false,
+  "visibility": "development",
+  "title": { "es": "WiFi Sensing", "en": "WiFi Sensing" },
+  "summary": {
+    "es": "Investigación en curso sobre detección de presencia y movimiento sin cámaras usando CSI de Wi-Fi en ESP32-S3; hoy en etapa de validación de hardware y ESP-IDF.",
+    "en": "Ongoing research on camera-free presence and movement detection using Wi-Fi CSI on ESP32-S3; currently at the hardware and ESP-IDF validation stage."
+  },
+  "seoTitle": { "es": "Investigación Wi-Fi CSI con ESP32-S3", "en": "Wi-Fi CSI research with ESP32-S3" },
+  "seoDescription": { "es": "Experimentos reproducibles con ESP32-S3 y ESP-IDF; solo se afirma lo verificado.", "en": "Reproducible experiments with ESP32-S3 and ESP-IDF; only verified results are claimed." },
+  "role": {
+    "es": "Diseño experimental, firmware en ESP-IDF y procesamiento planificado en Python.",
+    "en": "Experimental design, ESP-IDF firmware, and planned Python processing."
+  },
+  "sector": { "es": "Investigación personal", "en": "Personal research" },
+  "period": { "es": "2026 — en curso", "en": "2026 — ongoing" },
+  "problem": {
+    "es": "Explorar si la información de estado de canal (CSI) de Wi-Fi permite detectar presencia y movimiento de forma barata y sin cámaras, respetando la privacidad.",
+    "en": "Explore whether Wi-Fi channel state information (CSI) can detect presence and movement cheaply and without cameras, while preserving privacy."
+  },
+  "architecture": {
+    "es": "ESP32-S3-DevKitC-1 (16 MB flash, 8 MB PSRAM) con ESP-IDF v6 → Captura de CSI y transporte con búfer (planificado) → Backend Python/FastAPI para filtrado, datasets y clasificación (planificado)",
+    "en": "ESP32-S3-DevKitC-1 (16 MB flash, 8 MB PSRAM) on ESP-IDF v6 → CSI capture and buffered transport (planned) → Python/FastAPI backend for filtering, datasets, and classification (planned)"
+  },
+  "decisions": {
+    "es": [
+      "Disciplina experimental: cada función de sensado documenta hipótesis, método de captura, medición, resultado esperado y resultado observado.",
+      "Separar en el repositorio lo verificado de la hoja de ruta: la precisión de localización solo se reportará con mediciones repetibles.",
+      "Firmware modular por responsabilidades (Wi-Fi, captura CSI, procesamiento ligero, transporte, configuración, OTA y diagnóstico)."
+    ],
+    "en": [
+      "Experimental discipline: every sensing feature documents its hypothesis, capture method, measurement, expected result, and observed result.",
+      "Separate verified results from the roadmap in the repository: localization accuracy will be reported only after repeatable measurements.",
+      "Modular firmware by responsibility (Wi-Fi, CSI capture, lightweight processing, transport, configuration, OTA, and diagnostics)."
+    ]
+  },
+  "results": {
+    "es": [
+      "Hardware y cadena de herramientas validados: primer experimento reproducible (LED RGB direccionable por RMT) en ESP-IDF v6.0.2.",
+      "Estructura de investigación y licencia Apache 2.0 publicadas."
+    ],
+    "en": [
+      "Hardware and toolchain validated: first reproducible experiment (addressable RGB LED over RMT) on ESP-IDF v6.0.2.",
+      "Research structure and Apache 2.0 license published."
+    ]
+  },
+  "limitations": {
+    "es": [
+      "Captura de CSI, detección de presencia, clasificación de movimiento y localización siguen en la hoja de ruta: sin métricas de precisión.",
+      "Proyecto personal de investigación, sin validación en campo."
+    ],
+    "en": [
+      "CSI capture, presence detection, movement classification, and localization remain on the roadmap: no accuracy metrics.",
+      "Personal research project, with no field validation."
+    ]
+  },
+  "technologies": ["ESP32-S3", "ESP-IDF", "C", "Wi-Fi CSI", "Python", "FastAPI (planned)"],
+  "metrics": [],
+  "images": [],
+  "evidenceUrl": "https://github.com/DavidSPuentesc/WifiSensing",
+  "repositoryUrl": "https://github.com/DavidSPuentesc/WifiSensing",
+  "repositoryLabel": null,
+  "demoUrl": null
+}
