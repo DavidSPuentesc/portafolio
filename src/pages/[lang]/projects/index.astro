@@ -1,4 +1,19 @@
 ---
-import BaseLayout from '../../../layouts/BaseLayout.astro'; import ProjectCard from '../../../components/projects/ProjectCard.astro'; import {getProjects} from '../../../lib/content'; import { locales, isLocale } from '../../../i18n/locales'; export function getStaticPaths(){return locales.map(lang=>({params:{lang}}));} const lang=Astro.params.lang;if(!isLocale(lang))return Astro.redirect('/es/'); const projects=await getProjects(lang);
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ProjectCard from '../../../components/projects/ProjectCard.astro';
+import { getProjects } from '../../../lib/content';
+import { locales, isLocale } from '../../../i18n/locales';
+export function getStaticPaths() { return locales.map((lang) => ({ params: { lang } })); }
+const lang = Astro.params.lang;
+if (!isLocale(lang)) return Astro.redirect('/es/');
+const es = lang === 'es';
+const projects = await getProjects(lang);
 ---
-<BaseLayout {lang} title={lang==='es'?'Proyectos':'Projects'} description="Engineering case studies" canonicalPath={`/${lang}/projects/`}><section class="section"><p class="eyebrow">{lang==='es'?'PORTAFOLIO':'PORTFOLIO'}</p><h1>{lang==='es'?'Proyectos y casos de estudio':'Projects and case studies'}</h1><div class="project-grid">{projects.map(project=><ProjectCard {project} {lang}/>)}</div></section></BaseLayout>
+<BaseLayout {lang} title={es ? 'Proyectos y casos de estudio' : 'Projects and case studies'} description={es ? 'Casos de estudio de software en producción, IoT industrial, telemetría e IA aplicada, con resultados y límites explícitos.' : 'Case studies in production software, industrial IoT, telemetry, and applied AI, with explicit outcomes and limits.'} canonicalPath={`/${lang}/projects/`}>
+  <section class="section">
+    <p class="eyebrow">{es ? 'PORTAFOLIO' : 'PORTFOLIO'}</p>
+    <h1>{es ? 'Proyectos y casos de estudio' : 'Projects and case studies'}</h1>
+    <p class="section-lede">{es ? 'Cada caso documenta el problema, mi responsabilidad, la arquitectura, las decisiones, los resultados y sus límites. Los casos privados resumen sistemas en producción sin código, capturas ni nombres de clientes; los casos en desarrollo solo afirman lo verificado.' : 'Each case documents the problem, my responsibility, the architecture, the decisions, the outcomes, and their limits. Private cases summarize production systems without code, screenshots, or customer names; cases in development claim only what has been verified.'}</p>
+    <div class="project-grid">{projects.map((project) => <ProjectCard {project} {lang} />)}</div>
+  </section>
+</BaseLayout>
