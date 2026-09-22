@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { experienceSchema, projectSchema, solutionsSchema } from '../../src/content.config';
@@ -41,16 +41,18 @@ describe('project evidence', () => {
       ...baseProject,
       sector: { es: 'Energía', en: 'Energy' },
       period: { es: '2026', en: '2026' },
-      images: [{ src: '/images/projects/demo.png', alt: { es: 'Diagrama', en: 'Diagram' } }],
+      images: [{ src: '/images/projects/demo.png', alt: { es: 'Diagrama', en: 'Diagram' }, width: 1600, height: 900 }],
       repositoryLabel: { es: 'Repositorio del equipo', en: 'Team repository' },
     });
     expect(result.images[0].caption).toBeNull();
     expect(result.sector?.en).toBe('Energy');
   });
 
-  it('rejects images outside the public projects folder or without alt text', () => {
-    expect(projectSchema.safeParse({ ...baseProject, images: [{ src: 'https://cdn.example.com/x.png', alt: { es: 'a', en: 'a' } }] }).success).toBe(false);
-    expect(projectSchema.safeParse({ ...baseProject, images: [{ src: '/images/projects/x.png' }] }).success).toBe(false);
+  it('rejects images outside the public projects folder, without alt text, or without dimensions', () => {
+    const alt = { es: 'a', en: 'a' };
+    expect(projectSchema.safeParse({ ...baseProject, images: [{ src: 'https://cdn.example.com/x.png', alt, width: 1, height: 1 }] }).success).toBe(false);
+    expect(projectSchema.safeParse({ ...baseProject, images: [{ src: '/images/projects/x.png', width: 1, height: 1 }] }).success).toBe(false);
+    expect(projectSchema.safeParse({ ...baseProject, images: [{ src: '/images/projects/x.png', alt }] }).success).toBe(false);
   });
 });
 
@@ -86,6 +88,14 @@ describe('published projects', () => {
     }
   });
 
+  it('ships every referenced image under public/', () => {
+    for (const project of projects) {
+      for (const image of project.images ?? []) {
+        expect(existsSync(join(process.cwd(), 'public', image.src)), `${project.slug}: ${image.src}`).toBe(true);
+      }
+    }
+  });
+
   it('states the SmartSense evidence with its caveats in both languages', () => {
     const smartsense = projects.find((p) => p.slug === 'smartsense');
     expect(smartsense.results.es.join(' ')).toContain('51.338');
@@ -108,7 +118,23 @@ describe('published projects', () => {
 });
 
 describe('confidentiality', () => {
-  const forbidden = [/\bRamo\b/, /\bPSP\b/, /\bExpro\b/, /Termocartagena/, /Insurcol/, /Petrosantander/, /M&R/, /Sop[oó]\b/, /Divino Salvador/, /Sierracol/];
+  /**
+   * The denylist never lives in this public repository. It comes from CONTENT_DENYLIST
+   * (case-insensitive regex patterns separated by "|"), set in the environment or in the
+   * gitignored .env file. Without it the check is skipped, not silently passed.
+   */
+  function loadDenylist(): RegExp[] {
+    let raw = process.env.CONTENT_DENYLIST ?? '';
+    if (!raw) {
+      const envPath = join(process.cwd(), '.env');
+      if (existsSync(envPath)) {
+        const line = readFileSync(envPath, 'utf8').split(/\r?\n/).find((entry) => entry.startsWith('CONTENT_DENYLIST='));
+        raw = line?.slice('CONTENT_DENYLIST='.length).trim().replace(/^(['"])(.*)\1$/, '$2') ?? '';
+      }
+    }
+    return raw.split('|').map((pattern) => pattern.trim()).filter(Boolean).map((pattern) => new RegExp(pattern, 'i'));
+  }
+  const forbidden = loadDenylist();
   const files = [
     ...projectFiles.map((f) => join(contentRoot, 'projects', f)),
     ...readdirSync(join(contentRoot, 'experience')).map((f) => join(contentRoot, 'experience', f)),
@@ -120,7 +146,7 @@ describe('confidentiality', () => {
     join(process.cwd(), 'scripts/generate-cv-en.mjs'),
   ];
 
-  it('never names clients or the SmartSense partner company', () => {
+  it.skipIf(!forbidden.length)('never names denylisted customers or partners (CONTENT_DENYLIST)', () => {
     for (const file of files) {
       const text = readFileSync(file, 'utf8');
       for (const pattern of forbidden) expect(text, `${file} matches ${pattern}`).not.toMatch(pattern);

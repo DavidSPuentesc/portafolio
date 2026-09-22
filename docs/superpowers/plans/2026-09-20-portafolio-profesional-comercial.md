@@ -448,7 +448,7 @@ it('generates both locales for each publishable project', async () => {
 
 it('does not render private SecurApp identifiers', async () => {
   const html = await renderCaseStudy('es', 'securapp');
-  expect(html).not.toMatch(/Productos Ramo|Petrosantander|Termocartagena/i);
+  expect(html).not.toMatch(/<cliente-1>|<cliente-2>|<cliente-3>/i);
 });
 ```
 
