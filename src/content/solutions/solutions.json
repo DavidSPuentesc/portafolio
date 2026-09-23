@@ -77,12 +77,12 @@
       "proof": {
         "es": [
           "Permisos de trabajo con firma digital sobre PDF y OTP por correo, en operación real en dos plantas industriales.",
-          "magIA: asistente LLM (Gemini API) con contexto por módulo, límite de tokens por empresa y defensas contra inyección.",
+          "Asistente contextual con IA para plataforma B2B, desarrollado en PRLCOL con Gemini API, contexto por módulo, límite de tokens por empresa y defensas contra inyección.",
           "Cargue masivo desde Excel con validación y upsert idempotente; reportes Excel/PDF y correos automáticos en cada transición de estado."
         ],
         "en": [
           "Work permits with on-PDF digital signatures and email OTP, in live operation at two industrial plants.",
-          "magIA: an LLM assistant (Gemini API) with per-module context, a per-company token cap, and injection defenses.",
+          "Contextual AI assistant for a B2B platform, developed at PRLCOL with Gemini API, per-module context, a per-company token cap, and injection defenses.",
           "Bulk import from Excel with validation and idempotent upsert; automatic Excel/PDF reports and email on every state transition."
         ]
       },

@@ -19,7 +19,7 @@ Use this checklist before publishing a case study, metric, image, or employer re
 - The name denylist is not stored in this repository (it is public). The confidentiality test reads it from the `CONTENT_DENYLIST` environment variable: case-insensitive regex patterns separated by `|` (for example `\bAcme\b|Partner Co`). Locally, put the real list in `.env` (gitignored; `.env.example` shows the empty key) — the test reads that file directly when the variable is not set. In CI, define `CONTENT_DENYLIST` as a repository secret. When the variable is empty or absent the test is skipped, so a green run without it proves nothing about names.
 - The 987 commits are an eight-week figure (June–July 2026), never a yearly one.
 - The platform is "multi-instance", not "multi-tenant".
-- magIA is an "LLM integration (Gemini API)", never "AI development".
+- The contextual AI assistant is an "LLM integration (Gemini API)", never "AI model development".
 - SmartSense: 688 m is a lower bound; PDR and battery life are estimates; field agreement is not metrological calibration; the dashboard shown is the neutral replica.
 - Testing: automated smoke tests and unit suites at PRLCOL are a next step, not current practice. Do not claim them.
 - Cloud: Terraform is a certification "in strengthening"; there is no AWS production experience.
@@ -27,7 +27,7 @@ Use this checklist before publishing a case study, metric, image, or employer re
 ## Visibility levels
 
 - `public`: code or demo can be linked. Sensor Dashboard, WiFi Sensing, Gas Dyson, SmartSense (team repository, publicly available).
-- `private-summary`: no code, screenshots, demo, or customer names. `images` must stay empty. SecurApp, PTW, magIA, GPS telemetry.
+- `private-summary`: no code, screenshots, demo, or customer names. `images` must stay empty. SecurApp, PTW, contextual AI assistant, GPS telemetry.
 - `development`: only verified results; everything else is roadmap. WiFi Sensing, Gas Dyson.
 - Project H stays unlinked until the fixed API key in Cloud Functions is rotated and the admin/test endpoints are protected.
 

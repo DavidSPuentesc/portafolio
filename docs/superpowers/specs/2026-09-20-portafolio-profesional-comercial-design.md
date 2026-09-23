@@ -170,7 +170,7 @@ Cada caso tendrá:
 ### Orden recomendado
 
 1. SmartSense Monitoring.
-2. SecurApp y magIA.
+2. SecurApp y asistente contextual con IA para plataforma B2B.
 3. Proyecto H: seguridad y trazabilidad de activos.
 4. Sensor Dashboard.
 5. WiFi Sensing.
@@ -199,7 +199,7 @@ Reglas de publicación:
 - No publicar el repositorio privado completo sin autorización y auditoría del historial.
 - Indicar que la autonomía extendida es una estimación y que 688 metros es una cota inferior del recorrido probado.
 
-### SecurApp y magIA
+### SecurApp y asistente contextual con IA para plataforma B2B
 
 Se publicará como caso neutral de evolución de un SaaS B2B multiempresa. No se mostrarán código, datos, interfaces ni nombres de clientes sin autorización.
 
@@ -253,7 +253,7 @@ La IA será una capacidad principal, no una etiqueta secundaria.
 
 ### IA integrada en producto
 
-El caso magIA documentará:
+El caso del asistente contextual desarrollado en PRLCOL documentará:
 
 - Gemini API.
 - Chat contextual sobre datos operativos.

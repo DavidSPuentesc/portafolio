@@ -66,9 +66,17 @@ describe('published projects', () => {
 
   it('publishes the agreed order and the six featured cases', () => {
     const ordered = [...projects].sort((a, b) => a.order - b.order).map((p) => p.slug);
-    expect(ordered).toEqual(['smartsense', 'securapp', 'ptw-digital-signatures', 'magia-ai-assistant', 'gps-telemetry', 'project-h', 'sensor-dashboard', 'wifi-sensing', 'gas-dyson']);
-    expect(projects.filter((p) => p.featured).map((p) => p.slug).sort()).toEqual(['gps-telemetry', 'magia-ai-assistant', 'project-h', 'ptw-digital-signatures', 'securapp', 'smartsense'].sort());
+    expect(ordered).toEqual(['smartsense', 'securapp', 'ptw-digital-signatures', 'contextual-ai-assistant', 'gps-telemetry', 'project-h', 'sensor-dashboard', 'wifi-sensing', 'gas-dyson']);
+    expect(projects.filter((p) => p.featured).map((p) => p.slug).sort()).toEqual(['gps-telemetry', 'contextual-ai-assistant', 'project-h', 'ptw-digital-signatures', 'securapp', 'smartsense'].sort());
     expect(new Set(projects.map((p) => p.order)).size).toBe(projects.length);
+  });
+
+  it('presents the contextual AI assistant under a descriptive name and attributes it to PRLCOL', () => {
+    const assistant = projects.find((project) => project.slug === 'contextual-ai-assistant');
+    expect(assistant?.title.es).toBe('Asistente contextual con IA para plataforma B2B');
+    expect(assistant?.title.en).toBe('Contextual AI assistant for a B2B platform');
+    expect(assistant?.role.es).toContain('PRLCOL');
+    expect(JSON.stringify(assistant)).not.toMatch(/magIA/i);
   });
 
   it('keeps private summaries free of code, demos and screenshots', () => {

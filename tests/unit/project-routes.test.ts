@@ -1,7 +1,7 @@
 import { expect, it } from 'vitest';
 import { getProjectStaticPaths } from '../../src/lib/project-routes';
 
-const slugs = ['smartsense', 'securapp', 'ptw-digital-signatures', 'magia-ai-assistant', 'gps-telemetry', 'project-h', 'sensor-dashboard', 'wifi-sensing', 'gas-dyson'];
+const slugs = ['smartsense', 'securapp', 'ptw-digital-signatures', 'contextual-ai-assistant', 'gps-telemetry', 'project-h', 'sensor-dashboard', 'wifi-sensing', 'gas-dyson'];
 
 it('generates both locales for each project', async () => {
   const projects = slugs.map((slug) => ({ data: { slug } })) as any;

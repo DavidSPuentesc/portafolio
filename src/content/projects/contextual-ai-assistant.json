@@ -1,27 +1,27 @@
 {
-  "slug": "magia-ai-assistant",
+  "slug": "contextual-ai-assistant",
   "order": 4,
   "featured": true,
   "visibility": "private-summary",
   "title": {
-    "es": "magIA: asistente de IA sobre datos operativos",
-    "en": "magIA: AI assistant over operational data"
+    "es": "Asistente contextual con IA para plataforma B2B",
+    "en": "Contextual AI assistant for a B2B platform"
   },
   "summary": {
     "es": "Integración de un LLM (Gemini API) sobre los datos operativos de la plataforma: chat contextual, informes predictivos por periodo, límite mensual de tokens por empresa y defensas contra inyección de instrucciones.",
     "en": "LLM integration (Gemini API) over the platform's operational data: contextual chat, predictive reports by period, a monthly token cap per company, and prompt-injection defenses."
   },
   "seoTitle": {
-    "es": "magIA: integración de LLM en un SaaS B2B",
-    "en": "magIA: LLM integration in a B2B SaaS"
+    "es": "Asistente contextual con IA para plataforma B2B",
+    "en": "Contextual AI assistant for a B2B platform"
   },
   "seoDescription": {
     "es": "Asistente con Gemini API sobre datos operativos, con contexto por módulo, control de consumo y defensas contra prompt injection.",
     "en": "Gemini API assistant over operational data with per-module context, usage controls, and prompt-injection defenses."
   },
   "role": {
-    "es": "Módulo de SecurApp, la plataforma de PRLCOL (propiedad de la empresa). Integración completa: diseño del contexto operativo, backend de consultas, control de costos, log de intentos, panel de soporte y endurecimiento de seguridad.",
-    "en": "Module of SecurApp, PRLCOL’s platform (owned by the company). Full integration: operational-context design, query backend, cost controls, attempt log, support panel, and security hardening."
+    "es": "Desarrollado en PRLCOL como módulo de su plataforma B2B. Realicé la integración completa: diseño del contexto operativo, backend de consultas, control de costos, registro de intentos, panel de soporte y endurecimiento de seguridad.",
+    "en": "Developed at PRLCOL as a module of its B2B platform. I delivered the full integration: operational-context design, query backend, cost controls, attempt logging, support tooling, and security hardening."
   },
   "sector": {
     "es": "Gestión operativa y SST",
