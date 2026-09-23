@@ -147,7 +147,7 @@ Métricas iniciales candidatas:
 - 7 clientes empresariales atendidos en SecurApp.
 - Más de 1,5 millones de registros procesados.
 - Más de 51.000 muestras en SmartSense.
-- 688 metros de enlace LoRa demostrado en SmartSense.
+- 1 planta industrial con permisos digitales y OTP en operación.
 - 47 migraciones SQL versionadas.
 
 Cada cifra deberá enlazar o conducir a su contexto para evitar métricas sin explicación.

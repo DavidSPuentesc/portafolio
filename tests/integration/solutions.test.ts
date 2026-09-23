@@ -29,7 +29,7 @@ it('renders proof of delivered work on each solution card', async () => {
   const html = await container.renderToString(SolutionCard, { props: { solution: data.items[2], lang: 'es' } });
   expect(html).toContain('Ya construido');
   expect(html).toContain('proof-list');
-  expect(html).toMatch(/dos plantas industriales/);
+  expect(html).toMatch(/una planta industrial/);
   expect(html).toContain('href="/es/projects/ptw-digital-signatures/"');
   const english = await container.renderToString(SolutionCard, { props: { solution: data.items[0], lang: 'en' } });
   expect(english).toContain('Already built');

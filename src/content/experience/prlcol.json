@@ -16,7 +16,7 @@
   },
   "highlights": {
     "es": [
-      "Diseñar e implementar de punta a punta un sistema de permisos de trabajo de alto riesgo con flujo Planeación → Aprobación → Ejecución → Cierre, firma digital sobre PDF (pdf.js + canvas) y firma remota con enlaces tokenizados de un solo uso y OTP por correo; en operación real en dos plantas industriales (~340 commits).",
+      "Diseñar e implementar de punta a punta un sistema de permisos de trabajo de alto riesgo con flujo Planeación → Aprobación → Ejecución → Cierre, firma digital sobre PDF (pdf.js + canvas) y firma remota con enlaces tokenizados de un solo uso y OTP por correo; en operación real en una planta industrial (~340 commits).",
       "Integrar un asistente de IA (Gemini API) sobre los datos operativos de la plataforma: chat contextual, informes predictivos, límite mensual de tokens por empresa, log de intentos y defensas contra inyección de instrucciones.",
       "Construir un sistema de telemetría GPS de extremo a extremo: servidor TCP propio que decodifica el protocolo binario Teltonika Codec 8/8E, ingesta HTTP desde app Android, map-matching con OSRM y geocercas sobre Leaflet, desplegado en 4 clientes (~55.000 líneas).",
       "Construir desde cero un módulo de visitas con auto-registro público por QR (sin login): carnet digital, control de vigencia por fecha y sede y verificación en portería, con arquitectura por capas propia (controllers, services, repositories, middleware).",
@@ -28,7 +28,7 @@
       "Entregar 987 commits a producción en 8 repositorios durante 8 semanas (junio–julio de 2026) y 47 migraciones SQL versionadas sin downtime, con rama staging por cliente y PR por lote aprobado por el cliente."
     ],
     "en": [
-      "Design and ship end to end a high-risk work-permit system with a Planning → Approval → Execution → Closure flow, digital signatures drawn on the actual PDF (pdf.js + canvas), and remote signing through single-use tokenized links with email OTP; in live operation at two industrial plants (~340 commits).",
+      "Design and ship end to end a high-risk work-permit system with a Planning → Approval → Execution → Closure flow, digital signatures drawn on the actual PDF (pdf.js + canvas), and remote signing through single-use tokenized links with email OTP; in live operation at one industrial plant (~340 commits).",
       "Integrate an AI assistant (Gemini API) over the platform's operational data: contextual chat, predictive reports, a monthly token cap per company, an attempt log, and prompt-injection defenses.",
       "Build an end-to-end GPS telemetry system: a custom TCP server that decodes the Teltonika Codec 8/8E binary protocol, HTTP ingestion from an Android app, OSRM map-matching, and Leaflet geofences, deployed to 4 customers (~55,000 lines).",
       "Build from scratch a visitor module with public QR self-registration (no login): digital badge, validity by date and site, and gate verification, on a layered architecture of my own (controllers, services, repositories, middleware).",

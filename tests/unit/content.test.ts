@@ -79,6 +79,13 @@ describe('published projects', () => {
     expect(JSON.stringify(assistant)).not.toMatch(/magIA/i);
   });
 
+  it('states that the work-permit system is live in one industrial plant', () => {
+    const permit = projects.find((project) => project.slug === 'ptw-digital-signatures');
+    expect(permit?.metrics[0].value).toBe('1');
+    expect(permit?.results.es.join(' ')).toContain('una planta industrial');
+    expect(JSON.stringify(projects)).not.toMatch(/dos plantas industriales|two industrial plants/i);
+  });
+
   it('keeps private summaries free of code, demos and screenshots', () => {
     for (const project of projects.filter((p) => p.visibility === 'private-summary')) {
       expect(project.repositoryUrl, project.slug).toBeNull();

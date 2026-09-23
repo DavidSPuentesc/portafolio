@@ -65,7 +65,7 @@
       "987 commits a producción en 8 repositorios durante 8 semanas (junio–julio de 2026), cada uno una tarea funcional autocontenida.",
       "47 migraciones de base de datos versionadas aplicadas en producción sin downtime.",
       "Más de 1,5 millones de registros procesados en automatizaciones, cargues masivos y validación de datos.",
-      "Sistema de permisos de trabajo con firma digital y OTP en operación real en dos plantas industriales (caso aparte).",
+      "Sistema de permisos de trabajo con firma digital y OTP en operación real en una planta industrial (caso aparte).",
       "Asistente de IA sobre datos operativos (Gemini API) con control de consumo por empresa (caso aparte).",
       "Telemetría GPS desplegada en 4 clientes con ingesta desde rastreadores Teltonika y celulares (caso aparte).",
       "Autenticación unificada a bcrypt en 5 instancias y rediseño de dashboards replicado en 4 clientes."
@@ -75,7 +75,7 @@
       "987 production commits across 8 repositories in 8 weeks (June–July 2026), each one a self-contained functional task.",
       "47 versioned database migrations applied in production with zero downtime.",
       "More than 1.5 million records processed through automations, bulk imports, and data validation.",
-      "A work-permit system with digital signatures and OTP in live operation at two industrial plants (separate case).",
+      "A work-permit system with digital signatures and OTP in live operation at one industrial plant (separate case).",
       "An AI assistant over operational data (Gemini API) with per-company usage controls (separate case).",
       "GPS telemetry deployed to 4 customers, ingesting from Teltonika trackers and phones (separate case).",
       "Authentication unified on bcrypt across 5 instances and a dashboard redesign replicated across 4 customers."

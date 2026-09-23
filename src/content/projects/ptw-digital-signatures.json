@@ -8,16 +8,16 @@
     "en": "Work permits with digital signatures and OTP"
   },
   "summary": {
-    "es": "Sistema de permisos de trabajo de alto riesgo con flujo multi-etapa, firma digital sobre el PDF real y firma remota con enlaces de un solo uso y OTP por correo, en operación real en dos plantas industriales.",
-    "en": "High-risk work-permit system with a multi-stage flow, digital signatures drawn on the actual PDF, and remote signing through single-use links with email OTP, in live operation at two industrial plants."
+    "es": "Sistema de permisos de trabajo de alto riesgo con flujo multi-etapa, firma digital sobre el PDF real y firma remota con enlaces de un solo uso y OTP por correo, en operación real en una planta industrial.",
+    "en": "High-risk work-permit system with a multi-stage flow, digital signatures drawn on the actual PDF, and remote signing through single-use links with email OTP, in live operation at one industrial plant."
   },
   "seoTitle": {
     "es": "Permisos de trabajo con firma digital y OTP",
     "en": "Work permits with digital signatures and OTP"
   },
   "seoDescription": {
-    "es": "Flujo Planeación → Aprobación → Ejecución → Cierre con firma sobre PDF, enlaces tokenizados y OTP, usado por dos plantas industriales.",
-    "en": "Planning → Approval → Execution → Closure flow with on-PDF signatures, tokenized links, and OTP, used by two industrial plants."
+    "es": "Flujo Planeación → Aprobación → Ejecución → Cierre con firma sobre PDF, enlaces tokenizados y OTP, usado en una planta industrial.",
+    "en": "Planning → Approval → Execution → Closure flow with on-PDF signatures, tokenized links, and OTP, used at one industrial plant."
   },
   "role": {
     "es": "Módulo de SecurApp, la plataforma de PRLCOL (propiedad de la empresa). Diseño e implementación de punta a punta: formato oficial, flujo de estados, borradores, tres flujos de firma, correos, panel de firmantes y despliegue en dos instancias de clientes distintos.",
@@ -59,14 +59,14 @@
   },
   "results": {
     "es": [
-      "En operación real en dos plantas industriales.",
+      "En operación real en una planta industrial.",
       "Alrededor de 340 commits entre las dos instancias y más de 10 tipos de permiso soportados.",
       "Tres flujos de firma: en sitio sobre canvas, remota con OTP y participantes de ATS por enlace público de un solo uso.",
       "Trazabilidad completa: quién abrió el enlace, desde qué IP y cuándo firmó cada persona.",
       "Los formularios a medio diligenciar sobreviven a cierres del navegador y cambios de equipo gracias al doble borrador."
     ],
     "en": [
-      "In live operation at two industrial plants.",
+      "In live operation at one industrial plant.",
       "Around 340 commits across the two instances and more than 10 permit types supported.",
       "Three signing flows: on site on canvas, remote with OTP, and job-safety-analysis participants through a single-use public link.",
       "Full traceability: who opened the link, from which IP, and when each person signed.",
@@ -98,14 +98,14 @@
   ],
   "metrics": [
     {
-      "value": "2",
+      "value": "1",
       "label": {
-        "es": "plantas en operación real",
-        "en": "plants in live operation"
+        "es": "planta en operación real",
+        "en": "plant in live operation"
       },
       "context": {
-        "es": "Dos instancias de clientes distintos",
-        "en": "Two separate customer instances"
+        "es": "Permisos digitales y OTP en producción",
+        "en": "Digital permits and OTP in production"
       }
     },
     {

@@ -3,13 +3,13 @@ import type { Locale } from '../../i18n/locales';
 const { lang } = Astro.props as { lang: Locale };
 const es = lang === 'es';
 const securapp = `/${lang}/projects/securapp/`;
-const smartsense = `/${lang}/projects/smartsense/`;
+const permits = `/${lang}/projects/ptw-digital-signatures/`;
 /** Every figure links to the case that gives it context (spec §6: no metric without context). */
 const metrics = [
   { value: '7', label: es ? 'clientes B2B en producción' : 'B2B customers in production', context: es ? 'SaaS multi-instancia, ciclo completo a mi cargo' : 'Multi-instance SaaS, full cycle owned', href: securapp },
   { value: '987', label: es ? 'commits a producción' : 'production commits', context: es ? 'En 8 semanas, 8 repositorios (jun–jul 2026)' : 'In 8 weeks across 8 repositories (Jun–Jul 2026)', href: securapp },
   { value: '47', label: es ? 'migraciones sin downtime' : 'zero-downtime migrations', context: es ? 'SQL versionadas e idempotentes, en producción' : 'Versioned, idempotent SQL, in production', href: securapp },
-  { value: '688 m', label: es ? 'enlace LoRa demostrado' : 'LoRa link demonstrated', context: es ? 'Cota inferior con obstáculos · SmartSense' : 'Lower bound through obstacles · SmartSense', href: smartsense },
+  { value: '1', label: es ? 'planta industrial en operación' : 'industrial plant in live operation', context: es ? 'Permisos digitales y OTP · PRLCOL' : 'Digital permits and OTP · PRLCOL', href: permits },
 ];
 ---
 <section class="metric-strip" aria-label={es ? 'Resultados verificables' : 'Verifiable results'}>
