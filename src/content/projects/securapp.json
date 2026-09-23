@@ -4,12 +4,12 @@
   "featured": true,
   "visibility": "private-summary",
   "title": {
-    "es": "SecurApp: plataforma SaaS B2B en producción",
-    "en": "SecurApp: B2B SaaS platform in production"
+    "es": "SecurApp: ecosistema operativo B2B de PRLCOL",
+    "en": "SecurApp: PRLCOL's B2B operations ecosystem"
   },
   "summary": {
-    "es": "Evolución full-stack de una plataforma SaaS B2B multi-instancia de gestión operativa y SST: 7 clientes en producción, despliegue continuo por webhook y 47 migraciones sin downtime.",
-    "en": "Full-stack evolution of a multi-instance B2B SaaS platform for operations and workplace safety: 7 customers in production, webhook-driven continuous deployment, and 47 zero-downtime migrations."
+    "es": "Modernización full-stack del ecosistema SaaS B2B multi-instancia de PRLCOL para contratistas, visitas, permisos de trabajo y SST: 7 clientes en producción, control de acceso por roles y 47 migraciones sin downtime.",
+    "en": "Full-stack modernization of PRLCOL's multi-instance B2B SaaS ecosystem for contractors, visitors, work permits, and workplace safety: 7 customers in production, role-based access control, and 47 zero-downtime migrations."
   },
   "seoTitle": {
     "es": "SecurApp: SaaS B2B multi-instancia en producción",
@@ -20,8 +20,8 @@
     "en": "Enterprise platform case: 7 customers, 987 commits in 8 weeks, 47 zero-downtime migrations. No private data."
   },
   "role": {
-    "es": "SecurApp es el producto de PRLCOL, la empresa donde trabajo, y lo construye un equipo. Mi parte: desarrollador responsable del ciclo completo de 7 instancias de clientes —levantar el requerimiento con el cliente, diseñar, implementar, migrar la base de datos, desplegar a producción y dar soporte— y de los módulos descritos en los casos enlazados.",
-    "en": "SecurApp is the product of PRLCOL, the company I work for, and it is built by a team. My part: developer owning the full cycle for 7 customer instances — gathering requirements with the customer, designing, implementing, migrating the database, deploying to production, and providing support — plus the modules described in the linked cases."
+    "es": "SecurApp es el producto de PRLCOL y lo construye un equipo. Mi responsabilidad abarca el ciclo completo de 7 instancias: reconstruí la gestión de contratistas y su sistema de calificación; entregué planes de acción desarrollados desde cero, visitas desarrolladas desde cero y roles y permisos globales desarrollados desde cero con perfiles autoadministrables; además modernicé navegación, autenticación y controles de abuso. También levanto requerimientos, diseño, implemento, migro bases de datos, despliego y doy soporte.",
+    "en": "SecurApp is PRLCOL's product and is built by a team. My responsibility spans the full cycle for 7 instances: I rebuilt contractor management and evaluation; built action plans, the visitor module, and the global self-service role, permission, and profile system from scratch; and modernized navigation, authentication, and abuse controls. I also gather requirements, design, implement, migrate databases, deploy, and support production."
   },
   "sector": {
     "es": "Manufactura de alimentos, energía, hidrocarburos e ingeniería",
@@ -46,6 +46,10 @@
       "Commits granulares —una tarea funcional por commit, ligada a su tarjeta kanban— para que git revert sea el rollback de producción.",
       "Rama staging por cliente y cierre de lote con un único PR staging → main que el cliente revisa y aprueba antes de llegar a producción.",
       "Módulos nuevos con arquitectura por capas propia (controllers delgados, services, repositories con prepared statements, middleware de autenticación, CSRF y rate limiting) sin depender de un framework.",
+      "Navegación reconstruida como un shell coherente y guiado por roles, con autorización validada en backend: ocultar opciones mejora la experiencia, pero cada acción sensible también exige sesión y permisos; el endurecimiento incluyó login, bcrypt, CSRF, prepared statements y rate limiting.",
+      "Estados de carga entre módulos y feedback de transición para evitar pantallas ambiguas durante consultas y cambios de contexto; fue la primera experiencia de carga consistente de la plataforma.",
+      "Gestión y calificación de contratistas reconstruidas sobre el flujo operativo real; planes de acción desarrollados desde cero para cerrar hallazgos con responsables y seguimiento.",
+      "Módulo de visitas y modelo global de roles, permisos por acción y perfiles autoadministrables desarrollados desde cero.",
       "Sistema de diseño compartido con branding por cliente, para no reescribir componentes en cada instancia.",
       "Notificaciones push de navegador (Web Push/VAPID) y modo offline con Service Workers donde la operación lo exige, como las inspecciones en campo."
     ],
@@ -55,6 +59,10 @@
       "Granular commits — one functional task per commit, tied to its kanban card — so that git revert is the production rollback.",
       "A staging branch per customer and batch closure through a single staging → main PR that the customer reviews and approves before it reaches production.",
       "New modules on a layered architecture of my own (thin controllers, services, repositories with prepared statements, authentication, CSRF, and rate-limiting middleware) without depending on a framework.",
+      "Navigation rebuilt as a consistent, role-aware application shell with backend authorization: hiding options improves usability, but every sensitive action also requires a valid session and permissions; hardening covered login, bcrypt, CSRF, prepared statements, and rate limiting.",
+      "Loading states between modules and transition feedback to avoid ambiguous screens during queries and context changes; this became the platform's first consistent loading experience.",
+      "Contractor management and evaluation rebuilt around the real operational workflow; action plans built from scratch to close findings with owners and follow-up.",
+      "The visitor module and the global self-service model for roles, action-level permissions, and profiles were built from scratch.",
       "A shared design system with per-customer branding, so components are not rewritten for every instance.",
       "Browser push notifications (Web Push/VAPID) and offline mode with Service Workers where operations demand it, such as field inspections."
     ]
@@ -69,6 +77,7 @@
       "Asistente de IA sobre datos operativos (Gemini API) con control de consumo por empresa (caso aparte).",
       "Telemetría GPS desplegada en 4 clientes con ingesta desde rastreadores Teltonika y celulares (caso aparte).",
       "Autenticación unificada a bcrypt en 5 instancias y rediseño de dashboards replicado en 4 clientes."
+      ,"Cinco frentes operativos modernizados: contratistas, visitas, planes de acción, roles y permisos de trabajo."
     ],
     "en": [
       "7 enterprise customers served in parallel in production, with direct ownership of the main accounts.",
@@ -79,6 +88,7 @@
       "An AI assistant over operational data (Gemini API) with per-company usage controls (separate case).",
       "GPS telemetry deployed to 4 customers, ingesting from Teltonika trackers and phones (separate case).",
       "Authentication unified on bcrypt across 5 instances and a dashboard redesign replicated across 4 customers."
+      ,"Five operational areas modernized: contractors, visitors, action plans, roles, and work permits."
     ]
   },
   "limitations": {

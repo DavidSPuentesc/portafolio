@@ -10,6 +10,8 @@ Use this checklist before publishing a case study, metric, image, or employer re
 - Describe private work through personal responsibility, technical decisions, permitted outcomes, and anonymized diagrams.
 - Verify repository visibility before linking it. A missing repository link is preferable to exposing private code.
 - Confirm that Spanish and English express the same claim and limitations. English is written for the professional context, not translated literally.
+- Keep PRLCOL customer names anonymous unless there is explicit written authorization; describe only their industry.
+- Distinguish reconstruction from greenfield work: contractor management and evaluation were rebuilt; action plans, visits, and the global role/permission model were built from scratch; the two PTW implementations had different starting points.
 - Recheck dates, employment status, certification status, and contact details.
 - Run `npm run verify` and inspect desktop and mobile layouts before deployment.
 

@@ -134,6 +134,27 @@ describe('published projects', () => {
     expect(text).not.toMatch(/multi-?tenant(?! estricto| strict)/i);
     expect(text).not.toMatch(/desarrollo de IA/i);
   });
+
+  it('presents SecurApp as a PRLCOL operational ecosystem with calibrated ownership', () => {
+    const securapp = projects.find((project) => project.slug === 'securapp');
+    const text = JSON.stringify(securapp);
+    expect(securapp?.title.es).toBe('SecurApp: ecosistema operativo B2B de PRLCOL');
+    expect(text).toMatch(/gestión de contratistas/i);
+    expect(text).toMatch(/planes de acción.*desde cero/i);
+    expect(text).toMatch(/visitas.*desde cero/i);
+    expect(text).toMatch(/roles.*permisos.*desde cero/i);
+    expect(text).toMatch(/bcrypt.*CSRF.*rate limiting/i);
+    expect(text).toMatch(/estados de carga/i);
+    expect(text).not.toMatch(/Productos Ramo|Expro Group/i);
+  });
+
+  it('distinguishes the rebuilt and greenfield work-permit implementations', () => {
+    const permit = projects.find((project) => project.slug === 'ptw-digital-signatures');
+    expect(permit?.role.es).toMatch(/primera.*reconstru/i);
+    expect(permit?.role.es).toMatch(/segunda.*desde cero/i);
+    expect(permit?.role.en).toMatch(/first.*rebuilt/i);
+    expect(permit?.role.en).toMatch(/second.*from scratch/i);
+  });
 });
 
 describe('confidentiality', () => {

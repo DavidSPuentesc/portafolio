@@ -20,8 +20,8 @@
     "en": "Planning → Approval → Execution → Closure flow with on-PDF signatures, tokenized links, and OTP, used at one industrial plant."
   },
   "role": {
-    "es": "Módulo de SecurApp, la plataforma de PRLCOL (propiedad de la empresa). Diseño e implementación de punta a punta: formato oficial, flujo de estados, borradores, tres flujos de firma, correos, panel de firmantes y despliegue en dos instancias de clientes distintos.",
-    "en": "Module of SecurApp, PRLCOL’s platform (owned by the company). End-to-end design and implementation: official form, state flow, drafts, three signing flows, email, signer administration, and deployment to two separate customer instances."
+    "es": "Módulo de SecurApp, producto de PRLCOL. En la primera implementación reconstruí y completé el trabajo iniciado por otro desarrollador. Para una segunda empresa internacional del sector energético diseñé y desarrollé desde cero una versión específica: formato oficial, estados, borradores, tres flujos de firma, correos y panel de firmantes. No se publican nombres ni interfaces de clientes.",
+    "en": "A module of SecurApp, PRLCOL's product. In the first implementation, I rebuilt and completed work started by another developer. For a second international energy-sector company, I designed and built a tailored version from scratch: official form, states, drafts, three signing flows, email, and signer administration. Customer names and interfaces are not published."
   },
   "sector": {
     "es": "Plantas industriales",
