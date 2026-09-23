@@ -18,12 +18,12 @@
       "evidenceSlug": "smartsense",
       "proof": {
         "es": [
-          "SmartSense: 3 nodos PT100 + LoRa en una planta real, 51.338 muestras y enlace demostrado a 688 m con obstáculos.",
+          "SmartSense: 3 nodos PT100 + LoRa en una planta real, 51.338 muestras y hasta 32 días de registro con dashboard histórico local.",
           "Telemetría GPS en 4 clientes: servidor propio que decodifica rastreadores Teltonika e ingesta posiciones desde celulares.",
           "Sensor Dashboard: cadena completa MicroPython → LoRa → API → PostgreSQL → Next.js, pública y desplegada."
         ],
         "en": [
-          "SmartSense: 3 PT100 + LoRa nodes in a real plant, 51,338 samples, and a link demonstrated at 688 m through obstacles.",
+          "SmartSense: 3 PT100 + LoRa nodes in a real plant, 51,338 samples, and up to 32 days of records with a local historical dashboard.",
           "GPS telemetry for 4 customers: a custom server that decodes Teltonika trackers and ingests positions from phones.",
           "Sensor Dashboard: a complete MicroPython → LoRa → API → PostgreSQL → Next.js chain, public and deployed."
         ]

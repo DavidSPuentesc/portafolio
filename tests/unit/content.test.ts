@@ -120,6 +120,10 @@ describe('published projects', () => {
     expect(smartsense.limitations.es.join(' ')).toMatch(/estimaci/);
     expect(smartsense.repositoryUrl).toBe('https://github.com/jesusabojacal-commits/SmartSense-Monitoring');
     expect(smartsense.images.length).toBeGreaterThan(0);
+    expect(smartsense.metrics.slice(0, 2).map((metric: { value: string }) => metric.value)).toEqual(['51K+', '32']);
+    expect(smartsense.metrics.some((metric: { value: string }) => metric.value === '688 m')).toBe(true);
+    expect(smartsense.summary.es).not.toContain('688');
+    expect(smartsense.summary.en).not.toContain('688');
   });
 
   it('frames the 987 commits as an eight-week figure and the platform as multi-instance', () => {
@@ -199,6 +203,7 @@ describe('experience and solutions', () => {
       expect(item.proof.en.length, item.id).toBe(item.proof.es.length);
       expect(projects.some((p) => p.slug === item.evidenceSlug), item.id).toBe(true);
     }
+    expect(JSON.stringify(data)).not.toContain('688 m');
     const withoutProof = { ...data, items: data.items.map(({ proof, ...rest }: any) => rest) };
     expect(solutionsSchema.safeParse(withoutProof).success).toBe(false);
   });

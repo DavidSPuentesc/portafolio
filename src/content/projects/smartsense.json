@@ -5,8 +5,8 @@
   "visibility": "public",
   "title": { "es": "SmartSense Monitoring", "en": "SmartSense Monitoring" },
   "summary": {
-    "es": "Monitoreo de temperatura superficial de equipos industriales con PT100, ESP32-C6 y LoRa: 3 nodos en planta, 51.338 muestras, hasta 32 días de registro y enlace demostrado a 688 m con obstáculos.",
-    "en": "Surface-temperature monitoring of industrial equipment with PT100, ESP32-C6, and LoRa: 3 nodes in a plant, 51,338 samples, up to 32 days of records, and a link demonstrated at 688 m through obstacles."
+    "es": "Monitoreo de temperatura superficial de equipos industriales con PT100, ESP32-C6 y LoRa: 3 nodos en planta, 51.338 muestras y hasta 32 días de registro con dashboard histórico local.",
+    "en": "Surface-temperature monitoring of industrial equipment with PT100, ESP32-C6, and LoRa: 3 nodes in a plant, 51,338 samples, and up to 32 days of records with a local historical dashboard."
   },
   "seoTitle": { "es": "SmartSense: monitoreo térmico industrial con LoRa", "en": "SmartSense: industrial thermal monitoring with LoRa" },
   "seoDescription": { "es": "Caso IoT industrial con evidencia de campo: 3 nodos PT100, 51.338 muestras, PDR estimado 95,3–96,6 %, enlace a 688 m. Hardware abierto.", "en": "Industrial IoT case with field evidence: 3 PT100 nodes, 51,338 samples, estimated PDR 95.3–96.6%, 688 m link. Open hardware." },
@@ -85,9 +85,9 @@
   "technologies": ["ESP32-C6", "C++ (Arduino)", "PT100", "MAX31865", "LoRa 433 MHz (E220)", "LittleFS", "microSD", "Flask", "SQLite", "Docker", "Python", "KiCad"],
   "metrics": [
     { "value": "51K+", "label": { "es": "muestras registradas", "en": "samples recorded" }, "context": { "es": "51.338 muestras de tres nodos instrumentados en planta", "en": "51,338 samples from three instrumented nodes in the plant" } },
+    { "value": "32", "label": { "es": "días de registro", "en": "days of records" }, "context": { "es": "Para dos nodos; el tercero cubrió otro periodo", "en": "For two nodes; the third covered a different period" } },
     { "value": "688 m", "label": { "es": "enlace LoRa demostrado", "en": "LoRa link demonstrated" }, "context": { "es": "Cota inferior, recorrido con obstáculos, enlace aún operativo", "en": "Lower bound, obstructed route, link still operating" } },
-    { "value": "≈96 %", "label": { "es": "PDR estimado", "en": "estimated PDR" }, "context": { "es": "95,3–96,6 % durante periodos activos", "en": "95.3–96.6 % during active periods" } },
-    { "value": "32", "label": { "es": "días de registro", "en": "days of records" }, "context": { "es": "Para dos nodos; el tercero cubrió otro periodo", "en": "For two nodes; the third covered a different period" } }
+    { "value": "≈96 %", "label": { "es": "PDR estimado", "en": "estimated PDR" }, "context": { "es": "95,3–96,6 % durante periodos activos", "en": "95.3–96.6 % during active periods" } }
   ],
   "images": [
     {
