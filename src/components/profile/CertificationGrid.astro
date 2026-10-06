@@ -1,0 +1,5 @@
+---
+import type {Locale} from '../../i18n/locales';
+const {items,lang}=Astro.props as {items:any[];lang:Locale};
+---
+<div class="credential-grid">{items.map(item=><article><p class="eyebrow">{item.category}</p><h3>{item.name[lang]}</h3><p>{item.issuer} · {item.issued}</p>{item.url&&<a href={item.url}>{lang==='es'?'Ver credencial':'View credential'} ↗</a>}</article>)}</div>

@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SpaceHero from '../../components/home/SpaceHero.astro';
+import MetricStrip from '../../components/home/MetricStrip.astro';
+import AudienceGateway from '../../components/home/AudienceGateway.astro';
+import ProjectCard from '../../components/projects/ProjectCard.astro';
+import { getProjects } from '../../lib/content';
+import { locales, isLocale, localizedPath } from '../../i18n/locales';
+export function getStaticPaths() { return locales.map((lang) => ({ params: { lang } })); }
+const lang = Astro.params.lang;
+if (!isLocale(lang)) return Astro.redirect('/es/');
+const es = lang === 'es';
+const projects = (await getProjects(lang)).filter((project) => project.featured);
+
+const experience = es
+  ? [
+      ['Full-stack', 'Experiencia profesional', 'Análisis, implementación, bases de datos, seguridad, despliegue y soporte de aplicaciones empresariales, respetando la confidencialidad de productos y clientes.'],
+      ['Electrónica', 'Del sensor a la interfaz', 'Formación y proyectos públicos con ESP32, LoRa, BLE, adquisición de señales, APIs y dashboards web.'],
+      ['IA', 'Flujos con supervisión humana', 'Uso de agentes, subagentes, skills, MCP y presupuestos de tokens para investigar, construir y revisar software.'],
+    ]
+  : [
+      ['Full-stack', 'Professional experience', 'Analysis, implementation, databases, security, deployment, and support for business applications, while respecting product and client confidentiality.'],
+      ['Electronics', 'From sensor to interface', 'Training and public projects with ESP32, LoRa, BLE, signal acquisition, APIs, and web dashboards.'],
+      ['AI', 'Human-supervised workflows', 'Agents, subagents, skills, MCP, and token budgets used to research, build, and review software.'],
+    ];
+
+const steps = es
+  ? [
+      ['01', 'Entender', 'Defino el problema, los usuarios, las restricciones y una métrica verificable antes de construir.'],
+      ['02', 'Diseñar', 'Separo el sistema en entregables pequeños y documento arquitectura, riesgos y criterios de aceptación.'],
+      ['03', 'Construir', 'Implemento con control de versiones, pruebas proporcionadas al riesgo y revisión humana de los cambios.'],
+      ['04', 'Medir', 'Valido el resultado contra la métrica acordada y documento límites y siguientes pasos.'],
+    ]
+  : [
+      ['01', 'Understand', 'I define the problem, users, constraints, and a verifiable metric before building.'],
+      ['02', 'Design', 'I split the system into small deliverables and document architecture, risks, and acceptance criteria.'],
+      ['03', 'Build', 'I implement with version control, risk-proportionate testing, and human review of changes.'],
+      ['04', 'Measure', 'I validate the outcome against the agreed metric and document limits and next steps.'],
+    ];
+---
+<BaseLayout {lang} title={es ? 'Inicio' : 'Home'} description={es ? 'David Puentes: desarrollador full-stack con formación en ingeniería electrónica, proyectos públicos de IoT e IA aplicada con supervisión humana.' : 'David Puentes: full-stack developer with an electronic-engineering background, public IoT projects, and human-supervised applied AI.'} canonicalPath={`/${lang}/`}>
+  <SpaceHero {lang} />
+  <MetricStrip {lang} />
+  <AudienceGateway {lang} />
+
+  <section class="section">
+    <p class="eyebrow">{es ? 'EVIDENCIA PÚBLICA' : 'PUBLIC EVIDENCE'}</p>
+    <h2>{es ? 'Proyectos construidos y documentados' : 'Built and documented projects'}</h2>
+    <p class="section-lede">{es ? 'Cada caso indica su estado, arquitectura, resultados y límites con enlaces a evidencia pública cuando está disponible.' : 'Each case states its status, architecture, outcomes, and limits, with links to public evidence when available.'}</p>
+    <div class="project-grid">{projects.map((project) => <ProjectCard {project} {lang} />)}</div>
+    <a class="section-link" href={localizedPath(lang, '/projects/')}>{es ? 'Ver todos los proyectos' : 'See all projects'} →</a>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">{es ? 'PERFIL' : 'PROFILE'}</p>
+    <h2>{es ? 'Software, electrónica e IA aplicada' : 'Software, electronics, and applied AI'}</h2>
+    <div class="skills-grid three">
+      {experience.map(([value, label, body]) => <article><strong>{value}</strong><h3>{label}</h3><p>{body}</p></article>)}
+    </div>
+    <a class="section-link" href={localizedPath(lang, '/profile/')}>{es ? 'Ver perfil completo y CV' : 'See the full profile and CV'} →</a>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">{es ? 'CÓMO TRABAJO' : 'HOW I WORK'}</p>
+    <h2>{es ? 'Del problema a una solución verificable' : 'From problem to a verifiable solution'}</h2>
+    <ol class="commercial-process four">
+      {steps.map(([number, title, body]) => <li><span>{number}</span><div><h3>{title}</h3><p>{body}</p></div></li>)}
+    </ol>
+  </section>
+</BaseLayout>

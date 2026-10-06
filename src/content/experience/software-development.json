@@ -1,0 +1,30 @@
+{
+  "order": 1,
+  "company": "Empresa privada de soluciones tecnológicas",
+  "location": "Cundinamarca, Colombia",
+  "period": {
+    "es": "Agosto 2025 — 2026",
+    "en": "August 2025 — 2026"
+  },
+  "role": {
+    "es": "Desarrollador Full-Stack",
+    "en": "Full-Stack Developer"
+  },
+  "summary": {
+    "es": "Experiencia construyendo y evolucionando aplicaciones web empresariales de extremo a extremo. He desarrollado módulos nuevos y modernizado soluciones existentes para mejorar su usabilidad, mantenibilidad y confiabilidad, respetando la confidencialidad y la propiedad intelectual de cada organización.",
+    "en": "Experience building and evolving end-to-end business web applications. I have developed new modules and modernized existing solutions to improve usability, maintainability, and reliability while respecting each organization's confidentiality and intellectual property."
+  },
+  "highlights": {
+    "es": [
+      "Desarrollo full-stack de interfaces responsivas, APIs y flujos de negocio para aplicaciones web empresariales.",
+      "Modelado de datos, autenticación y autorización por roles, controles de seguridad y prácticas de desarrollo seguro.",
+      "Participación en levantamiento de requerimientos, pruebas, despliegue, soporte y mejora continua de software."
+    ],
+    "en": [
+      "Full-stack development of responsive interfaces, APIs, and business workflows for enterprise web applications.",
+      "Data modeling, authentication and role-based authorization, security controls, and secure-development practices.",
+      "Contributed to requirements discovery, testing, deployment, support, and continuous software improvement."
+    ]
+  },
+  "metrics": []
+}

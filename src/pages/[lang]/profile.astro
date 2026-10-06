@@ -1,0 +1,115 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AgenticWorkflow from '../../components/ai/AgenticWorkflow.astro';
+import ExperienceTimeline from '../../components/profile/ExperienceTimeline.astro';
+import CertificationGrid from '../../components/profile/CertificationGrid.astro';
+import ContactForm from '../../components/contact/ContactForm';
+import { resolveContactEndpoint } from '../../lib/contact-endpoint';
+import { locales, isLocale, localizedPath } from '../../i18n/locales';
+export function getStaticPaths() { return locales.map((lang) => ({ params: { lang } })); }
+const lang = Astro.params.lang;
+if (!isLocale(lang)) return Astro.redirect('/es/');
+const es = lang === 'es';
+const experience = (await getCollection('experience')).sort((a, b) => a.data.order - b.data.order);
+const certificates = (await getCollection('certifications'))[0]?.data.items ?? [];
+const cv = es ? '/cv/david-puentes-cv-es.pdf' : '/cv/david-puentes-cv-en.pdf';
+const contactEndpoint = resolveContactEndpoint(import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT);
+const email = 'mailto:davidsantiago.puentesc@gmail.com';
+const linkedin = 'https://www.linkedin.com/in/david-santiago-puentes-c%C3%A1rdenas-914815186/';
+
+const capabilities = es
+  ? [
+      ['Backend', 'PHP, Python, Node.js, APIs REST, modelado relacional, MySQL/MariaDB, PostgreSQL y SQLite. Experiencia profesional descrita sin divulgar sistemas internos.'],
+      ['Frontend y TypeScript', 'JavaScript, TypeScript, React, Next.js y Astro respaldados por Sensor Dashboard, el sitio de divulgación de CEINTECCI y este portafolio.'],
+      ['Python y datos', 'Flask, pandas, NumPy, SciPy y scripts reproducibles para investigación, visualización y análisis de datos.'],
+      ['Electrónica e IoT', 'ESP32, C/C++, MicroPython, LoRa, BLE, PT100/MAX31865, bajo consumo y KiCad, con evidencia en proyectos públicos.'],
+      ['Entrega y seguridad', 'Git/GitHub, Docker, Linux, pruebas automatizadas, autenticación, autorización, consultas preparadas, CSRF y limitación de solicitudes.'],
+      ['IA aplicada', 'Flujos de trabajo con agentes, subagentes, skills, MCP, presupuestos de tokens, control de contexto y validación humana. No desarrollo modelos fundacionales.'],
+    ]
+  : [
+      ['Backend', 'PHP, Python, Node.js, REST APIs, relational modeling, MySQL/MariaDB, PostgreSQL, and SQLite. Professional experience is described without disclosing internal systems.'],
+      ['Frontend and TypeScript', 'JavaScript, TypeScript, React, Next.js, and Astro backed by Sensor Dashboard, the CEINTECCI outreach site, and this portfolio.'],
+      ['Python and data', 'Flask, pandas, NumPy, SciPy, and reproducible scripts for research, visualization, and data analysis.'],
+      ['Electronics and IoT', 'ESP32, C/C++, MicroPython, LoRa, BLE, PT100/MAX31865, low-power design, and KiCad, with evidence in public projects.'],
+      ['Delivery and security', 'Git/GitHub, Docker, Linux, automated tests, authentication, authorization, prepared statements, CSRF protection, and request limiting.'],
+      ['Applied AI', 'Workflows with agents, subagents, skills, MCP, token budgets, context control, and human validation. I do not build foundation models.'],
+    ];
+
+const delivery = es
+  ? [
+      'Aclarar el objetivo, las restricciones y el criterio de aceptación antes de implementar.',
+      'Dividir el trabajo en cambios pequeños y revisables con historial de Git.',
+      'Probar las rutas críticas y revisar accesibilidad, seguridad y comportamiento en móvil.',
+      'Validar los cambios con revisión humana antes de desplegar.',
+      'Documentar resultados, límites conocidos y próximos pasos.',
+    ]
+  : [
+      'Clarify the objective, constraints, and acceptance criteria before implementation.',
+      'Split the work into small, reviewable changes with Git history.',
+      'Test critical paths and review accessibility, security, and mobile behavior.',
+      'Validate changes through human review before deployment.',
+      'Document outcomes, known limits, and next steps.',
+    ];
+
+const education = es
+  ? [['Ingeniería Electrónica', 'Universidad ECCI, Bogotá · en curso'], ['Tecnólogo en Electrónica Industrial', 'Universidad ECCI, Bogotá · 2023']]
+  : [['Electronic Engineering', 'Universidad ECCI, Bogotá · in progress'], ['Technologist in Industrial Electronics', 'Universidad ECCI, Bogotá · 2023']];
+---
+<BaseLayout {lang} title={es ? 'Perfil profesional — David Puentes' : 'Professional profile — David Puentes'} description={es ? 'Desarrollador full-stack con experiencia profesional, electrónica, IoT e IA aplicada. CV descargable y proyectos públicos.' : 'Full-stack developer with professional experience, electronics, IoT, and applied AI. Downloadable CV and public projects.'} canonicalPath={`/${lang}/profile/`}>
+  <header class="profile-intro section">
+    <p class="eyebrow">{es ? 'PERFIL PROFESIONAL' : 'PROFESSIONAL PROFILE'}</p>
+    <h1>{es ? 'Software, electrónica e IA con evidencia pública.' : 'Software, electronics, and AI with public evidence.'}</h1>
+    <p>{es
+      ? 'Soy desarrollador full-stack con experiencia profesional en aplicaciones empresariales y formación en ingeniería electrónica. Trabajo desde firmware, sensores y comunicaciones hasta APIs y productos web. Mi experiencia laboral se presenta de forma general para respetar obligaciones de confidencialidad; los detalles técnicos demostrables provienen de proyectos públicos e independientes.'
+      : 'I am a full-stack developer with professional experience in business applications and an electronic-engineering background. I work from firmware, sensors, and communications through APIs and web products. My employment experience is presented generally to respect confidentiality obligations; demonstrable technical details come from public, independent projects.'}</p>
+    <div class="profile-actions">
+      <a class="button primary" href={cv} download>{es ? 'Descargar CV' : 'Download CV'} ↓</a>
+      <a class="button secondary" href={email}>{es ? 'Escribir por correo' : 'Email me'}</a>
+      <a class="button secondary" href={linkedin} rel="noreferrer" target="_blank">LinkedIn ↗</a>
+    </div>
+    <p class="profile-meta">{es ? 'BOGOTÁ, COLOMBIA · ESPAÑOL NATIVO · INGLÉS B2' : 'BOGOTÁ, COLOMBIA · NATIVE SPANISH · ENGLISH B2'}</p>
+  </header>
+
+  <section class="section">
+    <p class="eyebrow">{es ? 'EXPERIENCIA' : 'EXPERIENCE'}</p>
+    <h2>{es ? 'Trayectoria profesional' : 'Professional journey'}</h2>
+    <ExperienceTimeline entries={experience} {lang} />
+    <a class="section-link" href={localizedPath(lang, '/projects/')}>{es ? 'Ver proyectos con evidencia pública' : 'See projects with public evidence'} →</a>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">{es ? 'ENTREGA' : 'DELIVERY'}</p>
+    <h2>{es ? 'Cómo trabajo' : 'How I work'}</h2>
+    <ol class="delivery-list">{delivery.map((item) => <li>{item}</li>)}</ol>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">AGENTIC AI</p>
+    <h2>{es ? 'IA aplicada con control de ingeniería' : 'Applied AI with engineering control'}</h2>
+    <AgenticWorkflow {lang} />
+    <p class="approved-statement">{es
+      ? 'Diseño y utilizo flujos agentic para investigación, planificación, implementación, revisión y documentación, con delegación especializada, control de contexto y validación humana.'
+      : 'I design and use agentic workflows for research, planning, implementation, review, and documentation, with specialized delegation, context control, and human validation.'}</p>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">{es ? 'CAPACIDADES' : 'CAPABILITIES'}</p>
+    <h2>{es ? 'Del firmware al producto web' : 'From firmware to web product'}</h2>
+    <div class="skills-grid">{capabilities.map(([title, body]) => <article><h3>{title}</h3><p>{body}</p></article>)}</div>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">{es ? 'FORMACIÓN' : 'EDUCATION'}</p>
+    <h2>{es ? 'Educación y certificaciones' : 'Education and certifications'}</h2>
+    <div class="skills-grid">{education.map(([title, detail]) => <article><h3>{title}</h3><p>{detail}</p></article>)}</div>
+    <CertificationGrid items={certificates} {lang} />
+  </section>
+
+  <section class="section" id="contact">
+    <p class="eyebrow">{es ? 'CONTACTO' : 'CONTACT'}</p>
+    <h2>{es ? 'Hablemos del próximo reto.' : 'Let’s discuss the next challenge.'}</h2>
+    <p class="section-lede">{es ? 'Escríbeme por el formulario, por correo o por LinkedIn.' : 'Reach me through the form, by email, or on LinkedIn.'}</p>
+    <ContactForm client:idle locale={lang} intent="hiring" endpoint={contactEndpoint} />
+  </section>
+</BaseLayout>

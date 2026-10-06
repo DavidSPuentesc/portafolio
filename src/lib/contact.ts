@@ -1,0 +1,5 @@
+import {z} from 'zod';
+const schema=z.object({intent:z.enum(['hiring','business']),locale:z.enum(['es','en']),name:z.string().trim().min(1).max(120),email:z.email().transform(x=>x.trim().toLowerCase()),company:z.string().trim().max(160).optional().default(''),topic:z.string().trim().max(160).optional().default(''),message:z.string().trim().min(20).max(6000),website:z.string().optional().default('')}).strict();
+export type ContactPayload=z.infer<typeof schema>;
+export type ContactValidationResult={ok:true;data:ContactPayload}|{ok:false;code:'invalid'|'spam'|'too_large'};
+export function validateContact(input:unknown):ContactValidationResult{if(!input||typeof input!=='object')return{ok:false,code:'invalid'};const raw=input as Record<string,unknown>;if(typeof raw.message==='string'&&raw.message.length>6000)return{ok:false,code:'too_large'};if(typeof raw.website==='string'&&raw.website.trim())return{ok:false,code:'spam'};const result=schema.safeParse(input);return result.success?{ok:true,data:result.data}:{ok:false,code:'invalid'};}

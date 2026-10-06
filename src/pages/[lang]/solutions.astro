@@ -1,0 +1,76 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SolutionCard from '../../components/commercial/SolutionCard.astro';
+import CommercialProcess from '../../components/commercial/CommercialProcess.astro';
+import ContactForm from '../../components/contact/ContactForm';
+import { resolveContactEndpoint } from '../../lib/contact-endpoint';
+import { locales, isLocale } from '../../i18n/locales';
+export function getStaticPaths() { return locales.map((lang) => ({ params: { lang } })); }
+const lang = Astro.params.lang;
+if (!isLocale(lang)) return Astro.redirect('/es/');
+const es = lang === 'es';
+const contactEndpoint = resolveContactEndpoint(import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT);
+const data = (await getCollection('solutions'))[0]?.data;
+const solutions = data?.items ?? [];
+const sectors = data?.sectors[lang] ?? [];
+
+const pilot = es
+  ? [
+      ['Diagnóstico', 'Una conversación para entender el problema, los usuarios, las restricciones y la métrica de éxito.'],
+      ['Piloto', 'Un alcance pequeño con entregables, propiedad intelectual y límites definidos por escrito antes de construir.'],
+      ['Medición', 'Resultados frente a la métrica acordada, documentación y una decisión informada sobre el siguiente paso.'],
+    ]
+  : [
+      ['Discovery', 'A conversation to understand the problem, users, constraints, and success metric.'],
+      ['Pilot', 'A small scope with deliverables, intellectual property, and limits defined in writing before building.'],
+      ['Measurement', 'Results against the agreed metric, documentation, and an informed decision about the next step.'],
+    ];
+---
+<BaseLayout {lang} title={es ? 'Soluciones tecnológicas — David Puentes' : 'Technology solutions — David Puentes'} description={es ? 'Prototipos de IoT, electrónica y aplicaciones web respaldados por proyectos públicos.' : 'IoT, electronics, and web-application prototypes backed by public projects.'} canonicalPath={`/${lang}/solutions/`}>
+  <header class="solutions-hero section">
+    <p class="eyebrow">{es ? 'SOLUCIONES · PILOTOS MEDIBLES' : 'SOLUTIONS · MEASURABLE PILOTS'}</p>
+    <h1>{es ? 'Tecnología diseñada alrededor de un problema concreto.' : 'Technology designed around a specific problem.'}</h1>
+    <p>{es ? 'Desarrollo prototipos de IoT, electrónica y aplicaciones web con alcance claro y evidencia verificable. Cada proyecto nuevo se diseña desde cero y utiliza únicamente información y activos autorizados por el cliente.' : 'I develop IoT, electronics, and web-application prototypes with clear scope and verifiable evidence. Every new project is designed from scratch and uses only information and assets authorized by the client.'}</p>
+    <div class="hero-actions">
+      <a class="button primary" href="#contact">{es ? 'Solicitar diagnóstico' : 'Request a discovery call'}</a>
+      <a class="button secondary" href={`/${lang}/projects/`}>{es ? 'Ver proyectos públicos' : 'See public projects'}</a>
+    </div>
+  </header>
+
+  <section class="section">
+    <p class="eyebrow">{es ? 'LÍNEAS DE TRABAJO' : 'LINES OF WORK'}</p>
+    <h2>{es ? 'Qué puedo construir y qué evidencia lo respalda' : 'What I can build and the evidence behind it'}</h2>
+    <div class="solution-grid">{solutions.map((solution) => <SolutionCard {solution} {lang} />)}</div>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">{es ? 'QUÉ RECIBES' : 'WHAT YOU GET'}</p>
+    <h2>{es ? 'Un piloto con alcance cerrado y una métrica' : 'A tightly scoped pilot with one metric'}</h2>
+    <div class="skills-grid three">{pilot.map(([title, body]) => <article><h3>{title}</h3><p>{body}</p></article>)}</div>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">{es ? 'PROCESO' : 'PROCESS'}</p>
+    <h2>{es ? 'Diagnosticar, probar, medir' : 'Discover, pilot, measure'}</h2>
+    <CommercialProcess {lang} />
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">{es ? 'SECTORES OBJETIVO' : 'TARGET SECTORS'}</p>
+    <h2>{es ? 'Dónde puedo aportar' : 'Where I can contribute'}</h2>
+    <ul class="sector-list">{sectors.map((sector) => <li>{sector}</li>)}</ul>
+  </section>
+
+  <section class="confidentiality section">
+    <h2>{es ? 'Confidencialidad desde el diseño' : 'Confidentiality by design'}</h2>
+    <p>{es ? 'No reutilizo código, datos, diseños ni procesos confidenciales de terceros. La evidencia comercial de este sitio proviene de proyectos públicos o independientes.' : 'I do not reuse third-party confidential code, data, designs, or processes. Commercial evidence on this site comes from public or independent projects.'}</p>
+  </section>
+
+  <section class="section" id="contact">
+    <p class="eyebrow">{es ? 'SIGUIENTE PASO' : 'NEXT STEP'}</p>
+    <h2>{es ? 'Cuéntame qué problema quieres resolver.' : 'Tell me which problem you want to solve.'}</h2>
+    <p class="section-lede">{es ? 'Respondo con preguntas de diagnóstico, un alcance inicial y una forma concreta de medir el resultado.' : 'I reply with discovery questions, an initial scope, and a concrete way to measure the outcome.'}</p>
+    <ContactForm client:idle locale={lang} intent="business" endpoint={contactEndpoint} />
+  </section>
+</BaseLayout>

@@ -1,0 +1,44 @@
+{
+  "sectors": {
+    "es": ["Industria y manufactura", "Investigación y educación", "Servicios técnicos", "Pequeñas y medianas empresas"],
+    "en": ["Industry and manufacturing", "Research and education", "Technical services", "Small and medium-sized businesses"]
+  },
+  "items": [
+    {
+      "id": "industrial-iot",
+      "title": { "es": "Monitoreo IoT y sensórica", "en": "IoT monitoring and sensing" },
+      "pain": { "es": "Equipos o variables físicas sin historial, alertas ni una forma sencilla de consultar las mediciones.", "en": "Equipment or physical variables without history, alerts, or a simple way to inspect measurements." },
+      "deliverable": { "es": "Un prototipo medible con sensores, comunicación, almacenamiento y dashboard, diseñado alrededor de una necesidad concreta.", "en": "A measurable prototype with sensors, communications, storage, and a dashboard, designed around a specific need." },
+      "evidenceSlug": "smartsense",
+      "proof": {
+        "es": ["SmartSense integra sensores PT100, nodos ESP32, comunicación LoRa y un dashboard histórico local.", "Sensor Dashboard demuestra una cadena pública desde MicroPython y LoRa hasta PostgreSQL y Next.js."],
+        "en": ["SmartSense integrates PT100 sensors, ESP32 nodes, LoRa communications, and a local historical dashboard.", "Sensor Dashboard demonstrates a public chain from MicroPython and LoRa through PostgreSQL and Next.js."]
+      },
+      "pilotMetrics": { "es": ["Calidad de lectura frente a una referencia", "Disponibilidad del enlace", "Autonomía y continuidad del registro"], "en": ["Reading quality against a reference", "Link availability", "Battery life and recording continuity"] }
+    },
+    {
+      "id": "asset-security",
+      "title": { "es": "Seguridad de activos con electrónica", "en": "Electronic asset security" },
+      "pain": { "es": "Activos o espacios que necesitan detectar eventos y avisar local o remotamente sin una infraestructura compleja.", "en": "Assets or spaces that need to detect events and notify locally or remotely without complex infrastructure." },
+      "deliverable": { "es": "Un prototipo con nodos inalámbricos, gateway, alarma local, registro de eventos y notificaciones.", "en": "A prototype with wireless nodes, a gateway, local alarm, event history, and notifications." },
+      "evidenceSlug": "project-h",
+      "proof": {
+        "es": ["Project H utiliza nodos BLE, un maestro ESP32, alarma física y aplicación web con Firebase.", "El protocolo binario, los ACK y los timeouts están documentados como parte del prototipo público."],
+        "en": ["Project H uses BLE nodes, an ESP32 master, a physical alarm, and a Firebase-backed web application.", "The binary protocol, acknowledgements, and timeouts are documented as part of the public prototype."]
+      },
+      "pilotMetrics": { "es": ["Tiempo entre evento y alerta", "Cobertura de nodos", "Tasa de eventos registrados"], "en": ["Event-to-alert time", "Node coverage", "Recorded-event rate"] }
+    },
+    {
+      "id": "web-ai",
+      "title": { "es": "Aplicaciones web e IA asistida", "en": "Web applications and AI-assisted workflows" },
+      "pain": { "es": "Información dispersa, tareas repetitivas o servicios que necesitan una experiencia web clara y autoadministrable.", "en": "Scattered information, repetitive tasks, or services that need a clear, self-managed web experience." },
+      "deliverable": { "es": "Una aplicación web de alcance definido, con datos estructurados, controles de acceso y automatización evaluada caso por caso.", "en": "A scoped web application with structured data, access controls, and automation evaluated case by case." },
+      "evidenceSlug": "sensor-dashboard",
+      "proof": {
+        "es": ["Sensor Dashboard es una aplicación pública con API, PostgreSQL, Next.js, TypeScript y despliegue web.", "Este portafolio bilingüe está construido con Astro y React e incluye pruebas automatizadas de navegación y accesibilidad."],
+        "en": ["Sensor Dashboard is a public application with an API, PostgreSQL, Next.js, TypeScript, and web deployment.", "This bilingual portfolio is built with Astro and React and includes automated navigation and accessibility tests."]
+      },
+      "pilotMetrics": { "es": ["Tiempo ahorrado", "Errores reducidos", "Tareas completadas correctamente"], "en": ["Time saved", "Errors reduced", "Tasks completed successfully"] }
+    }
+  ]
+}

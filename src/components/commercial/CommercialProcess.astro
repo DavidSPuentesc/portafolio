@@ -1,0 +1,4 @@
+---
+import type {Locale} from '../../i18n/locales';const {lang}=Astro.props as {lang:Locale};const steps=lang==='es'?[['01','Diagnóstico','Entendemos el problema, entorno y métrica de éxito.'],['02','Piloto','Validamos en alcance controlado, con entregables y límites claros.'],['03','Medición','Comparamos resultados y decidimos si escalar.']]:[['01','Discovery','We understand the problem, environment, and success metric.'],['02','Pilot','We validate in a controlled scope with clear deliverables and limits.'],['03','Measurement','We compare outcomes and decide whether to scale.']];
+---
+<ol class="commercial-process">{steps.map(([n,title,body])=><li><span>{n}</span><div><h3>{title}</h3><p>{body}</p></div></li>)}</ol>

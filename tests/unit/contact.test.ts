@@ -1,0 +1,2 @@
+import {describe,expect,it} from 'vitest';import {validateContact} from '../../src/lib/contact';
+describe('contact safety',()=>{it.each([[{email:'bad',message:'Hola'},'invalid'],[{email:'a@b.co',message:'x'.repeat(6001),intent:'hiring',locale:'es',name:'A'},'too_large'],[{email:'a@b.co',message:'Necesito ayuda con este proyecto',website:'bot.example',intent:'business',locale:'es',name:'A'},'spam']])('rejects unsafe input',(input,code)=>expect(validateContact(input)).toEqual(expect.objectContaining({ok:false,code})));});

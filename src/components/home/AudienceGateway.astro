@@ -1,0 +1,4 @@
+---
+import {ui} from '../../i18n/ui';import {localizedPath,type Locale} from '../../i18n/locales';const{lang}=Astro.props as {lang:Locale};const t=ui[lang].audience;
+---
+<section class="section audience"><p class="eyebrow">{lang==='es'?'DOS MISIONES · UNA INGENIERÍA':'TWO MISSIONS · ONE ENGINEERING PRACTICE'}</p><h2>{t.title}</h2><div class="audience-grid"><a href={localizedPath(lang,'/profile/')}><small>{lang==='es'?'PARA EQUIPOS':'FOR TEAMS'}</small><h3>{t.hiring}</h3><p>{t.hiringBody}</p><span>↗</span></a><a href={localizedPath(lang,'/solutions/')}><small>{lang==='es'?'PARA EMPRESAS':'FOR BUSINESSES'}</small><h3>{t.business}</h3><p>{t.businessBody}</p><span>↗</span></a></div></section>
