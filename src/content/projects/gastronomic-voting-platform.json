@@ -1,0 +1,116 @@
+{
+  "slug": "gastronomic-voting-platform",
+  "order": 5,
+  "featured": true,
+  "visibility": "public",
+  "title": {
+    "es": "Plataforma gastronómica de votación y gestión",
+    "en": "Gastronomic voting and management platform"
+  },
+  "summary": {
+    "es": "Prototipo full-stack para campañas gastronómicas: catálogo visual, historias de producto, ranking en vivo, votación pública con controles antifraude y gestión de contenido por roles.",
+    "en": "Full-stack prototype for gastronomic campaigns: visual catalog, product stories, live ranking, public voting with anti-fraud controls, and role-based content management."
+  },
+  "seoTitle": {
+    "es": "Plataforma gastronómica: catálogo, votación y administración",
+    "en": "Gastronomic platform: catalog, voting, and administration"
+  },
+  "seoDescription": {
+    "es": "Caso demostrativo de una aplicación Next.js para campañas, concursos y lanzamientos gastronómicos con datos ficticios y demo pública.",
+    "en": "Demonstration case for a Next.js application supporting gastronomic campaigns, contests, and product launches with fictional data and a public demo."
+  },
+  "role": {
+    "es": "Construcción de la prueba técnica de extremo a extremo: experiencia pública, modelo de datos, API, autenticación y autorización, panel de gestión, controles de votación, pruebas y despliegue.",
+    "en": "Built the end-to-end technical prototype: public experience, data model, API, authentication and authorization, management panel, voting controls, tests, and deployment."
+  },
+  "sector": {
+    "es": "Gastronomía, restaurantes y marcas de postres",
+    "en": "Food service, restaurants, and dessert brands"
+  },
+  "period": {
+    "es": "2026 · prototipo demostrativo",
+    "en": "2026 · demonstration prototype"
+  },
+  "problem": {
+    "es": "Una campaña gastronómica necesita presentar productos de forma atractiva, recibir participación sin exigir cuentas al público, mantener un ranking comprensible y permitir que el equipo organizador administre el contenido sin depender del desarrollador.",
+    "en": "A gastronomic campaign needs to present products attractively, accept participation without requiring public accounts, maintain a clear ranking, and let organizers manage content without depending on a developer."
+  },
+  "architecture": {
+    "es": "Interfaz responsive en Next.js y React → API ejecutada en el servidor → motor de validación y reglas de votación → capa de datos intercambiable (memoria para la demo; Supabase/PostgreSQL para una operación persistente) → actualización del ranking y panel protegido por roles",
+    "en": "Responsive Next.js and React interface → server-side API → voting validation and rules engine → interchangeable data layer (memory for the demo; Supabase/PostgreSQL for persistent operation) → ranking updates and role-protected management panel"
+  },
+  "decisions": {
+    "es": [
+      "Permitir participación pública sin registro, añadiendo validaciones en servidor y revisión de actividad sospechosa en lugar de confiar únicamente en el navegador.",
+      "Separar la capa de datos para que la misma aplicación funcione como demo temporal o con persistencia administrada para un lanzamiento comercial.",
+      "Diseñar un catálogo visual y responsive que prioriza fotografías, historias, ingredientes y llamadas a la acción.",
+      "Preparar gestión por roles para que cada perfil acceda únicamente a las funciones y contenidos que le corresponden.",
+      "Tratar la información de la demo como contenido ficticio y evitar publicar credenciales o accesos administrativos."
+    ],
+    "en": [
+      "Allow public participation without registration, adding server-side validation and suspicious-activity review instead of trusting the browser alone.",
+      "Separate the data layer so the same application can run as a temporary demo or use managed persistence for a commercial launch.",
+      "Design a responsive visual catalog that prioritizes photography, stories, ingredients, and calls to action.",
+      "Prepare role-based management so each profile can access only its assigned features and content.",
+      "Treat all demo information as fictional content and publish no credentials or administrative access."
+    ]
+  },
+  "results": {
+    "es": [
+      "Demo pública desplegada en Vercel con catálogo, podio, ranking completo y páginas de detalle.",
+      "Flujo funcional de votación y actualización de resultados con controles ejecutados en el servidor.",
+      "Panel preparado para administrar participantes, productos, contenido de campaña y revisión de actividad.",
+      "Base reutilizable para concursos de postres, lanzamientos de sabores, votaciones de clientes y catálogos autoadministrables."
+    ],
+    "en": [
+      "Public Vercel demo with a catalog, podium, complete ranking, and detail pages.",
+      "Functional voting and result-update flow with server-side controls.",
+      "Management panel prepared for participants, products, campaign content, and activity review.",
+      "Reusable foundation for dessert contests, flavor launches, customer voting, and self-managed catalogs."
+    ]
+  },
+  "limitations": {
+    "es": [
+      "Es un prototipo demostrativo con datos ficticios; no representa una campaña comercial activa ni participantes reales.",
+      "La demo pública usa almacenamiento temporal en memoria: los datos pueden reiniciarse y distintas instancias pueden no compartir el mismo estado.",
+      "Una implementación comercial requiere persistencia, configuración de seguridad, políticas operativas y monitoreo propios del cliente.",
+      "No se comparten credenciales ni acceso al panel administrativo desde el portafolio."
+    ],
+    "en": [
+      "This is a demonstration prototype with fictional data; it does not represent an active commercial campaign or real participants.",
+      "The public demo uses temporary in-memory storage: data may reset, and separate instances may not share the same state.",
+      "A commercial implementation requires persistence, security configuration, operating policies, and monitoring tailored to the customer.",
+      "No credentials or administrative-panel access are shared through the portfolio."
+    ]
+  },
+  "technologies": [
+    "Next.js 16",
+    "React 19",
+    "TypeScript",
+    "Tailwind CSS",
+    "Supabase",
+    "PostgreSQL",
+    "Vitest",
+    "Vercel"
+  ],
+  "metrics": [],
+  "images": [
+    {
+      "src": "/images/projects/gastronomic-voting-platform.png",
+      "alt": {
+        "es": "Vista pública del prototipo gastronómico con encabezado de campaña, podio y tarjetas de productos participantes.",
+        "en": "Public view of the gastronomic prototype with campaign header, podium, and participating product cards."
+      },
+      "caption": {
+        "es": "Interfaz de demostración con nombres, fotografías, productos y resultados ficticios.",
+        "en": "Demonstration interface with fictional names, photographs, products, and results."
+      },
+      "width": 1440,
+      "height": 1000
+    }
+  ],
+  "evidenceUrl": null,
+  "repositoryUrl": null,
+  "repositoryLabel": null,
+  "demoUrl": "https://jburguer-mu.vercel.app/"
+}

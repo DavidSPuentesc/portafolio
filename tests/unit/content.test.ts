@@ -43,8 +43,8 @@ describe('published projects', () => {
 
   it('publishes only the approved independent projects', () => {
     const ordered = [...projects].sort((a, b) => a.order - b.order).map((project) => project.slug);
-    expect(ordered).toEqual(['smartsense', 'project-h', 'sensor-dashboard', 'wifi-sensing', 'gas-dyson']);
-    expect(projects.filter((project) => project.featured).map((project) => project.slug).sort()).toEqual(['project-h', 'smartsense']);
+    expect(ordered).toEqual(['smartsense', 'gastronomic-voting-platform', 'project-h', 'sensor-dashboard', 'wifi-sensing', 'gas-dyson']);
+    expect(projects.filter((project) => project.featured).map((project) => project.slug).sort()).toEqual(['gastronomic-voting-platform', 'project-h', 'smartsense']);
     expect(new Set(projects.map((project) => project.order)).size).toBe(projects.length);
   });
 
@@ -68,6 +68,16 @@ describe('published projects', () => {
     expect(smartSense.results.en.join(' ')).toContain('51,338');
     expect(smartSense.limitations.es.join(' ')).toMatch(/cota inferior/);
     expect(smartSense.repositoryUrl).toBe('https://github.com/jesusabojacal-commits/SmartSense-Monitoring');
+  });
+
+  it('publishes the gastronomic prototype as a safe public demo', () => {
+    const project = projects.find((item) => item.slug === 'gastronomic-voting-platform');
+    expect(project?.visibility).toBe('public');
+    expect(project?.demoUrl).toBe('https://jburguer-mu.vercel.app/');
+    expect(project?.repositoryUrl).toBeNull();
+    expect(project?.evidenceUrl).toBeNull();
+    expect(project?.limitations.es.join(' ')).toMatch(/datos ficticios/i);
+    expect(project?.limitations.en.join(' ')).toMatch(/fictional data/i);
   });
 });
 
