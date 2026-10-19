@@ -26,8 +26,10 @@ it('links headline metrics only to public project evidence', async () => {
 
 it('keeps the hero concrete and bilingual without former-employer metrics', () => {
   const source = readFileSync('src/i18n/ui.ts', 'utf8');
-  expect(source).toContain('experiencia profesional en aplicaciones empresariales');
-  expect(source).toContain('professional experience in business applications');
+  expect(source).toContain('Ingeniería de datos e IA aplicada');
+  expect(source).toContain('Data engineering and applied AI');
+  expect(source).toContain('software, IoT y sistemas empresariales');
+  expect(source).toContain('software, IoT, and business systems');
   expect(source).toMatch(/validación humana/);
   expect(source).toMatch(/human-validation/);
 });

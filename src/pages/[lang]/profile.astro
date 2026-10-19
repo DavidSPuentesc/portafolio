@@ -22,7 +22,7 @@ const capabilities = es
   ? [
       ['Backend', 'PHP, Python, Node.js, APIs REST, modelado relacional, MySQL/MariaDB, PostgreSQL y SQLite. Experiencia profesional descrita sin divulgar sistemas internos.'],
       ['Frontend y TypeScript', 'JavaScript, TypeScript, React, Next.js y Astro respaldados por Sensor Dashboard, el sitio de divulgación de CEINTECCI y este portafolio.'],
-      ['Python y datos', 'Flask, pandas, NumPy, SciPy y scripts reproducibles para investigación, visualización y análisis de datos.'],
+      ['Ingeniería de datos', 'Python, pandas, NumPy, SciPy, scikit-learn, preparación de datasets, validación entre sesiones y visualización reproducible.'],
       ['Electrónica e IoT', 'ESP32, C/C++, MicroPython, LoRa, BLE, PT100/MAX31865, bajo consumo y KiCad, con evidencia en proyectos públicos.'],
       ['Entrega y seguridad', 'Git/GitHub, Docker, Linux, pruebas automatizadas, autenticación, autorización, consultas preparadas, CSRF y limitación de solicitudes.'],
       ['IA aplicada', 'Flujos de trabajo con agentes, subagentes, skills, MCP, presupuestos de tokens, control de contexto y validación humana. No desarrollo modelos fundacionales.'],
@@ -30,7 +30,7 @@ const capabilities = es
   : [
       ['Backend', 'PHP, Python, Node.js, REST APIs, relational modeling, MySQL/MariaDB, PostgreSQL, and SQLite. Professional experience is described without disclosing internal systems.'],
       ['Frontend and TypeScript', 'JavaScript, TypeScript, React, Next.js, and Astro backed by Sensor Dashboard, the CEINTECCI outreach site, and this portfolio.'],
-      ['Python and data', 'Flask, pandas, NumPy, SciPy, and reproducible scripts for research, visualization, and data analysis.'],
+      ['Data engineering', 'Python, pandas, NumPy, SciPy, scikit-learn, dataset preparation, cross-session validation, and reproducible visualization.'],
       ['Electronics and IoT', 'ESP32, C/C++, MicroPython, LoRa, BLE, PT100/MAX31865, low-power design, and KiCad, with evidence in public projects.'],
       ['Delivery and security', 'Git/GitHub, Docker, Linux, automated tests, authentication, authorization, prepared statements, CSRF protection, and request limiting.'],
       ['Applied AI', 'Workflows with agents, subagents, skills, MCP, token budgets, context control, and human validation. I do not build foundation models.'],
@@ -56,13 +56,13 @@ const education = es
   ? [['Ingeniería Electrónica', 'Universidad ECCI, Bogotá · en curso'], ['Tecnólogo en Electrónica Industrial', 'Universidad ECCI, Bogotá · 2023']]
   : [['Electronic Engineering', 'Universidad ECCI, Bogotá · in progress'], ['Technologist in Industrial Electronics', 'Universidad ECCI, Bogotá · 2023']];
 ---
-<BaseLayout {lang} title={es ? 'Perfil profesional — David Puentes' : 'Professional profile — David Puentes'} description={es ? 'Desarrollador full-stack con experiencia profesional, electrónica, IoT e IA aplicada. CV descargable y proyectos públicos.' : 'Full-stack developer with professional experience, electronics, IoT, and applied AI. Downloadable CV and public projects.'} canonicalPath={`/${lang}/profile/`}>
+<BaseLayout {lang} title={es ? 'Perfil profesional — David Puentes' : 'Professional profile — David Puentes'} description={es ? 'Ingeniero de software e IoT orientado a datos e IA aplicada, con experiencia full-stack y proyectos públicos.' : 'Data and applied-AI-oriented software and IoT engineer with full-stack experience and public projects.'} canonicalPath={`/${lang}/profile/`}>
   <header class="profile-intro section">
     <p class="eyebrow">{es ? 'PERFIL PROFESIONAL' : 'PROFESSIONAL PROFILE'}</p>
-    <h1>{es ? 'Software, electrónica e IA con evidencia pública.' : 'Software, electronics, and AI with public evidence.'}</h1>
+    <h1>{es ? 'Datos e IA aplicada, desde el sensor hasta el producto.' : 'Data and applied AI, from sensor to product.'}</h1>
     <p>{es
-      ? 'Soy desarrollador full-stack con experiencia profesional en aplicaciones empresariales y formación en ingeniería electrónica. Trabajo desde firmware, sensores y comunicaciones hasta APIs y productos web. Mi experiencia laboral se presenta de forma general para respetar obligaciones de confidencialidad; los detalles técnicos demostrables provienen de proyectos públicos e independientes.'
-      : 'I am a full-stack developer with professional experience in business applications and an electronic-engineering background. I work from firmware, sensors, and communications through APIs and web products. My employment experience is presented generally to respect confidentiality obligations; demonstrable technical details come from public, independent projects.'}</p>
+      ? 'Soy ingeniero de software e IoT orientado a datos e IA aplicada, con experiencia full-stack en aplicaciones empresariales y formación en ingeniería electrónica. Trabajo desde firmware, sensores y adquisición hasta datasets, análisis, APIs y productos web. Mi experiencia laboral se presenta de forma general para respetar obligaciones de confidencialidad; los detalles técnicos demostrables provienen de proyectos públicos e independientes.'
+      : 'I am a data and applied-AI-oriented software and IoT engineer with full-stack experience in business applications and an electronic-engineering background. I work from firmware, sensors, and acquisition through datasets, analysis, APIs, and web products. My employment experience is presented generally to respect confidentiality obligations; demonstrable technical details come from public, independent projects.'}</p>
     <div class="profile-actions">
       <a class="button primary" href={cv} download>{es ? 'Descargar CV' : 'Download CV'} ↓</a>
       <a class="button secondary" href={email}>{es ? 'Escribir por correo' : 'Email me'}</a>
@@ -95,7 +95,7 @@ const education = es
 
   <section class="section">
     <p class="eyebrow">{es ? 'CAPACIDADES' : 'CAPABILITIES'}</p>
-    <h2>{es ? 'Del firmware al producto web' : 'From firmware to web product'}</h2>
+    <h2>{es ? 'Del sensor al dato y del dato al producto' : 'From sensor to data and from data to product'}</h2>
     <div class="skills-grid">{capabilities.map(([title, body]) => <article><h3>{title}</h3><p>{body}</p></article>)}</div>
   </section>
 

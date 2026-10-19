@@ -44,7 +44,7 @@ describe('published projects', () => {
   it('publishes only the approved independent projects', () => {
     const ordered = [...projects].sort((a, b) => a.order - b.order).map((project) => project.slug);
     expect(ordered).toEqual(['smartsense', 'gastronomic-voting-platform', 'project-h', 'sensor-dashboard', 'wifi-sensing', 'gas-dyson']);
-    expect(projects.filter((project) => project.featured).map((project) => project.slug).sort()).toEqual(['gastronomic-voting-platform', 'project-h', 'smartsense']);
+    expect(projects.filter((project) => project.featured).map((project) => project.slug).sort()).toEqual(['gastronomic-voting-platform', 'project-h', 'smartsense', 'wifi-sensing']);
     expect(new Set(projects.map((project) => project.order)).size).toBe(projects.length);
   });
 
@@ -78,6 +78,17 @@ describe('published projects', () => {
     expect(project?.evidenceUrl).toBeNull();
     expect(project?.limitations.es.join(' ')).toMatch(/datos ficticios/i);
     expect(project?.limitations.en.join(' ')).toMatch(/fictional data/i);
+  });
+
+  it('presents WiFi Sensing as reproducible data research without overstating detection', () => {
+    const project = projects.find((item) => item.slug === 'wifi-sensing');
+    expect(project?.featured).toBe(true);
+    expect(project?.visibility).toBe('development');
+    expect(project?.results.es.join(' ')).toMatch(/270 ventanas/i);
+    expect(project?.results.en.join(' ')).toMatch(/270 windows/i);
+    expect(project?.limitations.es.join(' ')).toMatch(/no respalda.*clasificaci[oó]n/i);
+    expect(project?.limitations.en.join(' ')).toMatch(/does not support.*classification/i);
+    expect(project?.technologies).toEqual(expect.arrayContaining(['NumPy', 'scikit-learn', 'PySide6']));
   });
 });
 

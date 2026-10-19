@@ -5,6 +5,18 @@
   },
   "items": [
     {
+      "id": "data-ai",
+      "title": { "es": "Ingeniería de datos e IA aplicada", "en": "Data engineering and applied AI" },
+      "pain": { "es": "Datos dispersos o experimentos sin un proceso reproducible para capturar, validar, analizar y convertir resultados en decisiones.", "en": "Scattered data or experiments without a reproducible process to capture, validate, analyze, and turn results into decisions." },
+      "deliverable": { "es": "Un pipeline medible de adquisición, limpieza, análisis, visualización y baseline, con supuestos, límites y métricas explícitas.", "en": "A measurable acquisition, cleaning, analysis, visualization, and baseline pipeline with explicit assumptions, limits, and metrics." },
+      "evidenceSlug": "wifi-sensing",
+      "proof": {
+        "es": ["WiFi Sensing documenta datasets etiquetados, ventanas equilibradas y validación entre sesiones.", "El baseline negativo se publica con sus métricas y limitaciones, sin convertirlo en una afirmación de detección."],
+        "en": ["WiFi Sensing documents labeled datasets, balanced windows, and cross-session validation.", "The negative baseline is published with its metrics and limitations instead of being presented as a detection claim."]
+      },
+      "pilotMetrics": { "es": ["Calidad y completitud de datos", "Reproducibilidad entre sesiones", "Desempeño frente a un baseline"], "en": ["Data quality and completeness", "Cross-session reproducibility", "Performance against a baseline"] }
+    },
+    {
       "id": "industrial-iot",
       "title": { "es": "Monitoreo IoT y sensórica", "en": "IoT monitoring and sensing" },
       "pain": { "es": "Equipos o variables físicas sin historial, alertas ni una forma sencilla de consultar las mediciones.", "en": "Equipment or physical variables without history, alerts, or a simple way to inspect measurements." },
@@ -17,28 +29,28 @@
       "pilotMetrics": { "es": ["Calidad de lectura frente a una referencia", "Disponibilidad del enlace", "Autonomía y continuidad del registro"], "en": ["Reading quality against a reference", "Link availability", "Battery life and recording continuity"] }
     },
     {
-      "id": "asset-security",
-      "title": { "es": "Seguridad de activos con electrónica", "en": "Electronic asset security" },
-      "pain": { "es": "Activos o espacios que necesitan detectar eventos y avisar local o remotamente sin una infraestructura compleja.", "en": "Assets or spaces that need to detect events and notify locally or remotely without complex infrastructure." },
-      "deliverable": { "es": "Un prototipo con nodos inalámbricos, gateway, alarma local, registro de eventos y notificaciones.", "en": "A prototype with wireless nodes, a gateway, local alarm, event history, and notifications." },
-      "evidenceSlug": "project-h",
+      "id": "secure-workflows",
+      "title": { "es": "Plataformas empresariales seguras", "en": "Secure business platforms" },
+      "pain": { "es": "Procesos con información dispersa, aprobaciones manuales y responsabilidades difíciles de rastrear.", "en": "Processes with scattered information, manual approvals, and responsibilities that are difficult to trace." },
+      "deliverable": { "es": "Una aplicación web diseñada desde cero con datos estructurados, perfiles por rol, reglas configurables, trazabilidad y panel autoadministrable.", "en": "A web application designed from scratch with structured data, role-based profiles, configurable rules, traceability, and a self-managed dashboard." },
+      "evidenceSlug": "gastronomic-voting-platform",
       "proof": {
-        "es": ["Project H utiliza nodos BLE, un maestro ESP32, alarma física y aplicación web con Firebase.", "El protocolo binario, los ACK y los timeouts están documentados como parte del prototipo público."],
-        "en": ["Project H uses BLE nodes, an ESP32 master, a physical alarm, and a Firebase-backed web application.", "The binary protocol, acknowledgements, and timeouts are documented as part of the public prototype."]
+        "es": ["Burguer Demo integra experiencia pública, reglas de negocio, autenticación, autorización y gestión de contenido por roles.", "El portafolio separa demostraciones independientes de cualquier información, código o proceso confidencial de terceros."],
+        "en": ["Burguer Demo combines a public experience, business rules, authentication, authorization, and role-based content management.", "The portfolio separates independent demonstrations from any third-party confidential information, code, or process."]
       },
-      "pilotMetrics": { "es": ["Tiempo entre evento y alerta", "Cobertura de nodos", "Tasa de eventos registrados"], "en": ["Event-to-alert time", "Node coverage", "Recorded-event rate"] }
+      "pilotMetrics": { "es": ["Tiempo de ciclo del proceso", "Errores y reprocesos", "Trazabilidad de acciones"], "en": ["Process cycle time", "Errors and rework", "Action traceability"] }
     },
     {
-      "id": "web-ai",
-      "title": { "es": "Aplicaciones web e IA asistida", "en": "Web applications and AI-assisted workflows" },
-      "pain": { "es": "Información dispersa, tareas repetitivas o servicios que necesitan una experiencia web clara y autoadministrable.", "en": "Scattered information, repetitive tasks, or services that need a clear, self-managed web experience." },
-      "deliverable": { "es": "Una aplicación web de alcance definido, con datos estructurados, controles de acceso y automatización evaluada caso por caso.", "en": "A scoped web application with structured data, access controls, and automation evaluated case by case." },
+      "id": "operational-telemetry",
+      "title": { "es": "Telemetría y alertas operacionales", "en": "Operational telemetry and alerts" },
+      "pain": { "es": "Variables distribuidas que necesitan llegar a una plataforma central con estado, historial y alertas configurables.", "en": "Distributed variables that need to reach a central platform with status, history, and configurable alerts." },
+      "deliverable": { "es": "Un piloto independiente con captura desde dispositivos, API, base de datos, visualización y reglas de alerta, preparado para evolucionar según la operación.", "en": "An independent pilot with device ingestion, API, database, visualization, and alert rules, prepared to evolve with operational needs." },
       "evidenceSlug": "sensor-dashboard",
       "proof": {
-        "es": ["Sensor Dashboard es una aplicación pública con API, PostgreSQL, Next.js, TypeScript y despliegue web.", "Este portafolio bilingüe está construido con Astro y React e incluye pruebas automatizadas de navegación y accesibilidad."],
-        "en": ["Sensor Dashboard is a public application with an API, PostgreSQL, Next.js, TypeScript, and web deployment.", "This bilingual portfolio is built with Astro and React and includes automated navigation and accessibility tests."]
+        "es": ["Sensor Dashboard implementa una cadena completa desde dispositivos LoRa hasta API, PostgreSQL y frontend web.", "SmartSense demuestra almacenamiento histórico, umbrales y alarmas a partir de mediciones físicas."],
+        "en": ["Sensor Dashboard implements a complete chain from LoRa devices through an API, PostgreSQL, and a web frontend.", "SmartSense demonstrates historical storage, thresholds, and alarms from physical measurements."]
       },
-      "pilotMetrics": { "es": ["Tiempo ahorrado", "Errores reducidos", "Tareas completadas correctamente"], "en": ["Time saved", "Errors reduced", "Tasks completed successfully"] }
+      "pilotMetrics": { "es": ["Latencia de actualización", "Continuidad del registro", "Alertas entregadas correctamente"], "en": ["Update latency", "Recording continuity", "Correctly delivered alerts"] }
     }
   ]
 }

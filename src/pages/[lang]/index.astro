@@ -14,14 +14,14 @@ const projects = (await getProjects(lang)).filter((project) => project.featured)
 
 const experience = es
   ? [
-      ['Full-stack', 'Experiencia profesional', 'Análisis, implementación, bases de datos, seguridad, despliegue y soporte de aplicaciones empresariales, respetando la confidencialidad de productos y clientes.'],
-      ['Electrónica', 'Del sensor a la interfaz', 'Formación y proyectos públicos con ESP32, LoRa, BLE, adquisición de señales, APIs y dashboards web.'],
-      ['IA', 'Flujos con supervisión humana', 'Uso de agentes, subagentes, skills, MCP y presupuestos de tokens para investigar, construir y revisar software.'],
+      ['Data & AI', 'Datos con método experimental', 'Adquisición, limpieza, visualización, baselines y validación entre sesiones; resultados y límites publicados de forma explícita.'],
+      ['IoT', 'Del sensor al dataset', 'Proyectos públicos con ESP32, LoRa, BLE, CSI de Wi-Fi, adquisición de señales, APIs y dashboards web.'],
+      ['Full-stack', 'Del dato al producto', 'Experiencia profesional en bases de datos, seguridad, interfaces y flujos empresariales, descrita respetando la confidencialidad.'],
     ]
   : [
-      ['Full-stack', 'Professional experience', 'Analysis, implementation, databases, security, deployment, and support for business applications, while respecting product and client confidentiality.'],
-      ['Electronics', 'From sensor to interface', 'Training and public projects with ESP32, LoRa, BLE, signal acquisition, APIs, and web dashboards.'],
-      ['AI', 'Human-supervised workflows', 'Agents, subagents, skills, MCP, and token budgets used to research, build, and review software.'],
+      ['Data & AI', 'Data with experimental discipline', 'Acquisition, cleaning, visualization, baselines, and cross-session validation with outcomes and limits published explicitly.'],
+      ['IoT', 'From sensor to dataset', 'Public projects with ESP32, LoRa, BLE, Wi-Fi CSI, signal acquisition, APIs, and web dashboards.'],
+      ['Full-stack', 'From data to product', 'Professional experience with databases, security, interfaces, and business workflows, described with confidentiality in mind.'],
     ];
 
 const steps = es
@@ -38,7 +38,7 @@ const steps = es
       ['04', 'Measure', 'I validate the outcome against the agreed metric and document limits and next steps.'],
     ];
 ---
-<BaseLayout {lang} title={es ? 'Inicio' : 'Home'} description={es ? 'David Puentes: desarrollador full-stack con formación en ingeniería electrónica, proyectos públicos de IoT e IA aplicada con supervisión humana.' : 'David Puentes: full-stack developer with an electronic-engineering background, public IoT projects, and human-supervised applied AI.'} canonicalPath={`/${lang}/`}>
+<BaseLayout {lang} title={es ? 'Inicio' : 'Home'} description={es ? 'David Puentes: ingeniería de datos e IA aplicada con experiencia full-stack, electrónica y proyectos públicos de IoT.' : 'David Puentes: data engineering and applied AI with full-stack experience, electronics, and public IoT projects.'} canonicalPath={`/${lang}/`}>
   <SpaceHero {lang} />
   <MetricStrip {lang} />
   <AudienceGateway {lang} />
@@ -53,7 +53,7 @@ const steps = es
 
   <section class="section">
     <p class="eyebrow">{es ? 'PERFIL' : 'PROFILE'}</p>
-    <h2>{es ? 'Software, electrónica e IA aplicada' : 'Software, electronics, and applied AI'}</h2>
+    <h2>{es ? 'Datos, IA, IoT y software de extremo a extremo' : 'Data, AI, IoT, and end-to-end software'}</h2>
     <div class="skills-grid three">
       {experience.map(([value, label, body]) => <article><strong>{value}</strong><h3>{label}</h3><p>{body}</p></article>)}
     </div>

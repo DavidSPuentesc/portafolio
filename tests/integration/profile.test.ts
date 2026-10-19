@@ -5,6 +5,8 @@ import AgenticWorkflow from '../../src/components/ai/AgenticWorkflow.astro';
 import ExperienceTimeline from '../../src/components/profile/ExperienceTimeline.astro';
 
 const source = readFileSync('src/pages/[lang]/profile.astro', 'utf8');
+const cvEsSource = readFileSync('scripts/generate-cv-es.mjs', 'utf8');
+const cvEnSource = readFileSync('scripts/generate-cv-en.mjs', 'utf8');
 
 it('uses calibrated agentic-AI language and language-matched CVs', () => {
   expect(source).toContain('AgenticWorkflow');
@@ -19,6 +21,13 @@ it('offers contact actions and states that employment details are confidential',
   expect(source).toContain('linkedin.com/in/');
   expect(source).toContain('obligaciones de confidencialidad');
   expect(source).toContain('confidentiality obligations');
+});
+
+it('keeps both downloadable CVs aligned with the data and AI positioning', () => {
+  expect(cvEsSource).toContain('Ingeniería de datos e IA aplicada');
+  expect(cvEnSource).toContain('Data Engineering and Applied AI');
+  expect(cvEsSource).toContain('WiFi Sensing');
+  expect(cvEnSource).toContain('WiFi Sensing');
 });
 
 it('describes a generic, testable delivery process', () => {

@@ -9,7 +9,8 @@ test('Spanish business visitor reaches proof, sectors, the SmartSense evidence a
   await expect(page.getByText('Industria y manufactura', { exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: /enviar mensaje/i })).toBeVisible();
 
-  await page.getByRole('link', { name: /ver el caso de referencia/i }).first().click();
+  const iotSolution = page.getByRole('heading', { name: /monitoreo iot y sensórica/i }).locator('..');
+  await iotSolution.getByRole('link', { name: /ver el caso de referencia/i }).click();
   await expect(page).toHaveURL(/\/es\/projects\/smartsense\//);
   await expect(page.getByText(/51\.338 muestras/).first()).toBeVisible();
   await expect(page.getByText(/cota inferior/i).first()).toBeVisible();

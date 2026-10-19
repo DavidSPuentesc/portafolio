@@ -1,65 +1,71 @@
 {
   "slug": "wifi-sensing",
   "order": 8,
-  "featured": false,
+  "featured": true,
   "visibility": "development",
   "title": { "es": "WiFi Sensing", "en": "WiFi Sensing" },
   "summary": {
-    "es": "Investigación en curso sobre detección de presencia y movimiento sin cámaras usando CSI de Wi-Fi en ESP32-S3; hoy en etapa de validación de hardware y ESP-IDF.",
-    "en": "Ongoing research on camera-free presence and movement detection using Wi-Fi CSI on ESP32-S3; currently at the hardware and ESP-IDF validation stage."
+    "es": "Investigación reproducible sobre sensado de presencia y movimiento sin cámaras mediante CSI de Wi-Fi, ESP32-S3 y análisis de datos entre sesiones.",
+    "en": "Reproducible research into camera-free presence and movement sensing using Wi-Fi CSI, ESP32-S3, and cross-session data analysis."
   },
-  "seoTitle": { "es": "Investigación Wi-Fi CSI con ESP32-S3", "en": "Wi-Fi CSI research with ESP32-S3" },
-  "seoDescription": { "es": "Experimentos reproducibles con ESP32-S3 y ESP-IDF; solo se afirma lo verificado.", "en": "Reproducible experiments with ESP32-S3 and ESP-IDF; only verified results are claimed." },
+  "seoTitle": { "es": "WiFi Sensing: adquisición y análisis reproducible de CSI", "en": "WiFi Sensing: reproducible CSI acquisition and analysis" },
+  "seoDescription": { "es": "Firmware ESP-IDF, datasets etiquetados, visualización y validación entre sesiones sin exagerar los resultados.", "en": "ESP-IDF firmware, labeled datasets, visualization, and cross-session validation without overstating results." },
   "role": {
-    "es": "Diseño experimental, firmware en ESP-IDF y procesamiento planificado en Python.",
-    "en": "Experimental design, ESP-IDF firmware, and planned Python processing."
+    "es": "Diseño experimental, firmware ESP-IDF, adquisición de datos, visualización, análisis y baseline de clasificación.",
+    "en": "Experimental design, ESP-IDF firmware, data acquisition, visualization, analysis, and classification baseline."
   },
   "sector": { "es": "Investigación personal", "en": "Personal research" },
   "period": { "es": "2026 — en curso", "en": "2026 — ongoing" },
   "problem": {
-    "es": "Explorar si la información de estado de canal (CSI) de Wi-Fi permite detectar presencia y movimiento de forma barata y sin cámaras, respetando la privacidad.",
-    "en": "Explore whether Wi-Fi channel state information (CSI) can detect presence and movement cheaply and without cameras, while preserving privacy."
+    "es": "Evaluar si las variaciones del canal Wi-Fi permiten diferenciar espacios vacíos, ocupados y con movimiento mediante hardware económico y sin cámaras ni micrófonos.",
+    "en": "Evaluate whether Wi-Fi channel variations can distinguish empty, occupied, and moving conditions with affordable hardware and without cameras or microphones."
   },
   "architecture": {
-    "es": "ESP32-S3-DevKitC-1 (16 MB flash, 8 MB PSRAM) con ESP-IDF v6 → Captura de CSI y transporte con búfer (planificado) → Backend Python/FastAPI para filtrado, datasets y clasificación (planificado)",
-    "en": "ESP32-S3-DevKitC-1 (16 MB flash, 8 MB PSRAM) on ESP-IDF v6 → CSI capture and buffered transport (planned) → Python/FastAPI backend for filtering, datasets, and classification (planned)"
+    "es": "ESP32-S3 + ESP-IDF → captura CSI filtrada y referencia independiente LD2410C → sesiones CSV etiquetadas → visualizador local en vivo/replay → preparación de ventanas y baseline en Python con validación entre sesiones",
+    "en": "ESP32-S3 + ESP-IDF → filtered CSI capture and independent LD2410C reference → labeled CSV sessions → local live/replay visualizer → window preparation and Python baseline with cross-session validation"
   },
   "decisions": {
     "es": [
-      "Disciplina experimental: cada función de sensado documenta hipótesis, método de captura, medición, resultado esperado y resultado observado.",
-      "Separar en el repositorio lo verificado de la hoja de ruta: la precisión de localización solo se reportará con mediciones repetibles.",
-      "Firmware modular por responsabilidades (Wi-Fi, captura CSI, procesamiento ligero, transporte, configuración, OTA y diagnóstico)."
+      "Conservar los buffers CSI completos con valores con signo y separar la referencia del radar de las entradas utilizadas por el modelo.",
+      "Reservar sesiones completas para prueba, evitando evaluar ventanas de la misma captura usada durante el entrenamiento.",
+      "Documentar resultados negativos y diseñar un experimento unicast controlado antes de aumentar la complejidad del modelo."
     ],
     "en": [
-      "Experimental discipline: every sensing feature documents its hypothesis, capture method, measurement, expected result, and observed result.",
-      "Separate verified results from the roadmap in the repository: localization accuracy will be reported only after repeatable measurements.",
-      "Modular firmware by responsibility (Wi-Fi, CSI capture, lightweight processing, transport, configuration, OTA, and diagnostics)."
+      "Preserve complete signed CSI buffers and keep radar reference data separate from model inputs.",
+      "Hold out complete sessions for testing instead of evaluating windows from captures used for training.",
+      "Document negative results and design a controlled unicast experiment before increasing model complexity."
     ]
   },
   "results": {
     "es": [
-      "Hardware y cadena de herramientas validados: primer experimento reproducible (LED RGB direccionable por RMT) en ESP-IDF v6.0.2.",
-      "Estructura de investigación y licencia Apache 2.0 publicadas."
+      "Firmware modular que captura CSI real en ESP32-S3, registra diagnósticos y ofrece modos separados para observación y adquisición de datasets.",
+      "Pipeline reproducible con tres sesiones independientes por clase y 270 ventanas equilibradas de cinco segundos.",
+      "Visualizador PySide6 para señal CSI y referencia LD2410C, con reproducción de sesiones y adquisición serial en vivo.",
+      "Baseline CSI-only con accuracy agregada de 24,4 % y macro F1 de 15,9 %, reportado como resultado negativo frente al azar de tres clases (33,3 %)."
     ],
     "en": [
-      "Hardware and toolchain validated: first reproducible experiment (addressable RGB LED over RMT) on ESP-IDF v6.0.2.",
-      "Research structure and Apache 2.0 license published."
+      "Modular firmware that captures real CSI on ESP32-S3, reports diagnostics, and separates observation from full-dataset acquisition modes.",
+      "Reproducible pipeline with three independent sessions per class and 270 windows, balanced into five-second segments.",
+      "PySide6 visualizer for CSI signal and LD2410C reference data, supporting session replay and live serial acquisition.",
+      "CSI-only baseline with 24.4% aggregate accuracy and 15.9% macro F1, reported as a negative result against 33.3% three-class chance."
     ]
   },
   "limitations": {
     "es": [
-      "Captura de CSI, detección de presencia, clasificación de movimiento y localización siguen en la hoja de ruta: sin métricas de precisión.",
-      "Proyecto personal de investigación, sin validación en campo."
+      "El baseline actual no respalda una clasificación fiable de presencia o movimiento ni permite afirmar localización.",
+      "El 97,8 % de las muestras evaluadas correspondía a tráfico broadcast; el siguiente paso es repetir la adquisición con tráfico unicast controlado.",
+      "El experimento unicast está implementado y documentado, pero su validación física permanece pendiente de una sesión con la red configurada."
     ],
     "en": [
-      "CSI capture, presence detection, movement classification, and localization remain on the roadmap: no accuracy metrics.",
-      "Personal research project, with no field validation."
+      "The current baseline does not support reliable presence or movement classification and does not establish localization.",
+      "Broadcast traffic accounted for 97.8% of evaluated samples; the next step is to repeat acquisition with controlled unicast traffic.",
+      "The unicast experiment is implemented and documented, but physical validation still requires a session with the network configured."
     ]
   },
-  "technologies": ["ESP32-S3", "ESP-IDF", "C", "Wi-Fi CSI", "Python", "FastAPI (planned)"],
+  "technologies": ["ESP32-S3", "ESP-IDF", "C", "Wi-Fi CSI", "Python", "NumPy", "scikit-learn", "PySide6", "pyqtgraph"],
   "metrics": [],
   "images": [],
-  "evidenceUrl": "https://github.com/DavidSPuentesc/WifiSensing",
+  "evidenceUrl": "https://github.com/DavidSPuentesc/WifiSensing/pull/2",
   "repositoryUrl": "https://github.com/DavidSPuentesc/WifiSensing",
   "repositoryLabel": null,
   "demoUrl": null
