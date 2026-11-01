@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SpaceHero from '../../components/home/SpaceHero.astro';
 import MetricStrip from '../../components/home/MetricStrip.astro';
+import EngineeringDepth from '../../components/home/EngineeringDepth.astro';
 import AudienceGateway from '../../components/home/AudienceGateway.astro';
 import ProjectCard from '../../components/projects/ProjectCard.astro';
 import { getProjects } from '../../lib/content';
@@ -41,6 +42,7 @@ const steps = es
 <BaseLayout {lang} title={es ? 'Inicio' : 'Home'} description={es ? 'David Puentes: ingeniería de datos e IA aplicada con experiencia full-stack, electrónica y proyectos públicos de IoT.' : 'David Puentes: data engineering and applied AI with full-stack experience, electronics, and public IoT projects.'} canonicalPath={`/${lang}/`}>
   <SpaceHero {lang} />
   <MetricStrip {lang} />
+  <EngineeringDepth {lang} />
   <AudienceGateway {lang} />
 
   <section class="section">

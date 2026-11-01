@@ -12,15 +12,15 @@ const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><style>
 <h2>Professional Experience</h2>
 <div class="row"><h3>Full-Stack Developer · Private technology-solutions company</h3><span>Aug 2025 — 2026 · Colombia</span></div>
 <ul>
-<li>Developed and maintained full-stack web applications as part of a technology team.</li>
-<li>Worked with interfaces, APIs, relational databases, authentication, authorization, and secure-development practices.</li>
-<li>Contributed to requirements discovery, implementation, deployment, support, and continuous improvement of business software.</li>
+<li>Built and rebuilt modules for a multi-company platform: contractors, document requirements, access, visits, work permits, audits, and action plans.</li>
+<li>Integrated mobile/GPS telemetry, real-time location, geofences, and alerts; relational modeling, roles, authentication, MVC, and SOLID.</li>
+<li>Modernized navigation and security; implemented, deployed, and evolved business applications.</li>
 </ul>
 <div class="row"><h3>Research and Development Developer · CEINTECCI</h3><span>2023 — 2025 · Colombia</span></div>
 <ul>
 <li>Conducted applied work in scientific software, electronics, sensing, wireless communications, and IoT.</li>
 <li>Developed reproducible processes for data acquisition, cleaning, analysis, and visualization.</li>
-<li>Contributed to innovation work with a granted patent and science outreach.</li>
+<li>Co-author of GenATC, registered scientific software: genetic algorithms and processing of approximately two million syllables.</li>
 </ul>
 
 <h2>Selected Public Projects</h2>

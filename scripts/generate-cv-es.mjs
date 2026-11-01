@@ -12,15 +12,15 @@ const html = `<!doctype html><html lang="es"><head><meta charset="utf-8"><style>
 <h2>Experiencia profesional</h2>
 <div class="row"><h3>Desarrollador Full-Stack · Empresa privada de soluciones tecnológicas</h3><span>Ago. 2025 — 2026 · Colombia</span></div>
 <ul>
-<li>Desarrollo y mantenimiento de aplicaciones web full-stack dentro de un equipo de tecnología.</li>
-<li>Trabajo con interfaces, APIs, bases de datos relacionales, autenticación, autorización y prácticas de desarrollo seguro.</li>
-<li>Participación en requerimientos, implementación, despliegue, soporte y mejora continua de software empresarial.</li>
+<li>Desarrollo desde cero y reconstrucción de módulos de una plataforma multiempresa: contratistas, requisitos documentales, ingresos, visitas, permisos de trabajo, auditorías y planes de acción.</li>
+<li>Integración de telemetría móvil/GPS, ubicación en tiempo real, geozonas y alertas; modelado relacional, roles, autenticación, MVC y SOLID.</li>
+<li>Modernización de navegación y seguridad; implementación, despliegue y evolución de aplicaciones empresariales.</li>
 </ul>
 <div class="row"><h3>Investigador y desarrollador · CEINTECCI</h3><span>2023 — 2025 · Colombia</span></div>
 <ul>
 <li>Investigación aplicada en software científico, electrónica, sensórica, comunicaciones inalámbricas e IoT.</li>
 <li>Desarrollo de procesos reproducibles para adquisición, limpieza, análisis y visualización de datos.</li>
-<li>Participación en trabajo de innovación con patente concedida y divulgación científica.</li>
+<li>Coautor de GenATC, software científico registrado: algoritmos genéticos y procesamiento de aproximadamente dos millones de sílabas.</li>
 </ul>
 
 <h2>Proyectos públicos seleccionados</h2>

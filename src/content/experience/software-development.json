@@ -16,14 +16,20 @@
   },
   "highlights": {
     "es": [
-      "Desarrollo full-stack de interfaces responsivas, APIs y flujos de negocio para aplicaciones web empresariales.",
-      "Modelado de datos, autenticación y autorización por roles, controles de seguridad y prácticas de desarrollo seguro.",
-      "Participación en levantamiento de requerimientos, pruebas, despliegue, soporte y mejora continua de software."
+      "Desarrollo de módulos desde cero y reconstrucción de módulos existentes dentro de una plataforma empresarial multiempresa, con interfaces, backend, modelado de datos y despliegue.",
+      "Implementación de gestión de contratistas y subcontratistas, requisitos por actividad, validación documental y credenciales de ingreso; modelado de relaciones y consolidación de requisitos compartidos.",
+      "Desarrollo de flujos de visitas y permisos de trabajo con responsables por etapa, aprobaciones, notificaciones por correo y trazabilidad; conexión con auditorías y planes de acción.",
+      "Integración de telemetría de vehículos desde aplicaciones móviles y dispositivos GPS: ubicación en tiempo real, geozonas, alertas de velocidad y configuración por empresa.",
+      "Modernización de navegación y experiencia de usuario; refuerzo de autenticación, autorización por roles y limitación de solicitudes, con separación de responsabilidades mediante MVC y principios SOLID.",
+      "Uso de IA y flujos con agentes para investigación e implementación, con control de contexto, presupuesto de tokens y revisión humana. La descripción preserva la confidencialidad de sistemas y organizaciones."
     ],
     "en": [
-      "Full-stack development of responsive interfaces, APIs, and business workflows for enterprise web applications.",
-      "Data modeling, authentication and role-based authorization, security controls, and secure-development practices.",
-      "Contributed to requirements discovery, testing, deployment, support, and continuous software improvement."
+      "Built modules from scratch and rebuilt existing modules within a multi-company business platform, covering interfaces, backend, data modeling, and deployment.",
+      "Implemented contractor and subcontractor administration, activity-specific requirements, document validation, and access credentials; modeled relationships and consolidated shared requirements.",
+      "Developed visitor and work-permit workflows with stage owners, approvals, email notifications, and traceability, connected to audits and action plans.",
+      "Integrated vehicle telemetry from mobile applications and GPS devices: real-time location, geofences, speed alerts, and company-specific configuration.",
+      "Modernized navigation and user experience; strengthened authentication, role-based authorization, and request limiting, using MVC and SOLID principles to separate responsibilities.",
+      "Used AI and agent workflows for research and implementation, with context control, token budgets, and human review. This description preserves system and organizational confidentiality."
     ]
   },
   "metrics": []

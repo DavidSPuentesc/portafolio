@@ -43,8 +43,8 @@ describe('published projects', () => {
 
   it('publishes only the approved independent projects', () => {
     const ordered = [...projects].sort((a, b) => a.order - b.order).map((project) => project.slug);
-    expect(ordered).toEqual(['smartsense', 'gastronomic-voting-platform', 'project-h', 'sensor-dashboard', 'wifi-sensing', 'gas-dyson']);
-    expect(projects.filter((project) => project.featured).map((project) => project.slug).sort()).toEqual(['gastronomic-voting-platform', 'project-h', 'smartsense', 'wifi-sensing']);
+    expect(ordered).toEqual(['smartsense', 'genatc', 'gastronomic-voting-platform', 'project-h', 'sensor-dashboard', 'wifi-sensing', 'gas-dyson']);
+    expect(projects.filter((project) => project.featured).map((project) => project.slug).sort()).toEqual(['gas-dyson', 'gastronomic-voting-platform', 'genatc', 'project-h', 'smartsense', 'wifi-sensing']);
     expect(new Set(projects.map((project) => project.order)).size).toBe(projects.length);
   });
 

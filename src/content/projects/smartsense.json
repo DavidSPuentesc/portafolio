@@ -5,8 +5,8 @@
   "visibility": "public",
   "title": { "es": "SmartSense Monitoring", "en": "SmartSense Monitoring" },
   "summary": {
-    "es": "Monitoreo de temperatura superficial de equipos industriales con PT100, ESP32-C6 y LoRa: 3 nodos en planta, 51.338 muestras y hasta 32 días de registro con dashboard histórico local.",
-    "en": "Surface-temperature monitoring of industrial equipment with PT100, ESP32-C6, and LoRa: 3 nodes in a plant, 51,338 samples, and up to 32 days of records with a local historical dashboard."
+    "es": "Sistema industrial de monitoreo térmico diseñado desde la electrónica hasta el análisis de datos: instrumentación PT100, firmware de bajo consumo, comunicación LoRa, gateway autónomo, almacenamiento y dashboard local. Validado en planta con 51.338 mediciones.",
+    "en": "Industrial thermal monitoring built from electronics through data analysis: PT100 instrumentation, low-power firmware, LoRa communication, an autonomous gateway, storage, and a local dashboard. Validated in a plant with 51,338 measurements."
   },
   "seoTitle": { "es": "SmartSense: monitoreo térmico industrial con LoRa", "en": "SmartSense: industrial thermal monitoring with LoRa" },
   "seoDescription": { "es": "Caso IoT industrial con evidencia de campo: 3 nodos PT100, 51.338 muestras, PDR estimado 95,3–96,6 %, enlace a 688 m. Hardware abierto.", "en": "Industrial IoT case with field evidence: 3 PT100 nodes, 51,338 samples, estimated PDR 95.3–96.6%, 688 m link. Open hardware." },

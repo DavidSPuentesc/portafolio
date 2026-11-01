@@ -19,8 +19,9 @@ it('links headline metrics only to public project evidence', async () => {
   expect(html).toContain('href="/es/projects/smartsense/"');
   expect(html).toContain('href="/es/projects/sensor-dashboard/"');
   expect(html).toContain('<strong>51K+</strong>');
-  expect(html).toContain('<strong>32</strong>');
-  expect(html).toContain('<strong>3</strong>');
+  expect(html).toContain('<strong>~2M</strong>');
+  expect(html).toContain('<strong>1</strong>');
+  expect(html).toContain('href="/es/projects/genatc/"');
   expect(html).toContain('<strong>E2E</strong>');
 });
 

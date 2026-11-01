@@ -11,8 +11,8 @@
       "deliverable": { "es": "Un pipeline medible de adquisición, limpieza, análisis, visualización y baseline, con supuestos, límites y métricas explícitas.", "en": "A measurable acquisition, cleaning, analysis, visualization, and baseline pipeline with explicit assumptions, limits, and metrics." },
       "evidenceSlug": "wifi-sensing",
       "proof": {
-        "es": ["WiFi Sensing documenta datasets etiquetados, ventanas equilibradas y validación entre sesiones.", "El baseline negativo se publica con sus métricas y limitaciones, sin convertirlo en una afirmación de detección."],
-        "en": ["WiFi Sensing documents labeled datasets, balanced windows, and cross-session validation.", "The negative baseline is published with its metrics and limitations instead of being presented as a detection claim."]
+        "es": ["GenATC reúne preparación de corpus, procesamiento de aproximadamente dos millones de sílabas y optimización con algoritmos genéticos.", "La simulación de partículas aplica Monte Carlo y restricciones geométricas; WiFi Sensing añade adquisición experimental y validación entre sesiones."],
+        "en": ["GenATC combines corpus preparation, processing of approximately two million syllables, and genetic algorithm optimization.", "Particle simulation applies Monte Carlo and geometric constraints; WiFi Sensing adds experimental acquisition and cross-session validation."]
       },
       "pilotMetrics": { "es": ["Calidad y completitud de datos", "Reproducibilidad entre sesiones", "Desempeño frente a un baseline"], "en": ["Data quality and completeness", "Cross-session reproducibility", "Performance against a baseline"] }
     },

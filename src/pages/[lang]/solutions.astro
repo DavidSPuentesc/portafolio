@@ -39,6 +39,17 @@ const pilot = es
   </header>
 
   <section class="section">
+    <p class="eyebrow">NUVETRION · {es ? 'INGENIERÍA APLICADA AL NEGOCIO' : 'ENGINEERING FOR BUSINESS'}</p>
+    <h2>{es ? 'Seguridad industrial, automatización y sistemas conectados.' : 'Industrial security, automation, and connected systems.'}</h2>
+    <p class="section-lede">{es ? 'Mi portafolio empresarial reúne soluciones de electrónica, software y datos para operaciones reales, con un alcance distinto según su madurez.' : 'My business portfolio brings electronics, software, and data solutions to real operations, with scope defined by their maturity.'}</p>
+    <div class="skills-grid three">
+      <article><p class="eyebrow">{es ? 'IMPLEMENTACIÓN INDUSTRIAL' : 'INDUSTRIAL IMPLEMENTATION'}</p><h3>{es ? 'Alarmas inalámbricas distribuidas' : 'Distributed wireless alarms'}</h3><p>{es ? 'Solución comercializada e instalada en entorno industrial, según el portafolio Nuvetrion: paneles por zona, alertas configurables y supervisión centralizada de conectividad, estados y eventos.' : 'A solution sold and installed in an industrial environment, as documented in the Nuvetrion portfolio: zoned panels, configurable alerts, and central supervision of connectivity, states, and events.'}</p></article>
+      <article><p class="eyebrow">{es ? 'EXPERIENCIA DE DESARROLLO' : 'DEVELOPMENT EXPERIENCE'}</p><h3>{es ? 'Plataformas y automatización empresarial' : 'Business platforms and automation'}</h3><p>{es ? 'Experiencia integrando requisitos documentales, contratistas, visitas, permisos, aprobaciones, auditorías y planes de acción en sistemas con perfiles y permisos por rol. Desarrollo de nuevas soluciones a partir de requerimientos propios de cada operación.' : 'Experience integrating document requirements, contractors, visits, permits, approvals, audits, and action plans in systems with role-based profiles and permissions. New solutions are developed from each operation’s own requirements.'}</p></article>
+      <article><p class="eyebrow">{es ? 'SOLUCIONES A DESARROLLAR Y VALIDAR' : 'SOLUTIONS TO DEVELOP AND VALIDATE'}</p><h3>{es ? 'Visión artificial y analítica avanzada' : 'Computer vision and advanced analytics'}</h3><p>{es ? 'Propuestas de inspección visual, control de accesos, calidad de datos, detección de anomalías, revisión documental asistida y pronóstico de demanda logística. Cada aplicación requiere datos autorizados, criterios de evaluación y validación propia.' : 'Proposals for visual inspection, access control, data quality, anomaly detection, assisted document review, and logistics demand forecasting. Each application requires authorized data, evaluation criteria, and its own validation.'}</p></article>
+    </div>
+  </section>
+
+  <section class="section">
     <p class="eyebrow">{es ? 'LÍNEAS DE TRABAJO' : 'LINES OF WORK'}</p>
     <h2>{es ? 'Qué puedo construir y qué evidencia lo respalda' : 'What I can build and the evidence behind it'}</h2>
     <div class="solution-grid">{solutions.map((solution) => <SolutionCard {solution} {lang} />)}</div>

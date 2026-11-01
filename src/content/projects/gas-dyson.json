@@ -1,12 +1,12 @@
 {
   "slug": "gas-dyson",
   "order": 9,
-  "featured": false,
+  "featured": true,
   "visibility": "development",
   "title": { "es": "Gas de Dyson 1D", "en": "Dyson Gas 1D" },
   "summary": {
-    "es": "Simulación Monte Carlo (Metropolis-Hastings) de un gas de Dyson unidimensional: partículas cargadas con restricciones geométricas, visualización animada y distribución angular.",
-    "en": "Monte Carlo (Metropolis-Hastings) simulation of a one-dimensional Dyson gas: charged particles under geometric constraints, animated visualization, and angular distribution."
+    "es": "Computación científica en Python para estudiar partículas cargadas confinadas: cálculo de energía de interacción, muestreo Monte Carlo con Metropolis-Hastings, restricciones geométricas, detección de solapamientos con cKDTree y análisis de distribuciones angulares.",
+    "en": "Scientific computing in Python to study confined charged particles: interaction-energy calculations, Metropolis-Hastings Monte Carlo sampling, geometric constraints, cKDTree overlap detection, and angular-distribution analysis."
   },
   "seoTitle": { "es": "Gas de Dyson 1D: Monte Carlo en Python", "en": "Dyson Gas 1D: Monte Carlo in Python" },
   "seoDescription": { "es": "Computación científica aplicada a un modelo de física estadística.", "en": "Scientific computing applied to a statistical-physics model." },
@@ -33,12 +33,14 @@
   },
   "results": {
     "es": [
-      "Simulación animada y distribución angular de las partículas.",
-      "Respalda el perfil de computación científica (NumPy/SciPy) junto a GenACT."
+      "Implementación del modelo de interacción y del criterio de aceptación Metropolis-Hastings, conservando restricciones de barrera angular y exclusión de volumen.",
+      "Búsqueda espacial con cKDTree para detectar solapamientos; registro de configuraciones aceptadas y estimación de la densidad angular normalizada.",
+      "Herramientas de visualización para inspeccionar la evolución del sistema y contrastar configuraciones y distribuciones."
     ],
     "en": [
-      "Animated simulation and angular distribution of the particles.",
-      "Backs the scientific-computing profile (NumPy/SciPy) alongside GenACT."
+      "Implementation of the interaction model and Metropolis-Hastings acceptance criterion while preserving angular-barrier and excluded-volume constraints.",
+      "Spatial search with cKDTree for overlap detection; accepted-configuration recording and normalized angular-density estimation.",
+      "Visualization tools to inspect system evolution and compare configurations and distributions."
     ]
   },
   "limitations": {

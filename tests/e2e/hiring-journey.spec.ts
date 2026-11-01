@@ -10,7 +10,7 @@ test('English hiring visitor reaches the matching CV, public evidence and contac
   await expect(page.getByText(/human validation/i).first()).toBeVisible();
   await expect(page.getByRole('heading', { name: /how i work/i })).toBeVisible();
   await expect(page.getByText(/confidentiality obligations/i).first()).toBeVisible();
-  await expect(page.getByText(/patent granted/i).first()).toBeVisible();
+  await expect(page.getByText(/registered software work/i).first()).toBeVisible();
 
   await page.goto('/en/projects/sensor-dashboard/');
   await expect(page.getByRole('heading', { level: 1 })).toContainText(/sensor dashboard/i);
