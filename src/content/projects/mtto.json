@@ -1,0 +1,197 @@
+{
+  "slug": "mtto",
+  "order": 3,
+  "featured": true,
+  "visibility": "development",
+  "title": {
+    "es": "MTTO: gestión de mantenimiento en planta",
+    "en": "MTTO: plant maintenance management"
+  },
+  "summary": {
+    "es": "PWA en tiempo real que reemplaza los reportes de fallas por WhatsApp: tickets con fotos anotadas, asignación por persona o área, visto bueno final, avisos y reuniones, rondas de temperatura de equipos y un dashboard con reporte por IA para gerencia.",
+    "en": "Real-time PWA that replaces WhatsApp failure reports: tickets with annotated photos, assignment by person or area, a final sign-off, announcements and meetings, equipment temperature rounds, and a dashboard with an AI report for management."
+  },
+  "seoTitle": {
+    "es": "MTTO: PWA de mantenimiento con React y Firebase",
+    "en": "MTTO: maintenance PWA with React and Firebase"
+  },
+  "seoDescription": {
+    "es": "Piloto de gestión de mantenimiento industrial: tickets con fotos anotadas, flujo de estados con visto bueno, temperaturas de equipos y reportes con IA, sobre React, Firestore y reglas de seguridad verificadas.",
+    "en": "Industrial maintenance management pilot: tickets with annotated photos, a status flow with sign-off, equipment temperatures, and AI reports, built on React, Firestore, and verified security rules."
+  },
+  "role": {
+    "es": "Diseño y desarrollo de extremo a extremo: modelo de datos, flujo de estados, reglas de seguridad de Firestore, interfaz móvil, editor de fotos, dashboard, pruebas y despliegue.",
+    "en": "End-to-end design and development: data model, status flow, Firestore security rules, mobile interface, photo editor, dashboard, tests, and deployment."
+  },
+  "sector": {
+    "es": "Mantenimiento industrial · área de empaque",
+    "en": "Industrial maintenance · packing area"
+  },
+  "period": {
+    "es": "2026 — piloto en curso",
+    "en": "2026 — pilot in progress"
+  },
+  "problem": {
+    "es": "Las fallas se reportaban por WhatsApp con fotos: cuando había varias se perdían en el chat, nadie sabía cuál ya tenía responsable o visto bueno, las reuniones también se coordinaban por ahí y gerencia no tenía cifras. La condición del piloto era que reportar una falla tomara menos toques que mandar un mensaje.",
+    "en": "Failures were reported over WhatsApp with photos: when several piled up they got lost in the chat, nobody knew which one had an owner or a sign-off, meetings were coordinated there too, and management had no figures. The pilot's condition was that reporting a failure had to take fewer taps than sending a message."
+  },
+  "architecture": {
+    "es": "PWA React + Vite (modelos puros → capa de datos Firebase → controladores en hooks → vistas, separación forzada por ESLint) → Firestore en tiempo real con caché offline → reglas de seguridad por rol (lista blanca de miembros, líderes y autores) → Firebase Auth con Google → Firebase AI Logic (Gemini) para el reporte de gerencia → EmailJS para correos → Firebase Hosting (plan Spark, sin servidor propio)",
+    "en": "React + Vite PWA (pure models → Firebase data layer → hook controllers → views, separation enforced by ESLint) → real-time Firestore with offline cache → role-based security rules (member allowlist, leaders, and authors) → Firebase Auth with Google → Firebase AI Logic (Gemini) for the management report → EmailJS for email → Firebase Hosting (Spark plan, no custom server)"
+  },
+  "decisions": {
+    "es": [
+      "Flujo de estados como modelo puro (abierto → asignado → en proceso → resuelto → visto bueno) con quién puede hacer cada acción; las mismas restricciones viven en las reglas de Firestore, así la interfaz no es la única barrera.",
+      "Solo los líderes asignan; quien recibe un ticket sin ser líder puede «No tomar», lo que lo devuelve y avisa para reasignarlo. Las reglas impiden que «tomar» saque a otro responsable.",
+      "Editor de fotos propio en canvas (lápiz, flechas, texto, deshacer) para marcar la falla sobre la foto, con galería deslizable tipo WhatsApp.",
+      "Fotos comprimidas a JPEG dentro de Firestore, un documento por foto, para operar en el plan gratuito; las reglas limitan tipo y tamaño.",
+      "Reuniones con repetición configurable (días de la semana, cada N, fin) y recordatorio, exportables a calendario con RRULE y alarma.",
+      "Rondas de temperatura: cada equipo con rango normal, foto del termómetro obligatoria y aviso automático cuando la lectura sale de rango.",
+      "El reporte de gerencia envía a Gemini solo estadísticas agregadas con un esquema de respuesta fijo, nunca los tickets en crudo."
+    ],
+    "en": [
+      "Status flow as a pure model (open → assigned → in progress → resolved → signed off) including who may perform each action; the same constraints live in the Firestore rules, so the UI is not the only barrier.",
+      "Only leaders assign; a non-leader assignee can choose “Don't take”, which returns the ticket and notifies so it gets reassigned. The rules prevent “take” from removing another assignee.",
+      "Custom canvas photo editor (pen, arrows, text, undo) to mark the failure on the photo, with a WhatsApp-style swipeable gallery.",
+      "Photos compressed to JPEG inside Firestore, one document per photo, to run on the free plan; the rules limit type and size.",
+      "Meetings with configurable recurrence (weekdays, every N, end date) and a reminder, exportable to calendars with RRULE and an alarm.",
+      "Temperature rounds: each device has a normal range, a mandatory thermometer photo, and an automatic alert when a reading is out of range.",
+      "The management report sends Gemini only aggregated statistics with a fixed response schema, never raw tickets."
+    ]
+  },
+  "results": {
+    "es": [
+      "Aplicación desplegada y en piloto, instalable en el celular y usable con mala señal gracias a la caché offline.",
+      "106 pruebas unitarias sobre el flujo, las estadísticas, la recurrencia y los rangos de temperatura, más una verificación automática de las reglas de seguridad contra el emulador y un recorrido de humo en navegador antes de cada despliegue.",
+      "Dashboard con periodos, tendencias, carga por área y persona, paneles reordenables y reporte exportable a PDF.",
+      "Notificaciones en la app con búsqueda por fecha en lenguaje natural y correos al asignar, resolver o no poder resolver."
+    ],
+    "en": [
+      "Application deployed and in pilot, installable on phones and usable with poor signal thanks to the offline cache.",
+      "106 unit tests covering the flow, statistics, recurrence, and temperature ranges, plus an automated check of the security rules against the emulator and a browser smoke run before every deployment.",
+      "Dashboard with periods, trends, workload by area and person, reorderable panels, and a report exportable to PDF.",
+      "In-app notifications with natural-language date search, plus email when a ticket is assigned, resolved, or cannot be resolved."
+    ]
+  },
+  "limitations": {
+    "es": [
+      "Es un piloto en una sola área; todavía no hay métricas de adopción ni de tiempos de respuesta medidos en operación.",
+      "Las capturas usan datos ficticios del emulador; el código y la aplicación en producción son privados porque contienen la operación del cliente.",
+      "Las fotos en Firestore caben en el nivel gratuito (unas miles); si el piloto escala hay que migrarlas a Cloud Storage, que exige el plan de pago."
+    ],
+    "en": [
+      "It is a pilot in a single area; there are no adoption or response-time metrics measured in operation yet.",
+      "Screenshots use fictional emulator data; the code and the production app are private because they hold the client's operations.",
+      "Photos in Firestore fit the free tier (a few thousand); if the pilot scales they must move to Cloud Storage, which requires the paid plan."
+    ]
+  },
+  "technologies": [
+    "React",
+    "Vite",
+    "Firebase Auth",
+    "Cloud Firestore",
+    "Firestore Security Rules",
+    "Firebase AI Logic (Gemini)",
+    "Chart.js",
+    "SortableJS",
+    "EmailJS",
+    "PWA",
+    "Vitest",
+    "Playwright"
+  ],
+  "metrics": [
+    {
+      "value": "106",
+      "label": {
+        "es": "pruebas unitarias",
+        "en": "unit tests"
+      },
+      "context": {
+        "es": "Más verificación de reglas y recorrido de humo antes de cada despliegue",
+        "en": "Plus a rules check and a smoke run before every deployment"
+      }
+    },
+    {
+      "value": "6",
+      "label": {
+        "es": "módulos",
+        "en": "modules"
+      },
+      "context": {
+        "es": "Pendientes, tickets, avisos, reuniones, temperaturas y dashboard",
+        "en": "Tasks, tickets, announcements, meetings, temperatures, and dashboard"
+      }
+    }
+  ],
+  "images": [
+    {
+      "src": "/images/projects/mtto-pendientes.jpg",
+      "alt": {
+        "es": "Lista de pendientes de MTTO con filtros por prioridad y estado",
+        "en": "MTTO task list with priority and status filters"
+      },
+      "caption": {
+        "es": "Pendientes: pestañas Míos, Reporté y Todos, filtros por prioridad y estado, y aviso de reportes que esperan visto bueno.",
+        "en": "Task list: Mine, Reported, and All tabs, priority and status filters, and a banner for reports awaiting sign-off."
+      },
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "src": "/images/projects/mtto-ticket.jpg",
+      "alt": {
+        "es": "Detalle de un ticket con estado, responsable e historial",
+        "en": "Ticket detail with status, assignee, and history"
+      },
+      "caption": {
+        "es": "Detalle del ticket: estado, responsable, progreso del flujo e historial de quién hizo qué y cuánto tardó.",
+        "en": "Ticket detail: status, assignee, flow progress, and a history of who did what and how long it took."
+      },
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "src": "/images/projects/mtto-dashboard.jpg",
+      "alt": {
+        "es": "Dashboard de mantenimiento con indicadores y estado de los reportes",
+        "en": "Maintenance dashboard with indicators and report status"
+      },
+      "caption": {
+        "es": "Dashboard de mantenimiento: periodo, indicadores principales y paneles reordenables.",
+        "en": "Maintenance dashboard: period, key indicators, and reorderable panels."
+      },
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "src": "/images/projects/mtto-temperaturas.jpg",
+      "alt": {
+        "es": "Ronda de temperaturas con tarjetas por equipo y rango normal",
+        "en": "Temperature round with per-device cards and normal range"
+      },
+      "caption": {
+        "es": "Ronda de temperaturas: progreso del día, siguiente equipo por medir y cada lectura contra su rango normal.",
+        "en": "Temperature round: daily progress, the next device to measure, and each reading against its normal range."
+      },
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "src": "/images/projects/mtto-temp-dashboard.jpg",
+      "alt": {
+        "es": "Dashboard de temperaturas con gráfica de lecturas en el tiempo",
+        "en": "Temperature dashboard with a chart of readings over time"
+      },
+      "caption": {
+        "es": "Dashboard de temperaturas: mediciones del periodo, lecturas fuera de rango y evolución por equipo.",
+        "en": "Temperature dashboard: readings in the period, out-of-range readings, and trend per device."
+      },
+      "width": 1280,
+      "height": 800
+    }
+  ],
+  "evidenceUrl": null,
+  "repositoryUrl": null,
+  "repositoryLabel": null,
+  "demoUrl": null
+}
